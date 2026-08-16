@@ -2,12 +2,13 @@
 stages/pipeline.py — End-to-end WBCIS Termsheet Extraction Pipeline.
 
 Sequentially orchestrates all 6 stages:
-1. Ingest & Route     (stages.ingest_router)
-2. Extract to Cells   (stages.cell_extractor)
-3. Segment & Classify (stages.segmenter)
-4. Reconstruct        (stages.reconstructor)
-5. Schema Mapping     (stages.mapper)
-6. Validate           (stages.validator)
+1. Ingest & Route       (stages.ingest_router)
+2. Extract to Cells     (stages.cell_extractor)
+3. Segment & Classify   (stages.segmenter)
+4. Reconstruct          (stages.reconstructor)
+5. Schema Mapping       (stages.mapper)
+6. Validate & Audit     (stages.validator)
+7. Underwriter Report   (stages.review_report)
 
 All intermediate artifacts are persisted to disk to maintain step-by-step
 checkpointing and reproducibility.
@@ -25,6 +26,7 @@ from stages import (
     ingest_router,
     mapper,
     reconstructor,
+    review_report,
     segmenter,
     validator,
 )
@@ -129,11 +131,24 @@ def run_pipeline(
     if not quiet:
         print(f"Stage 5 completed in {time.perf_counter() - t0:.2f}s")
 
+    # --- Stage 6: Human Review & Provenance Report ---
+    t0 = time.perf_counter()
+    report_path = int_dir / "review_report.md"
+    if not quiet:
+        print("\n[Stage 6/6] Generating Human Review & Provenance Report...")
+    _ = review_report.run(
+        validated_termsheet_path=validated_path,
+        output_path=report_path,
+    )
+    if not quiet:
+        print(f"Stage 6 completed in {time.perf_counter() - t0:.2f}s")
+
     elapsed = time.perf_counter() - start_time
     if not quiet:
         print("\n" + "=" * 70)
         print(f"Pipeline completed successfully in {elapsed:.2f}s")
         print(f"Final Artifact: {validated_path}")
+        print(f"Review Report : {report_path}")
         print(f"Review Required: {validated.review_required}")
         print(f"Validation Flags: {len(validated.flags)}")
         print("=" * 70)

@@ -45,3 +45,4 @@ These are intentional operational deviations over the static ground truth fixtur
 - [ ] Riskwolf JSON contract — owner: ______  follow-up date: ______
 - [ ] OCR/vision tool choice for scanned pages — still open
 - [ ] Stage ownership split between Shashikiran and Aniket — not yet decided
+- [ ] **Confidence Scoring for `agent_inferred` fields**: Currently reflects LLM self-reported certainty, not source-text visual quality (e.g. awkwardly wrapped multi-line dates like `perils[3].cover_period.end`). This is a known gap, not a blocker for MVP. Revisit if this pattern recurs on messier documents later.

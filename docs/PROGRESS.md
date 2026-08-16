@@ -12,32 +12,26 @@
 - [x] Bedrock mapping
 - [x] Validation
 - [x] Full pipeline
-- [ ] Provenance
+- [x] Provenance & Review Report (Phase 10)
 - [ ] Remaining archetypes
 - [ ] Ajmer → Alwar
 - [ ] Riskwolf output
 
 ## Current Stage
-Phase 10 -- Field-Level Provenance & Traceability
+Phase 11 -- Remaining Archetypes & Edge Case Handling
 
 ## Current Goal
-Enhance extraction provenance across all stages, ensuring every extracted field
-links back to exact cell/geometry coordinates in raw_cells.json.
+Expand parser support to remaining WBCIS weather insurance archetypes (e.g. Dry Spell, Consecutive Dry Days, Relative Humidity, Frost) and multi-district batches.
 
 ## Last Test Result
-Phase 9 -- 259/259 tests passed (4 new Phase 9 pipeline integration tests + 255 earlier stages).
-Full pipeline orchestrator built: stages/pipeline.py and main.py
+Phase 10 -- 265/265 tests passed (6 new Phase 10 review report tests + 259 earlier stages).
+Review report generator built: stages/review_report.py and test suite tests/test_review_report.py
 
-Pipeline Integration Findings:
-  - End-to-end PDF to ValidatedTermsheet: Ran in ~10.27s on real Orange_TermSheet.pdf.
-  - Sequential execution verified:
-    1. Stage 1 Ingest & Route -> data/intermediates/page_manifest.json (1 native page)
-    2. Stage 2 Cell Extractor -> data/intermediates/raw_cells.json (330 cells)
-    3. Stage 3 Segmenter      -> data/intermediates/segmented_perils.json (4 perils, 100% cells accounted)
-    4. Stage 4A Reconstructor -> data/intermediates/reconstructed_perils.json (4 peril tables reconstructed)
-    5. Stage 4B Mapper        -> data/intermediates/mapped_termsheet.json + mapping_agent_logs.json (Bedrock agent)
-    6. Stage 5 Validator      -> data/intermediates/validated_termsheet.json (0 errors, 0 warnings, review_required=False)
-  - All intermediate artifacts verified persisted, readable, and strictly adhering to Pydantic models.
+Review & Provenance Surface Findings:
+  - Markdown review report generated at: data/intermediates/review_report.md
+  - Real Orange termsheet renders clean "PASS — NO REVIEW REQUIRED" state.
+  - Full provenance breakdown surfaces 33 native exact fields (20.2%), 130 agent-inferred parameters (79.8%), and 4 intentional blank fields with 0.94 overall confidence.
+  - Low-confidence fields and validation flags cross-referenced together cleanly.
   - Idempotency verified: running pipeline repeatedly yields consistent, clean ValidatedTermsheet.
 
 Eval Harness Report (against docs/source/sample_orange_jhalawar.json):
