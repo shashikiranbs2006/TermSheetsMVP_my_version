@@ -1,0 +1,1181 @@
+{
+  "document": {
+    "scheme_name": {
+      "value": "WBCIS",
+      "raw": null,
+      "source": "native_exact",
+      "confidence": 1.0
+    },
+    "scheme_year": {
+      "value": "2019-20",
+      "raw": null,
+      "source": "native_exact",
+      "confidence": 1.0
+    },
+    "state": {
+      "value": "Rajasthan",
+      "raw": "RAJASTHAN",
+      "source": "native_exact",
+      "confidence": 1.0
+    },
+    "district": {
+      "value": "Jhalawar",
+      "raw": "Jhalawar",
+      "source": "native_exact",
+      "confidence": 1.0
+    },
+    "crop": {
+      "value": "Orange",
+      "raw": "Orange",
+      "source": "native_exact",
+      "confidence": 1.0
+    },
+    "season": {
+      "value": null,
+      "raw": null,
+      "source": "native_exact",
+      "confidence": 1.0
+    },
+    "unit": {
+      "value": "HECTARE",
+      "raw": null,
+      "source": "native_exact",
+      "confidence": 1.0
+    },
+    "reference_weather_station": {
+      "value": "As Per Notification",
+      "raw": null,
+      "source": "native_exact",
+      "confidence": 1.0
+    },
+    "annexure_ref": {
+      "value": "Annexure 3",
+      "raw": null,
+      "source": "native_exact",
+      "confidence": 1.0
+    },
+    "premium": {
+      "total_sum_insured": {
+        "value": 125000.0,
+        "raw": null,
+        "source": "native_exact",
+        "confidence": 1.0
+      },
+      "gross_premium": {
+        "value": null,
+        "raw": null,
+        "source": "native_exact",
+        "confidence": 1.0
+      },
+      "premium_pct": {
+        "value": null,
+        "raw": null,
+        "source": "native_exact",
+        "confidence": 1.0
+      },
+      "farmers_premium": {
+        "value": null,
+        "raw": null,
+        "source": "native_exact",
+        "confidence": 1.0
+      }
+    },
+    "source_meta": {
+      "file_name": "orange_jhalawar_2019-20.pdf",
+      "page_range": [
+        1
+      ],
+      "is_scan": false,
+      "ocr_used": false
+    }
+  },
+  "perils": [
+    {
+      "peril_id": "high_temperature",
+      "peril_label_raw": {
+        "value": "1. HIGH TEMPERATURE",
+        "raw": null,
+        "source": "native_exact",
+        "confidence": 1.0
+      },
+      "archetype": "temperature_phased",
+      "cover_objective": {
+        "value": "To cover anticipated yield loss in the event of High Temperature",
+        "raw": null,
+        "source": "native_exact",
+        "confidence": 1.0
+      },
+      "event_definition": {
+        "value": "Cumulative daily upward deviation of Maximum temperature from respective Triggers",
+        "raw": null,
+        "source": "native_exact",
+        "confidence": 1.0
+      },
+      "cover_period": {
+        "start": {
+          "value": "2020-02-01",
+          "raw": null,
+          "source": "native_exact",
+          "confidence": 1.0
+        },
+        "end": {
+          "value": "2020-04-30",
+          "raw": null,
+          "source": "native_exact",
+          "confidence": 1.0
+        }
+      },
+      "structure": {
+        "type": "temperature_phased",
+        "measure": {
+          "value": "max_temperature",
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "unit": {
+          "value": "°C",
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "direction": {
+          "value": "upward",
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "strike": {
+          "value": 4.0,
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "exit": {
+          "value": 22.0,
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "payout_rate": {
+          "value": 2083.33,
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "payout_rate_unit": {
+          "value": "Rs/°C",
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "max_payout": {
+          "value": 37500.0,
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "phases": [
+          {
+            "label": {
+              "value": "I",
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "period": {
+              "start": {
+                "value": "2020-02-01",
+                "raw": null,
+                "source": "agent_inferred",
+                "confidence": 0.95
+              },
+              "end": {
+                "value": "2020-02-14",
+                "raw": null,
+                "source": "agent_inferred",
+                "confidence": 0.95
+              }
+            },
+            "trigger": {
+              "value": 29.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            }
+          },
+          {
+            "label": {
+              "value": "II",
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "period": {
+              "start": {
+                "value": "2020-02-15",
+                "raw": null,
+                "source": "agent_inferred",
+                "confidence": 0.95
+              },
+              "end": {
+                "value": "2020-02-28",
+                "raw": null,
+                "source": "agent_inferred",
+                "confidence": 0.95
+              }
+            },
+            "trigger": {
+              "value": 31.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            }
+          },
+          {
+            "label": {
+              "value": "III",
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "period": {
+              "start": {
+                "value": "2020-03-01",
+                "raw": null,
+                "source": "agent_inferred",
+                "confidence": 0.95
+              },
+              "end": {
+                "value": "2020-03-15",
+                "raw": null,
+                "source": "agent_inferred",
+                "confidence": 0.95
+              }
+            },
+            "trigger": {
+              "value": 33.5,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            }
+          },
+          {
+            "label": {
+              "value": "IV",
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "period": {
+              "start": {
+                "value": "2020-03-16",
+                "raw": null,
+                "source": "agent_inferred",
+                "confidence": 0.95
+              },
+              "end": {
+                "value": "2020-03-31",
+                "raw": null,
+                "source": "agent_inferred",
+                "confidence": 0.95
+              }
+            },
+            "trigger": {
+              "value": 35.5,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            }
+          },
+          {
+            "label": {
+              "value": "V",
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "period": {
+              "start": {
+                "value": "2020-04-01",
+                "raw": null,
+                "source": "agent_inferred",
+                "confidence": 0.95
+              },
+              "end": {
+                "value": "2020-04-15",
+                "raw": null,
+                "source": "agent_inferred",
+                "confidence": 0.95
+              }
+            },
+            "trigger": {
+              "value": 36.5,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            }
+          },
+          {
+            "label": {
+              "value": "VI",
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "period": {
+              "start": {
+                "value": "2020-04-16",
+                "raw": null,
+                "source": "agent_inferred",
+                "confidence": 0.95
+              },
+              "end": {
+                "value": "2020-04-30",
+                "raw": null,
+                "source": "agent_inferred",
+                "confidence": 0.95
+              }
+            },
+            "trigger": {
+              "value": 39.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            }
+          }
+        ]
+      }
+    },
+    {
+      "peril_id": "deficit_rainfall",
+      "peril_label_raw": {
+        "value": "2 DEFICIT RAINFALL COVER",
+        "raw": null,
+        "source": "native_exact",
+        "confidence": 1.0
+      },
+      "archetype": "rainfall_multistrike",
+      "cover_objective": {
+        "value": "To cover anticipated yield loss in the event of Rainfall deficit during cover period",
+        "raw": null,
+        "source": "native_exact",
+        "confidence": 1.0
+      },
+      "event_definition": {
+        "value": "Aggregate rainfall over respective Phases below strike",
+        "raw": null,
+        "source": "native_exact",
+        "confidence": 1.0
+      },
+      "cover_period": {
+        "start": {
+          "value": "2019-07-01",
+          "raw": null,
+          "source": "native_exact",
+          "confidence": 1.0
+        },
+        "end": {
+          "value": "2019-09-30",
+          "raw": null,
+          "source": "native_exact",
+          "confidence": 1.0
+        }
+      },
+      "structure": {
+        "type": "rainfall_multistrike",
+        "measure": {
+          "value": "aggregate_rainfall",
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "unit": {
+          "value": "mm",
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "direction": {
+          "value": "deficit",
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "phases": [
+          {
+            "label": {
+              "value": "Phase I",
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "sub_periods": [
+              {
+                "start": {
+                  "value": "2019-07-01",
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                },
+                "end": {
+                  "value": "2019-07-15",
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                }
+              }
+            ],
+            "strike_1": {
+              "value": 60.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "strike_2": {
+              "value": 20.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "exit": {
+              "value": 0.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "rate_1": {
+              "value": 56.25,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "rate_2": {
+              "value": 262.5,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "rate_unit": {
+              "value": "Rs/mm",
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "max_payout": {
+              "value": 7500.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            }
+          },
+          {
+            "label": {
+              "value": "Phase I",
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "sub_periods": [
+              {
+                "start": {
+                  "value": "2019-07-16",
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                },
+                "end": {
+                  "value": "2019-07-31",
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                }
+              }
+            ],
+            "strike_1": {
+              "value": 80.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "strike_2": {
+              "value": 30.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "exit": {
+              "value": 10.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "rate_1": {
+              "value": 45.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "rate_2": {
+              "value": 262.5,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "rate_unit": {
+              "value": "Rs/mm",
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "max_payout": {
+              "value": 7500.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            }
+          },
+          {
+            "label": {
+              "value": "Phase I",
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "sub_periods": [
+              {
+                "start": {
+                  "value": "2019-08-01",
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                },
+                "end": {
+                  "value": "2019-08-15",
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                }
+              }
+            ],
+            "strike_1": {
+              "value": 80.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "strike_2": {
+              "value": 30.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "exit": {
+              "value": 10.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "rate_1": {
+              "value": 45.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "rate_2": {
+              "value": 262.5,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "rate_unit": {
+              "value": "Rs/mm",
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "max_payout": {
+              "value": 7500.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            }
+          },
+          {
+            "label": {
+              "value": "Phase II",
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "sub_periods": [
+              {
+                "start": {
+                  "value": "2019-08-16",
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                },
+                "end": {
+                  "value": "2019-08-31",
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                }
+              }
+            ],
+            "strike_1": {
+              "value": 80.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "strike_2": {
+              "value": 30.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "exit": {
+              "value": 10.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "rate_1": {
+              "value": 45.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "rate_2": {
+              "value": 262.5,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "rate_unit": {
+              "value": "Rs/mm",
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "max_payout": {
+              "value": 7500.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            }
+          },
+          {
+            "label": {
+              "value": "Phase II",
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "sub_periods": [
+              {
+                "start": {
+                  "value": "2019-09-01",
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                },
+                "end": {
+                  "value": "2019-09-15",
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                }
+              }
+            ],
+            "strike_1": {
+              "value": 60.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "strike_2": {
+              "value": 20.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "exit": {
+              "value": 0.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "rate_1": {
+              "value": 56.25,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "rate_2": {
+              "value": 262.5,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "rate_unit": {
+              "value": "Rs/mm",
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "max_payout": {
+              "value": 7500.0,
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            }
+          }
+        ],
+        "total_payout": {
+          "value": 37500.0,
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        }
+      }
+    },
+    {
+      "peril_id": "unseasonal_rainfall",
+      "peril_label_raw": {
+        "value": "2 B: UNSEASONAL RAINFALL COVER",
+        "raw": null,
+        "source": "native_exact",
+        "confidence": 1.0
+      },
+      "archetype": "rainfall_single_payout",
+      "cover_objective": {
+        "value": "To cover anticipated yield loss in the event of unseasonal Rainfall",
+        "raw": null,
+        "source": "native_exact",
+        "confidence": 1.0
+      },
+      "event_definition": {
+        "value": "Excess rainfall (single payout)",
+        "raw": null,
+        "source": "native_exact",
+        "confidence": 1.0
+      },
+      "cover_period": {
+        "start": {
+          "value": "2019-06-01",
+          "raw": null,
+          "source": "native_exact",
+          "confidence": 1.0
+        },
+        "end": {
+          "value": "2019-06-15",
+          "raw": null,
+          "source": "native_exact",
+          "confidence": 1.0
+        }
+      },
+      "structure": {
+        "type": "rainfall_single_payout",
+        "measure": {
+          "value": "aggregate_rainfall",
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "unit": {
+          "value": "mm",
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "direction": {
+          "value": "unseasonal",
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "payout_mode": {
+          "value": "single",
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "periods": [
+          {
+            "start": {
+              "value": "2019-06-01",
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "end": {
+              "value": "2019-06-15",
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            }
+          }
+        ],
+        "strike_1": {
+          "value": 25.0,
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "strike_2": {
+          "value": 40.0,
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "exit": {
+          "value": 60.0,
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "rate_1": {
+          "value": 500.0,
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "rate_2": {
+          "value": 875.0,
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "rate_unit": {
+          "value": "Rs/mm",
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "max_payout": {
+          "value": 25000.0,
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        }
+      }
+    },
+    {
+      "peril_id": "high_wind_speed",
+      "peril_label_raw": {
+        "value": "3. HIGH WIND SPEED",
+        "raw": null,
+        "source": "native_exact",
+        "confidence": 1.0
+      },
+      "archetype": "wind_phased",
+      "cover_objective": {
+        "value": "To cover anticipated yield loss in the event of High Wind Speed",
+        "raw": null,
+        "source": "native_exact",
+        "confidence": 1.0
+      },
+      "event_definition": {
+        "value": "Cumulative daily upward deviation of Maximum Wind Speed from respective Triggers",
+        "raw": null,
+        "source": "native_exact",
+        "confidence": 1.0
+      },
+      "cover_period": {
+        "start": {
+          "value": "2019-10-15",
+          "raw": null,
+          "source": "native_exact",
+          "confidence": 1.0
+        },
+        "end": {
+          "value": "2020-03-31",
+          "raw": null,
+          "source": "native_exact",
+          "confidence": 1.0
+        }
+      },
+      "structure": {
+        "type": "wind_phased",
+        "measure": {
+          "value": "max_wind_speed",
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "unit": {
+          "value": "km/h",
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "direction": {
+          "value": "upward",
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "strike": {
+          "value": 10.0,
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "exit": {
+          "value": 70.0,
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "payout_rate": {
+          "value": 208.33,
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "payout_rate_unit": {
+          "value": "Rs/km/h",
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "max_payout": {
+          "value": 12500.0,
+          "raw": null,
+          "source": "agent_inferred",
+          "confidence": 0.95
+        },
+        "trigger_blocks": [
+          {
+            "block_label": {
+              "value": "block_1",
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "period": {
+              "start": {
+                "value": "2019-10-15",
+                "raw": null,
+                "source": "agent_inferred",
+                "confidence": 0.95
+              },
+              "end": {
+                "value": "2019-11-30",
+                "raw": null,
+                "source": "agent_inferred",
+                "confidence": 0.95
+              }
+            },
+            "phases": [
+              {
+                "label": {
+                  "value": "I",
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                },
+                "period": {
+                  "start": {
+                    "value": "2019-10-15",
+                    "raw": null,
+                    "source": "agent_inferred",
+                    "confidence": 0.95
+                  },
+                  "end": {
+                    "value": "2019-10-31",
+                    "raw": null,
+                    "source": "agent_inferred",
+                    "confidence": 0.95
+                  }
+                },
+                "trigger": {
+                  "value": 50.0,
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                }
+              },
+              {
+                "label": {
+                  "value": "II",
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                },
+                "period": {
+                  "start": {
+                    "value": "2019-11-01",
+                    "raw": null,
+                    "source": "agent_inferred",
+                    "confidence": 0.95
+                  },
+                  "end": {
+                    "value": "2019-11-15",
+                    "raw": null,
+                    "source": "agent_inferred",
+                    "confidence": 0.95
+                  }
+                },
+                "trigger": {
+                  "value": 55.0,
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                }
+              },
+              {
+                "label": {
+                  "value": "III",
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                },
+                "period": {
+                  "start": {
+                    "value": "2019-11-16",
+                    "raw": null,
+                    "source": "agent_inferred",
+                    "confidence": 0.95
+                  },
+                  "end": {
+                    "value": "2019-11-30",
+                    "raw": null,
+                    "source": "agent_inferred",
+                    "confidence": 0.95
+                  }
+                },
+                "trigger": {
+                  "value": 55.0,
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                }
+              }
+            ]
+          },
+          {
+            "block_label": {
+              "value": "block_2",
+              "raw": null,
+              "source": "agent_inferred",
+              "confidence": 0.95
+            },
+            "period": {
+              "start": {
+                "value": "2020-02-15",
+                "raw": null,
+                "source": "agent_inferred",
+                "confidence": 0.95
+              },
+              "end": {
+                "value": "2020-03-31",
+                "raw": null,
+                "source": "agent_inferred",
+                "confidence": 0.95
+              }
+            },
+            "phases": [
+              {
+                "label": {
+                  "value": "I",
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                },
+                "period": {
+                  "start": {
+                    "value": "2020-02-15",
+                    "raw": null,
+                    "source": "agent_inferred",
+                    "confidence": 0.95
+                  },
+                  "end": {
+                    "value": "2020-02-28",
+                    "raw": null,
+                    "source": "agent_inferred",
+                    "confidence": 0.95
+                  }
+                },
+                "trigger": {
+                  "value": 50.0,
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                }
+              },
+              {
+                "label": {
+                  "value": "II",
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                },
+                "period": {
+                  "start": {
+                    "value": "2020-03-01",
+                    "raw": null,
+                    "source": "agent_inferred",
+                    "confidence": 0.95
+                  },
+                  "end": {
+                    "value": "2020-03-15",
+                    "raw": null,
+                    "source": "agent_inferred",
+                    "confidence": 0.95
+                  }
+                },
+                "trigger": {
+                  "value": 55.0,
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                }
+              },
+              {
+                "label": {
+                  "value": "III",
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                },
+                "period": {
+                  "start": {
+                    "value": "2020-03-16",
+                    "raw": null,
+                    "source": "agent_inferred",
+                    "confidence": 0.95
+                  },
+                  "end": {
+                    "value": "2020-03-31",
+                    "raw": null,
+                    "source": "agent_inferred",
+                    "confidence": 0.95
+                  }
+                },
+                "trigger": {
+                  "value": 50.0,
+                  "raw": null,
+                  "source": "agent_inferred",
+                  "confidence": 0.95
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "extraction_confidence": {
+    "overall": 0.95,
+    "per_field": {
+      "perils[0]": 0.95,
+      "perils[1]": 0.95,
+      "perils[2]": 0.95,
+      "perils[3]": 0.95
+    }
+  }
+}

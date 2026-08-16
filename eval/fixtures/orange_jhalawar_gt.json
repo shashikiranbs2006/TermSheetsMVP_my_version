@@ -1,0 +1,185 @@
+{
+  "document": {
+    "scheme_name": "WBCIS",
+    "scheme_year": "2019-20",
+    "annexure_ref": "Annexure 3",
+    "state": { "raw": "RAJASTHAN", "normalized": "Rajasthan" },
+    "district": { "raw": "Jhalawar", "normalized": "Jhalawar" },
+    "crop": { "raw": "Orange", "normalized": "Orange" },
+    "season": null,
+    "unit": "HECTARE",
+    "reference_weather_station": "As Per Notification",
+    "premium": {
+      "total_sum_insured": 125000,
+      "gross_premium": null,
+      "premium_pct": null,
+      "farmers_premium": null
+    },
+    "source_meta": {
+      "file_name": "orange_jhalawar_2019-20.pdf",
+      "page_range": "1",
+      "is_scan": null,
+      "ocr_used": null
+    }
+  },
+
+  "perils": [
+    {
+      "peril_id": "high_temperature",
+      "peril_label_raw": "1. HIGH TEMPERATURE",
+      "archetype": "temperature_phased",
+      "cover_objective": "To cover anticipated yield loss in the event of High Temperature",
+      "event_definition": "Cumulative daily upward deviation of Maximum temperature from respective Triggers",
+      "cover_period": { "start": "2020-02-01", "end": "2020-04-30" },
+      "structure": {
+        "measure": "max_temperature",
+        "direction": "upward",
+        "unit": "°C",
+        "strike": 4,
+        "exit": 22,
+        "payout_rate": 2083.33,
+        "payout_rate_unit": "Rs/°C",
+        "max_payout": 37500,
+        "phases": [
+          { "label": "I",   "period": { "start": "2020-02-01", "end": "2020-02-14" }, "trigger": 29.0 },
+          { "label": "II",  "period": { "start": "2020-02-15", "end": "2020-02-28" }, "trigger": 31.0 },
+          { "label": "III", "period": { "start": "2020-03-01", "end": "2020-03-15" }, "trigger": 33.5 },
+          { "label": "IV",  "period": { "start": "2020-03-16", "end": "2020-03-31" }, "trigger": 35.5 },
+          { "label": "V",   "period": { "start": "2020-04-01", "end": "2020-04-15" }, "trigger": 36.5 },
+          { "label": "VI",  "period": { "start": "2020-04-16", "end": "2020-04-30" }, "trigger": 39.0 }
+        ]
+      }
+    },
+
+    {
+      "peril_id": "deficit_rainfall",
+      "peril_label_raw": "2 DEFICIT RAINFALL COVER",
+      "archetype": "rainfall_multistrike",
+      "cover_objective": "To cover anticipated yield loss in the event of Rainfall deficit during cover period",
+      "event_definition": "Aggregate rainfall over respective Phases below strike",
+      "cover_period": { "start": "2019-07-01", "end": "2019-09-30" },
+      "structure": {
+        "measure": "aggregate_rainfall",
+        "direction": "deficit",
+        "unit": "mm",
+        "rate_unit": "Rs/mm",
+        "phases": [
+          {
+            "label": "Phase I",
+            "sub_periods": [
+              { "period": { "start": "2019-07-01", "end": "2019-07-15" }, "strike_1": 60, "strike_2": 20, "exit": 0,  "rate_1": 56.25, "rate_2": 262.50, "max_payout": 7500 },
+              { "period": { "start": "2019-07-16", "end": "2019-07-31" }, "strike_1": 80, "strike_2": 30, "exit": 10, "rate_1": 45.00, "rate_2": 262.50, "max_payout": 7500 },
+              { "period": { "start": "2019-08-01", "end": "2019-08-15" }, "strike_1": 80, "strike_2": 30, "exit": 10, "rate_1": 45.00, "rate_2": 262.50, "max_payout": 7500 }
+            ]
+          },
+          {
+            "label": "Phase II",
+            "sub_periods": [
+              { "period": { "start": "2019-08-16", "end": "2019-08-31" }, "strike_1": 80, "strike_2": 30, "exit": 10, "rate_1": 45.00, "rate_2": 262.50, "max_payout": 7500 },
+              { "period": { "start": "2019-09-01", "end": "2019-09-15" }, "strike_1": 60, "strike_2": 20, "exit": 0,  "rate_1": 56.25, "rate_2": 262.50, "max_payout": 7500 }
+            ]
+          }
+        ],
+        "total_payout": 37500
+      }
+    },
+
+    {
+      "peril_id": "unseasonal_rainfall",
+      "peril_label_raw": "2 B: UNSEASONAL RAINFALL COVER",
+      "archetype": "rainfall_single_payout",
+      "cover_objective": "To cover anticipated yield loss in the event of unseasonal Rainfall",
+      "event_definition": "Excess rainfall (single payout)",
+      "cover_period": { "start": "2019-06-01", "end": "2019-06-15" },
+      "structure": {
+        "measure": "aggregate_rainfall",
+        "direction": "unseasonal",
+        "unit": "mm",
+        "payout_mode": "single",
+        "periods": [ { "start": "2019-06-01", "end": "2019-06-15" } ],
+        "strike_1": 25,
+        "strike_2": 40,
+        "exit": 60,
+        "rate_1": 500,
+        "rate_2": 875,
+        "rate_unit": "Rs/mm",
+        "max_payout": 25000
+      }
+    },
+
+    {
+      "peril_id": "high_wind_speed",
+      "peril_label_raw": "3. HIGH WIND SPEED",
+      "archetype": "wind_phased",
+      "cover_objective": "To cover anticipated yield loss in the event of High Wind Speed",
+      "event_definition": "Cumulative daily upward deviation of Maximum Wind Speed from respective Triggers",
+      "cover_period": { "start": "2019-10-15", "end": "2020-03-31" },
+      "structure": {
+        "measure": "max_wind_speed",
+        "direction": "upward",
+        "unit": "km/h",
+        "strike": 10,
+        "exit": 70,
+        "payout_rate": 208.33,
+        "payout_rate_unit": "Rs/km/h",
+        "max_payout": 12500,
+        "trigger_blocks": [
+          {
+            "block_label": "block_1",
+            "period": { "start": "2019-10-15", "end": "2019-11-30" },
+            "phases": [
+              { "label": "I",   "period": { "start": "2019-10-15", "end": "2019-10-31" }, "trigger": 50 },
+              { "label": "II",  "period": { "start": "2019-11-01", "end": "2019-11-15" }, "trigger": 55 },
+              { "label": "III", "period": { "start": "2019-11-16", "end": "2019-11-30" }, "trigger": 55 }
+            ]
+          },
+          {
+            "block_label": "block_2",
+            "period": { "start": "2020-02-15", "end": "2020-03-31" },
+            "phases": [
+              { "label": "I",   "period": { "start": "2020-02-15", "end": "2020-02-28" }, "trigger": 50 },
+              { "label": "II",  "period": { "start": "2020-03-01", "end": "2020-03-15" }, "trigger": 55 },
+              { "label": "III", "period": { "start": "2020-03-16", "end": "2020-03-31" }, "trigger": 50 }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+
+  "extraction_confidence": {
+    "overall": 0.86,
+    "per_field": {
+      "document.premium.gross_premium": 0.0,
+      "document.premium.premium_pct": 0.0,
+      "perils[3].cover_period.end": 0.72
+    }
+  },
+
+  "flags": [
+    {
+      "type": "missing_field",
+      "severity": "info",
+      "path": "document.premium.gross_premium",
+      "message": "Gross Premium blank in source document."
+    },
+    {
+      "type": "missing_field",
+      "severity": "info",
+      "path": "document.premium.premium_pct",
+      "message": "Premium % blank in source document."
+    },
+    {
+      "type": "structure_note",
+      "severity": "review",
+      "path": "perils[1].structure.phases",
+      "message": "Deficit-rainfall values are calibrated per SUB-PERIOD, not per phase. Strike/rate/exit differ across the 3 sub-periods within Phase I. Confirm engine models values at sub_period level."
+    },
+    {
+      "type": "multi_block",
+      "severity": "review",
+      "path": "perils[3].structure.trigger_blocks",
+      "message": "Wind cover spans two disjoint date blocks (Oct-Nov 2019 and Feb-Mar 2020) with identical strike/exit/rate. Verify both blocks carry same payout parameters."
+    }
+  ]
+}

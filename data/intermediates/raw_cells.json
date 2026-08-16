@@ -1,0 +1,2974 @@
+{
+  "cells": [
+    {
+      "text": "Weather Based Crop Insurance Scheme :- 2019-20",
+      "x": 43.59,
+      "y": 46.920000000000044,
+      "width": 497.66999999999996,
+      "height": 10.259999999999962,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "T E R M S H E E T",
+      "x": 43.59,
+      "y": 57.18000000000001,
+      "width": 497.66999999999996,
+      "height": 10.200000000000045,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Unit: HECTARE",
+      "x": 408.66,
+      "y": 67.38000000000005,
+      "width": 132.59999999999997,
+      "height": 10.199999999999932,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "RWS: As Per Notification",
+      "x": 408.66,
+      "y": 77.57999999999998,
+      "width": 132.59999999999997,
+      "height": 10.200000000000045,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "State RAJASTHAN",
+      "x": 76.5,
+      "y": 67.38000000000005,
+      "width": 135.0,
+      "height": 10.199999999999932,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Crop: Orange",
+      "x": 76.5,
+      "y": 77.57999999999998,
+      "width": 84.47999999999999,
+      "height": 10.200000000000045,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Phase",
+      "x": 76.5,
+      "y": 137.33999999999997,
+      "width": 84.47999999999999,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "I",
+      "x": 160.98,
+      "y": 137.33999999999997,
+      "width": 50.52000000000001,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "II",
+      "x": 211.5,
+      "y": 137.33999999999997,
+      "width": 52.079999999999984,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "III",
+      "x": 263.58,
+      "y": 137.33999999999997,
+      "width": 48.360000000000014,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "IV",
+      "x": 311.94,
+      "y": 137.33999999999997,
+      "width": 40.920000000000016,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "V",
+      "x": 352.86,
+      "y": 137.33999999999997,
+      "width": 55.80000000000001,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "VI",
+      "x": 408.66,
+      "y": 137.33999999999997,
+      "width": 56.879999999999995,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 465.54,
+      "y": 137.33999999999997,
+      "width": 75.71999999999997,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Period",
+      "x": 76.5,
+      "y": 147.06,
+      "width": 84.47999999999999,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "01 Feb. To 14\nFeb.",
+      "x": 160.98,
+      "y": 147.06,
+      "width": 50.52000000000001,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "15 Feb. To\n28Feb.",
+      "x": 211.5,
+      "y": 147.06,
+      "width": 52.079999999999984,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "1 Mar. to 15\nMar.",
+      "x": 263.58,
+      "y": 147.06,
+      "width": 48.360000000000014,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "16 Mar. to\n31 Mar.",
+      "x": 311.94,
+      "y": 147.06,
+      "width": 40.920000000000016,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "01 April to 15\nApril",
+      "x": 352.86,
+      "y": 147.06,
+      "width": 55.80000000000001,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "16 April to 30\nApril",
+      "x": 408.66,
+      "y": 147.06,
+      "width": 56.879999999999995,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 465.54,
+      "y": 147.06,
+      "width": 75.71999999999997,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Trigger (°C)",
+      "x": 76.5,
+      "y": 163.50000000000006,
+      "width": 84.47999999999999,
+      "height": 9.719999999999914,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "29.0",
+      "x": 160.98,
+      "y": 163.50000000000006,
+      "width": 50.52000000000001,
+      "height": 9.719999999999914,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "31.0",
+      "x": 211.5,
+      "y": 163.50000000000006,
+      "width": 52.079999999999984,
+      "height": 9.719999999999914,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "33.5",
+      "x": 263.58,
+      "y": 163.50000000000006,
+      "width": 48.360000000000014,
+      "height": 9.719999999999914,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "35.5",
+      "x": 311.94,
+      "y": 163.50000000000006,
+      "width": 40.920000000000016,
+      "height": 9.719999999999914,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "36.5",
+      "x": 352.86,
+      "y": 163.50000000000006,
+      "width": 55.80000000000001,
+      "height": 9.719999999999914,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "39.0",
+      "x": 408.66,
+      "y": 163.50000000000006,
+      "width": 56.879999999999995,
+      "height": 9.719999999999914,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 465.54,
+      "y": 163.50000000000006,
+      "width": 75.71999999999997,
+      "height": 9.719999999999914,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Strike (°C)",
+      "x": 76.5,
+      "y": 173.21999999999997,
+      "width": 84.47999999999999,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "4",
+      "x": 160.98,
+      "y": 173.21999999999997,
+      "width": 380.28,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Exit (°C)",
+      "x": 76.5,
+      "y": 182.94,
+      "width": 84.47999999999999,
+      "height": 9.740000000000038,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "22",
+      "x": 160.98,
+      "y": 182.94,
+      "width": 380.28,
+      "height": 9.740000000000038,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Payout(Rs/0c)",
+      "x": 76.5,
+      "y": 192.68000000000004,
+      "width": 84.47999999999999,
+      "height": 11.139999999999958,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "2083.33",
+      "x": 160.98,
+      "y": 192.68000000000004,
+      "width": 380.28,
+      "height": 11.139999999999958,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Max payout(Rs)",
+      "x": 76.5,
+      "y": 203.82,
+      "width": 84.47999999999999,
+      "height": 9.700000000000017,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "37500",
+      "x": 160.98,
+      "y": 203.82,
+      "width": 380.28,
+      "height": 9.700000000000017,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 76.5,
+      "y": 265.50000000000006,
+      "width": 84.47999999999999,
+      "height": 9.719999999999914,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Phase I",
+      "x": 160.98,
+      "y": 265.50000000000006,
+      "width": 102.6,
+      "height": 9.719999999999914,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 263.58,
+      "y": 265.50000000000006,
+      "width": 48.360000000000014,
+      "height": 9.719999999999914,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Phase II",
+      "x": 311.94,
+      "y": 265.50000000000006,
+      "width": 96.72000000000003,
+      "height": 9.719999999999914,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 76.5,
+      "y": 275.21999999999997,
+      "width": 84.47999999999999,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "01-Jul. to 15-\nJul.",
+      "x": 160.98,
+      "y": 275.21999999999997,
+      "width": 50.52000000000001,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "16-Jul. to 31-\nJul.",
+      "x": 211.5,
+      "y": 275.21999999999997,
+      "width": 52.079999999999984,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "1-Aug. to 15\nAug.",
+      "x": 263.58,
+      "y": 275.21999999999997,
+      "width": 48.360000000000014,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "16 Aug. to\n31 Aug.",
+      "x": 311.94,
+      "y": 275.21999999999997,
+      "width": 40.920000000000016,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "01 Sep to 15\nSept.",
+      "x": 352.86,
+      "y": 275.21999999999997,
+      "width": 55.80000000000001,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Strike 1 (mm)",
+      "x": 76.5,
+      "y": 291.66,
+      "width": 84.47999999999999,
+      "height": 9.71999999999997,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "60 80",
+      "x": 160.98,
+      "y": 291.66,
+      "width": 102.6,
+      "height": 9.71999999999997,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "80",
+      "x": 263.58,
+      "y": 291.66,
+      "width": 48.360000000000014,
+      "height": 9.71999999999997,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "80",
+      "x": 311.94,
+      "y": 291.66,
+      "width": 40.920000000000016,
+      "height": 9.71999999999997,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "60",
+      "x": 352.86,
+      "y": 291.66,
+      "width": 55.80000000000001,
+      "height": 9.71999999999997,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Strike 2 (mm)",
+      "x": 76.5,
+      "y": 301.38,
+      "width": 84.47999999999999,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "20 30",
+      "x": 160.98,
+      "y": 301.38,
+      "width": 102.6,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "30",
+      "x": 263.58,
+      "y": 301.38,
+      "width": 48.360000000000014,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "30",
+      "x": 311.94,
+      "y": 301.38,
+      "width": 40.920000000000016,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "20",
+      "x": 352.86,
+      "y": 301.38,
+      "width": 55.80000000000001,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "EXIT (mm)",
+      "x": 76.5,
+      "y": 311.1,
+      "width": 84.47999999999999,
+      "height": 9.739999999999952,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "0 10",
+      "x": 160.98,
+      "y": 311.1,
+      "width": 102.6,
+      "height": 9.739999999999952,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "10",
+      "x": 263.58,
+      "y": 311.1,
+      "width": 48.360000000000014,
+      "height": 9.739999999999952,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "10",
+      "x": 311.94,
+      "y": 311.1,
+      "width": 40.920000000000016,
+      "height": 9.739999999999952,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "0",
+      "x": 352.86,
+      "y": 311.1,
+      "width": 55.80000000000001,
+      "height": 9.739999999999952,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "RATE 1 (Rs./ mm)",
+      "x": 76.5,
+      "y": 320.84,
+      "width": 84.47999999999999,
+      "height": 9.700000000000045,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "56.25",
+      "x": 160.98,
+      "y": 320.84,
+      "width": 50.52000000000001,
+      "height": 9.700000000000045,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "45.00",
+      "x": 211.5,
+      "y": 320.84,
+      "width": 52.079999999999984,
+      "height": 9.700000000000045,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "45.00",
+      "x": 263.58,
+      "y": 320.84,
+      "width": 48.360000000000014,
+      "height": 9.700000000000045,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "45.00",
+      "x": 311.94,
+      "y": 320.84,
+      "width": 40.920000000000016,
+      "height": 9.700000000000045,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "56.25",
+      "x": 352.86,
+      "y": 320.84,
+      "width": 55.80000000000001,
+      "height": 9.700000000000045,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "RATE 2 (Rs./ mm)",
+      "x": 76.5,
+      "y": 330.54,
+      "width": 84.47999999999999,
+      "height": 9.71999999999997,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "262.50",
+      "x": 160.98,
+      "y": 330.54,
+      "width": 50.52000000000001,
+      "height": 9.71999999999997,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "262.50",
+      "x": 211.5,
+      "y": 330.54,
+      "width": 52.079999999999984,
+      "height": 9.71999999999997,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "262.50",
+      "x": 263.58,
+      "y": 330.54,
+      "width": 48.360000000000014,
+      "height": 9.71999999999997,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "262.50",
+      "x": 311.94,
+      "y": 330.54,
+      "width": 40.920000000000016,
+      "height": 9.71999999999997,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "262.50",
+      "x": 352.86,
+      "y": 330.54,
+      "width": 55.80000000000001,
+      "height": 9.71999999999997,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Max payout(Rs)",
+      "x": 76.5,
+      "y": 340.26,
+      "width": 84.47999999999999,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "7500",
+      "x": 160.98,
+      "y": 340.26,
+      "width": 50.52000000000001,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "7500",
+      "x": 211.5,
+      "y": 340.26,
+      "width": 52.079999999999984,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "7500",
+      "x": 263.58,
+      "y": 340.26,
+      "width": 48.360000000000014,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "7500",
+      "x": 311.94,
+      "y": 340.26,
+      "width": 40.920000000000016,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "7500",
+      "x": 352.86,
+      "y": 340.26,
+      "width": 55.80000000000001,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Payout Phase I & II (Rs)",
+      "x": 76.5,
+      "y": 349.98,
+      "width": 84.47999999999999,
+      "height": 9.699999999999989,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "37500",
+      "x": 160.98,
+      "y": 349.98,
+      "width": 102.6,
+      "height": 9.699999999999989,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 263.58,
+      "y": 349.98,
+      "width": 48.360000000000014,
+      "height": 9.699999999999989,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 311.94,
+      "y": 349.98,
+      "width": 96.72000000000003,
+      "height": 9.699999999999989,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Strike 1 (mm)",
+      "x": 160.98,
+      "y": 398.58,
+      "width": 102.6,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "25",
+      "x": 263.58,
+      "y": 398.58,
+      "width": 89.28000000000003,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Strike 2 (mm)",
+      "x": 160.98,
+      "y": 408.3,
+      "width": 102.6,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "40",
+      "x": 263.58,
+      "y": 408.3,
+      "width": 89.28000000000003,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "EXIT (mm)",
+      "x": 160.98,
+      "y": 418.02000000000004,
+      "width": 102.6,
+      "height": 9.71999999999997,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "60",
+      "x": 263.58,
+      "y": 418.02000000000004,
+      "width": 89.28000000000003,
+      "height": 9.71999999999997,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "RATE 1 (Rs./ mm)",
+      "x": 160.98,
+      "y": 427.74,
+      "width": 102.6,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "500",
+      "x": 263.58,
+      "y": 427.74,
+      "width": 89.28000000000003,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "RATE 2 (Rs./ mm)",
+      "x": 160.98,
+      "y": 437.46000000000004,
+      "width": 102.6,
+      "height": 9.71999999999997,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "875",
+      "x": 263.58,
+      "y": 437.46000000000004,
+      "width": 89.28000000000003,
+      "height": 9.71999999999997,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Max payout(Rs)",
+      "x": 160.98,
+      "y": 447.18,
+      "width": 102.6,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "25000",
+      "x": 263.58,
+      "y": 447.18,
+      "width": 89.28000000000003,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Phase",
+      "x": 76.5,
+      "y": 525.9000000000001,
+      "width": 84.47999999999999,
+      "height": 9.7199999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "I",
+      "x": 160.98,
+      "y": 525.9000000000001,
+      "width": 50.52000000000001,
+      "height": 9.7199999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "II",
+      "x": 211.5,
+      "y": 525.9000000000001,
+      "width": 52.079999999999984,
+      "height": 9.7199999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "III",
+      "x": 263.58,
+      "y": 525.9000000000001,
+      "width": 48.360000000000014,
+      "height": 9.7199999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "I",
+      "x": 311.94,
+      "y": 525.9000000000001,
+      "width": 40.920000000000016,
+      "height": 9.7199999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "II",
+      "x": 352.86,
+      "y": 525.9000000000001,
+      "width": 55.80000000000001,
+      "height": 9.7199999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "III",
+      "x": 408.66,
+      "y": 525.9000000000001,
+      "width": 56.879999999999995,
+      "height": 9.7199999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Period",
+      "x": 76.5,
+      "y": 535.6199999999999,
+      "width": 84.47999999999999,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "15 Oct. to 31\nOct.",
+      "x": 160.98,
+      "y": 535.6199999999999,
+      "width": 50.52000000000001,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "01 Nov. to 15\nNov.",
+      "x": 211.5,
+      "y": 535.6199999999999,
+      "width": 52.079999999999984,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "16 Nov. to 30\nNov.",
+      "x": 263.58,
+      "y": 535.6199999999999,
+      "width": 48.360000000000014,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "15 Feb. to\n28 Feb.",
+      "x": 311.94,
+      "y": 535.6199999999999,
+      "width": 40.920000000000016,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "01 March to 15\nMarch",
+      "x": 352.86,
+      "y": 535.6199999999999,
+      "width": 55.80000000000001,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "16 March to 31\nMarch",
+      "x": 408.66,
+      "y": 535.6199999999999,
+      "width": 56.879999999999995,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Trigger (km/h)",
+      "x": 76.5,
+      "y": 552.06,
+      "width": 84.47999999999999,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "50",
+      "x": 160.98,
+      "y": 552.06,
+      "width": 50.52000000000001,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "55",
+      "x": 211.5,
+      "y": 552.06,
+      "width": 52.079999999999984,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "55",
+      "x": 263.58,
+      "y": 552.06,
+      "width": 48.360000000000014,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "50",
+      "x": 311.94,
+      "y": 552.06,
+      "width": 40.920000000000016,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "55",
+      "x": 352.86,
+      "y": 552.06,
+      "width": 55.80000000000001,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "50",
+      "x": 408.66,
+      "y": 552.06,
+      "width": 56.879999999999995,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Strike (km/h)",
+      "x": 76.5,
+      "y": 561.78,
+      "width": 84.47999999999999,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "10",
+      "x": 160.98,
+      "y": 561.78,
+      "width": 150.96,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "10",
+      "x": 311.94,
+      "y": 561.78,
+      "width": 153.60000000000002,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Exit (km/h)",
+      "x": 76.5,
+      "y": 571.5,
+      "width": 84.47999999999999,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "70",
+      "x": 160.98,
+      "y": 571.5,
+      "width": 150.96,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "70",
+      "x": 311.94,
+      "y": 571.5,
+      "width": 153.60000000000002,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Payout(Rs/Km/h)",
+      "x": 76.5,
+      "y": 581.22,
+      "width": 84.47999999999999,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "208.33",
+      "x": 160.98,
+      "y": 581.22,
+      "width": 150.96,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "208.33",
+      "x": 311.94,
+      "y": 581.22,
+      "width": 153.60000000000002,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Max payout(Rs)",
+      "x": 76.5,
+      "y": 590.94,
+      "width": 84.47999999999999,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "12500",
+      "x": 160.98,
+      "y": 590.94,
+      "width": 150.96,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "12500",
+      "x": 311.94,
+      "y": 590.94,
+      "width": 153.60000000000002,
+      "height": 9.720000000000027,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 0.0,
+      "y": 0.0,
+      "width": 0.0,
+      "height": 0.0,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Total Sum\nInsured (Rs.)",
+      "x": 160.98,
+      "y": 620.0999999999999,
+      "width": 50.52000000000001,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Gross\nPremium (Rs.)",
+      "x": 211.5,
+      "y": 620.0999999999999,
+      "width": 52.079999999999984,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Premium %",
+      "x": 263.58,
+      "y": 620.0999999999999,
+      "width": 48.360000000000014,
+      "height": 16.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "125000",
+      "x": 160.98,
+      "y": 636.54,
+      "width": 50.52000000000001,
+      "height": 10.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 211.5,
+      "y": 636.54,
+      "width": 52.079999999999984,
+      "height": 10.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": null,
+      "x": 263.58,
+      "y": 636.54,
+      "width": 48.360000000000014,
+      "height": 10.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Annexure",
+      "x": 467.04,
+      "y": 37.48176000000001,
+      "width": 34.85952000000003,
+      "height": 8.159999999999968,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "3",
+      "x": 504.18432,
+      "y": 37.48176000000001,
+      "width": 4.536960000000022,
+      "height": 8.159999999999968,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "District",
+      "x": 273.96,
+      "y": 68.92176000000006,
+      "width": 28.11936000000003,
+      "height": 8.159999999999968,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Jhalawar",
+      "x": 315.12,
+      "y": 68.92176000000006,
+      "width": 35.05536000000001,
+      "height": 8.159999999999968,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "1.",
+      "x": 78.0,
+      "y": 99.28176000000008,
+      "width": 6.821759999999998,
+      "height": 8.159999999999968,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "HIGH",
+      "x": 87.10656,
+      "y": 99.28176000000008,
+      "width": 20.408159999999995,
+      "height": 8.159999999999968,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "TEMPERATURE",
+      "x": 109.77504,
+      "y": 99.28176000000008,
+      "width": 61.35504000000002,
+      "height": 8.159999999999968,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Cover",
+      "x": 103.68,
+      "y": 109.20983999999999,
+      "width": 20.87664000000001,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Objective",
+      "x": 126.58032000000001,
+      "y": 109.20983999999999,
+      "width": 33.152640000000005,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": ":",
+      "x": 162.3600000000001,
+      "y": 109.56984000000023,
+      "width": 2.4775199999999984,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "To",
+      "x": 166.9058400000001,
+      "y": 109.56984000000023,
+      "width": 9.09912,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "cover",
+      "x": 178.0509600000001,
+      "y": 109.56984000000023,
+      "width": 19.55976000000001,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "anticipated",
+      "x": 199.63440000000008,
+      "y": 109.56984000000023,
+      "width": 39.067439999999976,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "yield",
+      "x": 240.74784000000008,
+      "y": 109.56984000000023,
+      "width": 16.777200000000022,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "loss",
+      "x": 259.5710400000001,
+      "y": 109.56984000000023,
+      "width": 14.80559999999997,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "in",
+      "x": 276.35568000000006,
+      "y": 109.56984000000023,
+      "width": 6.5844000000000165,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "the",
+      "x": 284.9860800000001,
+      "y": 109.56984000000023,
+      "width": 11.19720000000001,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "event",
+      "x": 298.1623200000001,
+      "y": 109.56984000000023,
+      "width": 19.14312000000001,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "of",
+      "x": 319.37376000000006,
+      "y": 109.56984000000023,
+      "width": 7.030800000000056,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "High",
+      "x": 328.4803200000001,
+      "y": 109.56984000000023,
+      "width": 16.531679999999938,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Temperature",
+      "x": 349.09656000000007,
+      "y": 109.56984000000023,
+      "width": 44.90040000000005,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Event",
+      "x": 103.32,
+      "y": 118.9298399999999,
+      "width": 19.98384,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Definition",
+      "x": 125.3796,
+      "y": 118.9298399999999,
+      "width": 34.26863999999999,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": ":Cummulative",
+      "x": 162.3600000000001,
+      "y": 119.28984000000025,
+      "width": 48.970079999999996,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "daily",
+      "x": 215.34768000000008,
+      "y": 119.28984000000025,
+      "width": 16.844160000000016,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "upward",
+      "x": 234.1708800000001,
+      "y": 119.28984000000025,
+      "width": 26.486399999999975,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "deviation",
+      "x": 264.7418400000001,
+      "y": 119.28984000000025,
+      "width": 32.363999999999976,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "of",
+      "x": 299.1518400000001,
+      "y": 119.28984000000025,
+      "width": 7.030799999999999,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Maximum",
+      "x": 308.2509600000001,
+      "y": 119.28984000000025,
+      "width": 34.31328000000002,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "temperature",
+      "x": 346.62648,
+      "y": 119.28984000000025,
+      "width": 42.861840000000086,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "from",
+      "x": 393.50592000000006,
+      "y": 119.28984000000025,
+      "width": 16.561440000000005,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "respective",
+      "x": 412.09104,
+      "y": 119.28984000000025,
+      "width": 36.39647999999994,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Triggers",
+      "x": 450.46655999999996,
+      "y": 119.28984000000025,
+      "width": 29.670719999999903,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Cover",
+      "x": 113.64,
+      "y": 129.00983999999994,
+      "width": 20.876639999999995,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Period",
+      "x": 136.54032,
+      "y": 129.00983999999994,
+      "width": 23.011920000000003,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "1-Feb-20",
+      "x": 179.76,
+      "y": 128.64983999999993,
+      "width": 30.496560000000017,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "To",
+      "x": 233.04,
+      "y": 128.64983999999993,
+      "width": 9.09912,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "30-Apr-20",
+      "x": 276.72,
+      "y": 128.64983999999993,
+      "width": 33.98592000000002,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "2",
+      "x": 78.0,
+      "y": 227.44176000000004,
+      "width": 4.536959999999993,
+      "height": 8.159999999999968,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "DEFICEIT",
+      "x": 84.82176,
+      "y": 227.44176000000004,
+      "width": 37.15248000000001,
+      "height": 8.159999999999968,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "RAINFALL",
+      "x": 124.0632,
+      "y": 227.44176000000004,
+      "width": 40.367519999999985,
+      "height": 8.159999999999968,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "COVER",
+      "x": 166.75631999999996,
+      "y": 227.44176000000004,
+      "width": 28.927200000000028,
+      "height": 8.159999999999968,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Cover",
+      "x": 105.84,
+      "y": 238.20324000000005,
+      "width": 19.322999999999993,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Objective",
+      "x": 127.05768,
+      "y": 238.20324000000005,
+      "width": 30.663720000000012,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": ":To",
+      "x": 162.24,
+      "y": 238.20324000000005,
+      "width": 10.766159999999985,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "cover",
+      "x": 174.93504000000001,
+      "y": 238.20324000000005,
+      "width": 18.242279999999994,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "anticipated",
+      "x": 195.072,
+      "y": 238.20324000000005,
+      "width": 36.29304000000002,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "yield",
+      "x": 233.29392,
+      "y": 238.20324000000005,
+      "width": 15.444719999999961,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "loss",
+      "x": 250.66752,
+      "y": 238.20324000000005,
+      "width": 13.748399999999975,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "in",
+      "x": 266.35848,
+      "y": 238.20324000000005,
+      "width": 6.094439999999963,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "the",
+      "x": 274.37496,
+      "y": 238.20324000000005,
+      "width": 10.280520000000024,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "event",
+      "x": 286.59803999999997,
+      "y": 238.20324000000005,
+      "width": 17.86608000000001,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "of",
+      "x": 306.37932,
+      "y": 238.20324000000005,
+      "width": 6.470639999999946,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Rainfall",
+      "x": 316.68035999999995,
+      "y": 238.20324000000005,
+      "width": 24.788160000000005,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "deficeit",
+      "x": 343.39739999999995,
+      "y": 238.20324000000005,
+      "width": 24.07679999999999,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "during",
+      "x": 369.3893999999999,
+      "y": 238.20324000000005,
+      "width": 21.313439999999957,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "cover",
+      "x": 392.63171999999986,
+      "y": 238.20324000000005,
+      "width": 18.249120000000005,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "period.",
+      "x": 412.7686799999999,
+      "y": 238.20324000000005,
+      "width": 22.872960000000035,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Cover",
+      "x": 117.12,
+      "y": 247.92324000000008,
+      "width": 19.32984000000002,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Period",
+      "x": 138.34452000000002,
+      "y": 247.92324000000008,
+      "width": 21.320279999999997,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "1-Jul-19",
+      "x": 182.28,
+      "y": 247.08983999999998,
+      "width": 27.981840000000005,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "To",
+      "x": 233.4,
+      "y": 247.32324000000006,
+      "width": 8.37215999999998,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "30-Sep-19",
+      "x": 275.76,
+      "y": 247.08983999999998,
+      "width": 34.93824000000001,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Event",
+      "x": 76.2000000000001,
+      "y": 257.40324000000044,
+      "width": 18.584280000000007,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Definition",
+      "x": 96.69948000000011,
+      "y": 257.40324000000044,
+      "width": 31.621319999999997,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": ":",
+      "x": 162.24000000000012,
+      "y": 257.64324000000045,
+      "width": 2.277719999999988,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Agregate",
+      "x": 166.54920000000013,
+      "y": 257.64324000000045,
+      "width": 29.45988,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "rainfall",
+      "x": 197.95848000000012,
+      "y": 257.64324000000045,
+      "width": 22.510440000000017,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "over",
+      "x": 224.31300000000013,
+      "y": 257.64324000000045,
+      "width": 14.411879999999996,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "respective",
+      "x": 240.6195600000001,
+      "y": 257.64324000000045,
+      "width": 33.88535999999999,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Phases",
+      "x": 276.44748000000004,
+      "y": 257.64324000000045,
+      "width": 24.063120000000026,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "bellow",
+      "x": 302.46000000000004,
+      "y": 257.64324000000045,
+      "width": 21.36815999999999,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "strike",
+      "x": 325.81176,
+      "y": 257.64324000000045,
+      "width": 18.31067999999999,
+      "height": 6.839999999999918,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "2",
+      "x": 77.87999999999988,
+      "y": 370.8098400000001,
+      "width": 4.13664,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "B:",
+      "x": 83.99567999999988,
+      "y": 370.8098400000001,
+      "width": 7.871520000000004,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "UNSEASONAL",
+      "x": 93.94295999999989,
+      "y": 370.8098400000001,
+      "width": 51.56663999999998,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "RAINFALL",
+      "x": 147.55559999999988,
+      "y": 370.8098400000001,
+      "width": 36.79823999999999,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "COVER",
+      "x": 186.39983999999987,
+      "y": 370.8098400000001,
+      "width": 26.36735999999999,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Cover",
+      "x": 99.0,
+      "y": 380.52984,
+      "width": 20.87664000000001,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Objective:",
+      "x": 121.90032000000001,
+      "y": 380.52984,
+      "width": 35.57064000000001,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "To",
+      "x": 162.36,
+      "y": 380.52984,
+      "width": 9.09912,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "cover",
+      "x": 173.50512,
+      "y": 380.52984,
+      "width": 19.55976000000001,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "anticipated",
+      "x": 195.08856000000003,
+      "y": 380.52984,
+      "width": 39.067439999999976,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "yield",
+      "x": 236.202,
+      "y": 380.52984,
+      "width": 16.777199999999993,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "loss",
+      "x": 255.0252,
+      "y": 380.52984,
+      "width": 14.805599999999998,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "in",
+      "x": 271.81728,
+      "y": 380.52984,
+      "width": 6.5844000000000165,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "the",
+      "x": 280.44768,
+      "y": 380.52984,
+      "width": 11.20464000000004,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "event",
+      "x": 293.63136000000003,
+      "y": 380.52984,
+      "width": 19.14312000000001,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "of",
+      "x": 314.85024000000004,
+      "y": 380.52984,
+      "width": 7.030800000000056,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "unseasional",
+      "x": 323.95680000000004,
+      "y": 380.52984,
+      "width": 42.70560000000006,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Rainfall.",
+      "x": 368.67120000000006,
+      "y": 380.52984,
+      "width": 28.80024000000003,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "PERIOD",
+      "x": 162.36,
+      "y": 389.88984,
+      "width": 28.398480000000006,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "1-Jun-19",
+      "x": 231.84,
+      "y": 389.88984,
+      "width": 30.496560000000017,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "To",
+      "x": 283.2,
+      "y": 389.88984,
+      "width": 9.09911999999997,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "15-Jun-19",
+      "x": 317.04,
+      "y": 389.88984,
+      "width": 34.573680000000024,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "UnSeasonal",
+      "x": 82.44000000000005,
+      "y": 414.60984,
+      "width": 42.34848000000001,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "rainfall",
+      "x": 128.83584000000005,
+      "y": 414.60984,
+      "width": 24.254400000000004,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "(Single",
+      "x": 92.04000000000005,
+      "y": 424.08984000000004,
+      "width": 24.752880000000005,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "payout)",
+      "x": 118.77192000000005,
+      "y": 424.08984000000004,
+      "width": 26.798879999999997,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "3.",
+      "x": 77.88,
+      "y": 468.00984,
+      "width": 6.145440000000008,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "HIGH",
+      "x": 86.03424,
+      "y": 468.00984,
+      "width": 18.562799999999996,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "WIND",
+      "x": 106.65792,
+      "y": 468.00984,
+      "width": 19.641599999999997,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "SPEED",
+      "x": 128.3604,
+      "y": 468.00984,
+      "width": 25.050479999999993,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Cover",
+      "x": 101.52,
+      "y": 477.72984,
+      "width": 20.87664000000001,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Objective",
+      "x": 124.42032,
+      "y": 477.72984,
+      "width": 33.15263999999999,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": ":To",
+      "x": 162.36,
+      "y": 477.72984,
+      "width": 11.606400000000008,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "cover",
+      "x": 176.0124,
+      "y": 477.72984,
+      "width": 19.55976000000001,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "anticipated",
+      "x": 197.59584,
+      "y": 477.72984,
+      "width": 39.06,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "yield",
+      "x": 238.70184,
+      "y": 477.72984,
+      "width": 16.777199999999993,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "loss",
+      "x": 257.52504,
+      "y": 477.72984,
+      "width": 14.805600000000027,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "in",
+      "x": 274.30968,
+      "y": 477.72984,
+      "width": 6.5844000000000165,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "the",
+      "x": 282.94008,
+      "y": 477.72984,
+      "width": 11.204639999999984,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "event",
+      "x": 296.12376,
+      "y": 477.72984,
+      "width": 19.14312000000001,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "of",
+      "x": 317.34264,
+      "y": 477.72984,
+      "width": 7.030800000000056,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "High",
+      "x": 326.44176000000004,
+      "y": 477.72984,
+      "width": 16.531679999999938,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Wind",
+      "x": 345.01944000000003,
+      "y": 477.72984,
+      "width": 17.97503999999992,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Speed",
+      "x": 365.04048,
+      "y": 477.72984,
+      "width": 22.178639999999973,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "15-",
+      "x": 315.12,
+      "y": 487.32984,
+      "width": 10.631760000000043,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Feb.",
+      "x": 327.82752,
+      "y": 487.32984,
+      "width": 15.252000000000066,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "-",
+      "x": 345.08832,
+      "y": 487.32984,
+      "width": 2.477520000000027,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Cover",
+      "x": 113.64000000000001,
+      "y": 497.16984,
+      "width": 20.87664000000001,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Period",
+      "x": 136.54032,
+      "y": 497.16984,
+      "width": 23.011920000000003,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "15-Oct-19",
+      "x": 176.52,
+      "y": 496.80984,
+      "width": 33.740399999999994,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "To",
+      "x": 233.04000000000002,
+      "y": 496.80984,
+      "width": 9.09912,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "30-Nov-19",
+      "x": 270.12,
+      "y": 496.80984,
+      "width": 35.29536000000002,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "20",
+      "x": 328.32,
+      "y": 496.80984,
+      "width": 8.21375999999998,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "To",
+      "x": 376.2,
+      "y": 496.80984,
+      "width": 9.09911999999997,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "31-Mar-20",
+      "x": 429.59999999999997,
+      "y": 496.80984,
+      "width": 34.70760000000001,
+      "height": 7.439999999999998,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": ":Cummulative",
+      "x": 170.40000000000003,
+      "y": 508.08984,
+      "width": 48.970079999999996,
+      "height": 7.439999999999941,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "daily",
+      "x": 223.38768000000005,
+      "y": 508.08984,
+      "width": 16.844159999999988,
+      "height": 7.439999999999941,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "upward",
+      "x": 242.21832000000003,
+      "y": 508.08984,
+      "width": 26.47896,
+      "height": 7.439999999999941,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "deviation",
+      "x": 270.74328,
+      "y": 508.08984,
+      "width": 32.35656,
+      "height": 7.439999999999941,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "of",
+      "x": 305.14584,
+      "y": 508.08984,
+      "width": 7.030799999999999,
+      "height": 7.439999999999941,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Maximum",
+      "x": 316.29096000000004,
+      "y": 508.08984,
+      "width": 34.31328000000002,
+      "height": 7.439999999999941,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Wind",
+      "x": 352.62792,
+      "y": 508.08984,
+      "width": 17.97503999999992,
+      "height": 7.439999999999941,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Speed",
+      "x": 372.64896,
+      "y": 508.08984,
+      "width": 22.178639999999973,
+      "height": 7.439999999999941,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "from",
+      "x": 398.91216,
+      "y": 508.08984,
+      "width": 16.561440000000005,
+      "height": 7.439999999999941,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "respective",
+      "x": 417.49727999999993,
+      "y": 508.08984,
+      "width": 36.38904000000002,
+      "height": 7.439999999999941,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Event",
+      "x": 103.32,
+      "y": 517.20984,
+      "width": 19.98384,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Definition",
+      "x": 125.3796,
+      "y": 517.20984,
+      "width": 34.26863999999999,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Triggers",
+      "x": 298.44000000000005,
+      "y": 517.56984,
+      "width": 29.670720000000017,
+      "height": 7.439999999999941,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Premium",
+      "x": 85.07999999999994,
+      "y": 611.7698399999999,
+      "width": 31.679519999999997,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    },
+    {
+      "text": "Description",
+      "x": 118.78319999999994,
+      "y": 611.7698399999999,
+      "width": 40.75632000000002,
+      "height": 7.440000000000055,
+      "page_no": 1,
+      "source": "pdfplumber"
+    }
+  ]
+}
