@@ -112,7 +112,7 @@ class TestStrikeExitSanityRule:
         broken = real_termsheet.model_copy(deep=True)
         # For deficit rainfall, exit must be lower than strike_1. Set exit = 100 > strike_1 (60)
         p_rain = [p for p in broken.perils if p.peril_id == "deficit_rainfall"][0]
-        p_rain.structure.phases[0].exit = ExtractedValue(value=100.0, source="agent_inferred", confidence=0.95)
+        p_rain.structure.phases[0].sub_periods[0].exit = ExtractedValue(value=100.0, source="agent_inferred", confidence=0.95)
 
         flags = check_strike_exit_sanity(broken)
         rain_flags = [f for f in flags if f.rule == "strike_exit_sanity"]

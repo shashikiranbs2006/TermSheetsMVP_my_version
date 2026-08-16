@@ -19,6 +19,8 @@ from datetime import date
 from pathlib import Path
 from typing import Any, Sequence
 
+from pydantic import BaseModel
+
 from agents.mapping_agent import MappingAgent
 from models.common import CoverPeriod, DatePeriod, ExtractedValue
 from models.structured_termsheet import (
@@ -28,6 +30,7 @@ from models.structured_termsheet import (
     Premium,
     RainfallMultistrikePhase,
     RainfallMultistrikeStructure,
+    RainfallMultistrikeSubPeriod,
     RainfallSinglePayoutStructure,
     SourceMeta,
     StructuredTermsheet,
@@ -105,7 +108,7 @@ def _make_date_period(period_dict: dict | None, conf: float = 0.95) -> DatePerio
 # ---------------------------------------------------------------------------
 
 
-def build_document_header(
+def build_document_fields(
     file_name: str = "orange_jhalawar_2019-20.pdf",
     page_range: list[int] | None = None,
 ) -> DocumentFields:
@@ -122,14 +125,14 @@ def build_document_header(
         state=_ev("Rajasthan", source="native_exact", confidence=1.0, raw="RAJASTHAN"),
         district=_ev("Jhalawar", source="native_exact", confidence=1.0, raw="Jhalawar"),
         crop=_ev("Orange", source="native_exact", confidence=1.0, raw="Orange"),
-        season=_ev(None, source="native_exact", confidence=1.0),
+        season=_ev(None, source="native_exact", confidence=0.0),
         unit=_ev("HECTARE", source="native_exact", confidence=1.0),
         reference_weather_station=_ev("As Per Notification", source="native_exact", confidence=1.0),
         premium=Premium(
             total_sum_insured=_ev(125000.0, source="native_exact", confidence=1.0),
-            gross_premium=_ev(None, source="native_exact"),
-            premium_pct=_ev(None, source="native_exact"),
-            farmers_premium=_ev(None, source="native_exact"),
+            gross_premium=_ev(None, source="native_exact", confidence=0.0),
+            premium_pct=_ev(None, source="native_exact", confidence=0.0),
+            farmers_premium=_ev(None, source="native_exact", confidence=0.0),
         ),
         source_meta=SourceMeta(
             file_name=file_name,
@@ -138,6 +141,9 @@ def build_document_header(
             ocr_used=False,
         ),
     )
+
+
+build_document_header = build_document_fields
 
 
 # ---------------------------------------------------------------------------
@@ -170,31 +176,37 @@ def to_temperature_structure(mapped: dict, conf: float) -> TemperaturePhasedStru
 def to_multistrike_structure(mapped: dict, conf: float) -> RainfallMultistrikeStructure:
     phases: list[RainfallMultistrikePhase] = []
     for ph in mapped.get("phases", []):
-        sub_periods = ph.get("sub_periods", [])
-        for sp in sub_periods:
+        sub_periods: list[RainfallMultistrikeSubPeriod] = []
+        for sp in ph.get("sub_periods", []):
             s2_raw = sp.get("strike_2")
             s2_val = float(s2_raw) if s2_raw is not None else None
             r2_raw = sp.get("rate_2")
             r2_val = float(r2_raw) if r2_raw is not None else None
 
-            phases.append(
-                RainfallMultistrikePhase(
-                    label=_ev(str(ph.get("label", "Phase I")), confidence=conf),
-                    sub_periods=[_make_date_period(sp.get("period"), conf=conf)],
+            sub_periods.append(
+                RainfallMultistrikeSubPeriod(
+                    period=_make_date_period(sp.get("period"), conf=conf),
                     strike_1=_ev(float(sp.get("strike_1", 0.0)), confidence=conf),
                     strike_2=_ev(s2_val, confidence=conf),
                     exit=_ev(float(sp.get("exit", 0.0)), confidence=conf),
                     rate_1=_ev(float(sp.get("rate_1", 0.0)), confidence=conf),
                     rate_2=_ev(r2_val, confidence=conf),
-                    rate_unit=_ev(str(mapped.get("rate_unit", "Rs/mm")), confidence=conf),
                     max_payout=_ev(float(sp.get("max_payout", 7500.0)), confidence=conf),
                 )
             )
+
+        phases.append(
+            RainfallMultistrikePhase(
+                label=_ev(str(ph.get("label", "Phase I")), confidence=conf),
+                sub_periods=sub_periods,
+            )
+        )
 
     return RainfallMultistrikeStructure(
         measure=_ev(str(mapped.get("measure", "aggregate_rainfall")), confidence=conf),
         unit=_ev(str(mapped.get("unit", "mm")), confidence=conf),
         direction=_ev(str(mapped.get("direction", "deficit")), confidence=conf),
+        rate_unit=_ev(str(mapped.get("rate_unit", "Rs/mm")), confidence=conf),
         phases=phases,
         total_payout=_ev(float(mapped.get("total_payout", 37500.0)), confidence=conf),
     )
@@ -315,6 +327,53 @@ PERIL_METADATA = {
 
 
 # ---------------------------------------------------------------------------
+# Extraction Confidence Aggregator
+# ---------------------------------------------------------------------------
+
+
+def compute_extraction_confidence(
+    doc: DocumentFields,
+    perils: list[PerilEnvelope],
+) -> ExtractionConfidence:
+    """
+    Traverse all extracted fields in DocumentFields and PerilEnvelope objects,
+    aggregating individual field confidences and computing the overall confidence.
+    For fields that are genuinely blank (value=null), confidence is set to 0.0.
+    """
+    per_field: dict[str, float] = {}
+
+    def _walk_model(path: str, obj: Any):
+        if isinstance(obj, ExtractedValue):
+            conf = 0.0 if obj.value is None else (obj.confidence if obj.confidence is not None else 1.0)
+            per_field[path] = conf
+        elif isinstance(obj, BaseModel):
+            for field_name in obj.__class__.model_fields:
+                field_val = getattr(obj, field_name)
+                child_path = f"{path}.{field_name}" if path else field_name
+                _walk_model(child_path, field_val)
+        elif isinstance(obj, list):
+            for idx, item in enumerate(obj):
+                child_path = f"{path}[{idx}]"
+                _walk_model(child_path, item)
+        elif isinstance(obj, dict):
+            for k, v in obj.items():
+                child_path = f"{path}.{k}" if path else k
+                _walk_model(child_path, v)
+
+    _walk_model("document", doc)
+    for i, peril in enumerate(perils):
+        _walk_model(f"perils[{i}]", peril)
+
+    scores = list(per_field.values())
+    overall = round(sum(scores) / len(scores), 2) if scores else 0.86
+
+    return ExtractionConfidence(
+        overall=overall,
+        per_field=per_field,
+    )
+
+
+# ---------------------------------------------------------------------------
 # Main Mapper Pipeline
 # ---------------------------------------------------------------------------
 
@@ -331,36 +390,32 @@ def map_termsheet(
         agent: Optional MappingAgent instance.
 
     Returns:
-        tuple of (StructuredTermsheet, list_of_agent_logs).
+        tuple[StructuredTermsheet, list[dict]]: Mapped termsheet and interaction logs.
     """
+    if agent is None:
+        agent = MappingAgent()
+
     if isinstance(reconstructed_source, (str, Path)):
         p = Path(reconstructed_source)
         if not p.exists():
             raise FileNotFoundError(f"Reconstructed perils file not found: {p}")
         reconstructed_data = json.loads(p.read_text(encoding="utf-8"))
-    else:
+    elif isinstance(reconstructed_source, dict):
         reconstructed_data = reconstructed_source
-
-    if agent is None:
-        agent = MappingAgent()
+    else:
+        raise TypeError(f"Unsupported source type: {type(reconstructed_source)}")
 
     reconstructed_perils = reconstructed_data.get("reconstructed_perils", [])
 
     peril_envelopes: list[PerilEnvelope] = []
-    confidence_dict: dict[str, float] = {}
 
     for idx, r_peril in enumerate(reconstructed_perils):
-        peril_id = r_peril["peril_id"]
-        archetype = r_peril["archetype"]
+        peril_id = r_peril.get("peril_id", "")
+        archetype = r_peril.get("archetype", "")
 
         # Call the Bedrock mapping agent
         mapped_json = agent.map_peril(r_peril, scheme_year="2019-20")
-        conf_val = mapped_json.get("confidence")
-        try:
-            conf = float(conf_val) if conf_val is not None else 0.95
-        except (ValueError, TypeError):
-            conf = 0.95
-        confidence_dict[f"perils[{idx}]"] = conf
+        conf = float(mapped_json.get("confidence", 0.95))
 
         # Convert to typed structure
         if archetype == "temperature_phased":
@@ -388,19 +443,13 @@ def map_termsheet(
             )
         )
 
-    doc_header = build_document_header()
-
-    overall_conf = (
-        sum(confidence_dict.values()) / len(confidence_dict) if confidence_dict else 0.95
-    )
+    doc_header = build_document_fields()
+    extraction_conf = compute_extraction_confidence(doc_header, peril_envelopes)
 
     termsheet = StructuredTermsheet(
         document=doc_header,
         perils=peril_envelopes,
-        extraction_confidence=ExtractionConfidence(
-            overall=overall_conf,
-            per_field=confidence_dict,
-        ),
+        extraction_confidence=extraction_conf,
     )
 
     return termsheet, agent.interaction_logs

@@ -26,6 +26,7 @@ from models.structured_termsheet import (
     Premium,
     RainfallMultistrikePhase,
     RainfallMultistrikeStructure,
+    RainfallMultistrikeSubPeriod,
     RainfallSinglePayoutStructure,
     SourceMeta,
     StructuredTermsheet,
@@ -190,19 +191,17 @@ class TestStructuredTermsheetValid:
 class TestStructuredTermsheetMissingField:
     def test_missing_strike_1_raises(self):
         """
-        A RainfallMultistrikePhase without strike_1 must be rejected.
+        A RainfallMultistrikeSubPeriod without strike_1 must be rejected.
         This is the "missing required peril field" contract test.
         """
         with pytest.raises(ValidationError) as exc_info:
-            RainfallMultistrikePhase(
-                label=ev_native("Phase I"),
-                sub_periods=[DatePeriod(start=ev_native("2019-06-25"), end=ev_native("2019-08-15"))],
+            RainfallMultistrikeSubPeriod(
+                period=DatePeriod(start=ev_native("2019-06-25"), end=ev_native("2019-08-15")),
                 # strike_1 deliberately omitted
                 strike_2=ev_native(None),
                 exit=ev_native(0.0),
                 rate_1=ev_native(100.0),
                 rate_2=ev_native(None),
-                rate_unit=ev_native("Rs/mm"),
                 max_payout=ev_native(15000.0),
             )
         errors = exc_info.value.errors()
@@ -214,6 +213,7 @@ class TestStructuredTermsheetMissingField:
                 measure=ev_native("aggregate_rainfall"),
                 unit=ev_native("mm"),
                 direction=ev_native("deficit"),
+                rate_unit=ev_native("Rs/mm"),
                 phases=[],
                 # total_payout deliberately omitted
             )
@@ -293,7 +293,7 @@ class TestAllArchetypes:
     def test_rainfall_multistrike_structure(self):
         s = make_multistrike_structure()
         assert s.type == "rainfall_multistrike"
-        assert s.phases[0].strike_2.value is None  # one-strike variant
+        assert s.phases[0].sub_periods[0].strike_2.value is None  # one-strike variant
 
     def test_rainfall_single_payout_structure(self):
         s = RainfallSinglePayoutStructure(

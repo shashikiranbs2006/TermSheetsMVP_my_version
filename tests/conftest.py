@@ -17,6 +17,7 @@ from models.structured_termsheet import (
     Premium,
     RainfallMultistrikePhase,
     RainfallMultistrikeStructure,
+    RainfallMultistrikeSubPeriod,
     SourceMeta,
     StructuredTermsheet,
 )
@@ -113,18 +114,19 @@ def make_multistrike_phase(label: str = "Phase I") -> RainfallMultistrikePhase:
     return RainfallMultistrikePhase(
         label=ev_native(label),
         sub_periods=[
-            DatePeriod(
-                start=ev_native("2019-06-25"),
-                end=ev_native("2019-08-15"),
+            RainfallMultistrikeSubPeriod(
+                period=DatePeriod(
+                    start=ev_native("2019-06-25"),
+                    end=ev_native("2019-08-15"),
+                ),
+                strike_1=ev_native(65.0),
+                strike_2=ev_native(None),       # one-strike variant
+                exit=ev_native(0.0),
+                rate_1=ev_native(100.0),
+                rate_2=ev_native(None),         # one-strike variant
+                max_payout=ev_native(15000.0),
             )
         ],
-        strike_1=ev_native(65.0),
-        strike_2=ev_native(None),       # one-strike variant
-        exit=ev_native(0.0),
-        rate_1=ev_native(100.0),
-        rate_2=ev_native(None),         # one-strike variant
-        rate_unit=ev_native("Rs/mm"),
-        max_payout=ev_native(15000.0),
     )
 
 
@@ -133,6 +135,7 @@ def make_multistrike_structure() -> RainfallMultistrikeStructure:
         measure=ev_native("aggregate_rainfall"),
         unit=ev_native("mm"),
         direction=ev_native("deficit"),
+        rate_unit=ev_native("Rs/mm"),
         phases=[make_multistrike_phase("Phase I"), make_multistrike_phase("Phase II")],
         total_payout=ev_native(30000.0),
     )

@@ -173,41 +173,45 @@ class TemperaturePhasedStructure(BaseModel):
 # ---------------------------------------------------------------------------
 
 
-class RainfallMultistrikePhase(BaseModel):
+class RainfallMultistrikeSubPeriod(BaseModel):
     """
-    One phase (Phase I or Phase II) within a rainfall_multistrike peril.
-
-    Two-strike variant (Orange/Kinnow/Guava): strike_2 and rate_2 are present.
-    One-strike variant (Onions): strike_2.value = None, rate_2.value = None.
-    Both variants use the same model — strike_2/rate_2 are not absent from the
-    schema, they carry explicit null values so the absence is recorded.
+    One sub-period within a Phase of rainfall_multistrike.
+    Carries the date period and the specific strike, exit, rate, and max_payout.
     """
 
-    label: ExtractedValue[str]                          # "Phase I", "Phase II"
-    sub_periods: list[DatePeriod]                       # 1 or more sub-period date columns
+    period: DatePeriod
     strike_1: ExtractedValue[float]
     strike_2: ExtractedValue[Optional[float]]           # None in one-strike variant
     exit: ExtractedValue[float]
     rate_1: ExtractedValue[float]
     rate_2: ExtractedValue[Optional[float]]             # None in one-strike variant
-    rate_unit: ExtractedValue[str]                      # e.g. "Rs/mm"
     max_payout: ExtractedValue[float]
+
+
+class RainfallMultistrikePhase(BaseModel):
+    """
+    One phase (Phase I or Phase II) within a rainfall_multistrike peril.
+    Groups multiple sub-periods under a phase label.
+    """
+
+    label: ExtractedValue[str]                          # "Phase I", "Phase II"
+    sub_periods: list[RainfallMultistrikeSubPeriod]
 
 
 class RainfallMultistrikeStructure(BaseModel):
     """
     Archetype B — rainfall_multistrike.
-    Phase I / Phase II structure with nested sub-period date columns.
-    This is the highest-complexity archetype (merged cells, two-level headers).
-    Solve extraction here first — see docs/source/wbcis_extraction_schema.md §9.
+    Phase I / Phase II structure with nested sub-period date columns and parameters.
     """
 
     type: Literal["rainfall_multistrike"] = "rainfall_multistrike"
     measure: ExtractedValue[str]                        # "aggregate_rainfall"
-    unit: ExtractedValue[str]                           # "mm"
     direction: ExtractedValue[str]                      # "deficit" or "excess"
+    unit: ExtractedValue[str]                           # "mm"
+    rate_unit: ExtractedValue[str]                      # "Rs/mm"
     phases: list[RainfallMultistrikePhase]
     total_payout: ExtractedValue[float]                 # "Payout Phase I & II (Rs)"
+
 
 
 # ---------------------------------------------------------------------------

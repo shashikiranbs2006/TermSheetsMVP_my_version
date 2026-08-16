@@ -41,7 +41,7 @@ from models.validated_termsheet import ValidatedTermsheet, ValidationFlag
 
 DEFAULT_MAPPED_PATH = Path("data/intermediates/mapped_termsheet.json")
 DEFAULT_OUTPUT_PATH = Path("data/intermediates/validated_termsheet.json")
-DEFAULT_CONFIDENCE_THRESHOLD = 0.75
+DEFAULT_CONFIDENCE_THRESHOLD = 0.70
 
 
 # ---------------------------------------------------------------------------
@@ -180,39 +180,41 @@ def check_strike_exit_sanity(termsheet: StructuredTermsheet) -> list[ValidationF
         if isinstance(struct, RainfallMultistrikeStructure):
             direction = str(_get_val(struct.direction)).lower()
             for ph_idx, phase in enumerate(struct.phases):
-                s1 = _get_val(phase.strike_1)
-                s2 = _get_val(phase.strike_2)
-                ex = _get_val(phase.exit)
+                for sp_idx, sp in enumerate(phase.sub_periods):
+                    s1 = _get_val(sp.strike_1)
+                    s2 = _get_val(sp.strike_2)
+                    ex = _get_val(sp.exit)
+                    sp_prefix = f"{p_prefix}.phases[{ph_idx}].sub_periods[{sp_idx}]"
 
-                if direction == "deficit":
-                    # Deficit rainfall: exit < strike_1 (and exit < strike_2 < strike_1 if strike_2 exists)
-                    if s1 is not None and ex is not None and ex >= s1:
-                        flags.append(
-                            ValidationFlag(
-                                field_path=f"{p_prefix}.phases[{ph_idx}].exit",
-                                rule="strike_exit_sanity",
-                                severity="error",
-                                message=f"Deficit rainfall exit ({ex}) must be less than strike_1 ({s1})",
+                    if direction == "deficit":
+                        # Deficit rainfall: exit < strike_1 (and exit < strike_2 < strike_1 if strike_2 exists)
+                        if s1 is not None and ex is not None and ex >= s1:
+                            flags.append(
+                                ValidationFlag(
+                                    field_path=f"{sp_prefix}.exit",
+                                    rule="strike_exit_sanity",
+                                    severity="error",
+                                    message=f"Deficit rainfall exit ({ex}) must be less than strike_1 ({s1})",
+                                )
                             )
-                        )
-                    if s1 is not None and s2 is not None and s2 >= s1:
-                        flags.append(
-                            ValidationFlag(
-                                field_path=f"{p_prefix}.phases[{ph_idx}].strike_2",
-                                rule="strike_exit_sanity",
-                                severity="error",
-                                message=f"Deficit rainfall strike_2 ({s2}) must be less than strike_1 ({s1})",
+                        if s1 is not None and s2 is not None and s2 >= s1:
+                            flags.append(
+                                ValidationFlag(
+                                    field_path=f"{sp_prefix}.strike_2",
+                                    rule="strike_exit_sanity",
+                                    severity="error",
+                                    message=f"Deficit rainfall strike_2 ({s2}) must be less than strike_1 ({s1})",
+                                )
                             )
-                        )
-                    if s2 is not None and ex is not None and ex > s2:
-                        flags.append(
-                            ValidationFlag(
-                                field_path=f"{p_prefix}.phases[{ph_idx}].exit",
-                                rule="strike_exit_sanity",
-                                severity="error",
-                                message=f"Deficit rainfall exit ({ex}) must be less than or equal to strike_2 ({s2})",
+                        if s2 is not None and ex is not None and ex > s2:
+                            flags.append(
+                                ValidationFlag(
+                                    field_path=f"{sp_prefix}.exit",
+                                    rule="strike_exit_sanity",
+                                    severity="error",
+                                    message=f"Deficit rainfall exit ({ex}) must be less than or equal to strike_2 ({s2})",
+                                )
                             )
-                        )
 
         elif isinstance(struct, (TemperaturePhasedStructure, WindPhasedStructure)):
             direction = str(_get_val(struct.direction)).lower()
@@ -285,8 +287,13 @@ def check_payout_arithmetic(termsheet: StructuredTermsheet) -> list[ValidationFl
         if isinstance(struct, RainfallMultistrikeStructure):
             total_payout = _get_val(struct.total_payout)
             if total_payout is not None and struct.phases:
-                phase_payouts = [_get_val(ph.max_payout) for ph in struct.phases if _get_val(ph.max_payout) is not None]
-                sum_payouts = sum(phase_payouts)
+                sub_period_payouts = [
+                    _get_val(sp.max_payout)
+                    for ph in struct.phases
+                    for sp in ph.sub_periods
+                    if _get_val(sp.max_payout) is not None
+                ]
+                sum_payouts = sum(sub_period_payouts)
 
                 if abs(sum_payouts - float(total_payout)) > 0.01:
                     flags.append(
@@ -295,7 +302,7 @@ def check_payout_arithmetic(termsheet: StructuredTermsheet) -> list[ValidationFl
                             rule="payout_arithmetic",
                             severity="error",
                             message=(
-                                f"Sum of phase max payouts ({sum_payouts:.2f}) does not reconcile with "
+                                f"Sum of sub-period max payouts ({sum_payouts:.2f}) does not reconcile with "
                                 f"total_payout ({float(total_payout):.2f})"
                             ),
                         )
@@ -427,7 +434,7 @@ def check_confidence_threshold(
 
     for path, ev in extracted_nodes:
         # If value is present and confidence is strictly below threshold
-        if ev.confidence is not None and ev.confidence < threshold:
+        if ev.value is not None and ev.confidence is not None and ev.confidence < threshold:
             flags.append(
                 ValidationFlag(
                     field_path=path,

@@ -11,24 +11,43 @@
 - [x] Reconstruction
 - [x] Bedrock mapping
 - [x] Validation
-- [ ] Full pipeline
+- [x] Full pipeline
 - [ ] Provenance
 - [ ] Remaining archetypes
 - [ ] Ajmer → Alwar
 - [ ] Riskwolf output
 
 ## Current Stage
-Phase 9 -- Full Pipeline Integration (Stage 6)
+Phase 10 -- Field-Level Provenance & Traceability
 
 ## Current Goal
-Build the end-to-end pipeline runner (stages/pipeline.py and cli.py) tying
-Stages 1 through 5 together: PDF -> Router -> RawCells -> SegmentedPerils ->
-ReconstructedPerils -> StructuredTermsheet -> ValidatedTermsheet, with execution
-profiling, intermediate checkpointing, and routing on review_required.
+Enhance extraction provenance across all stages, ensuring every extracted field
+links back to exact cell/geometry coordinates in raw_cells.json.
 
 ## Last Test Result
-Phase 8 -- 255/255 tests passed (15 new Stage 5 + 240 earlier stages).
-Stage 5 validator built: stages/validator.py (independent deterministic rule engine)
+Phase 9 -- 259/259 tests passed (4 new Phase 9 pipeline integration tests + 255 earlier stages).
+Full pipeline orchestrator built: stages/pipeline.py and main.py
+
+Pipeline Integration Findings:
+  - End-to-end PDF to ValidatedTermsheet: Ran in ~10.27s on real Orange_TermSheet.pdf.
+  - Sequential execution verified:
+    1. Stage 1 Ingest & Route -> data/intermediates/page_manifest.json (1 native page)
+    2. Stage 2 Cell Extractor -> data/intermediates/raw_cells.json (330 cells)
+    3. Stage 3 Segmenter      -> data/intermediates/segmented_perils.json (4 perils, 100% cells accounted)
+    4. Stage 4A Reconstructor -> data/intermediates/reconstructed_perils.json (4 peril tables reconstructed)
+    5. Stage 4B Mapper        -> data/intermediates/mapped_termsheet.json + mapping_agent_logs.json (Bedrock agent)
+    6. Stage 5 Validator      -> data/intermediates/validated_termsheet.json (0 errors, 0 warnings, review_required=False)
+  - All intermediate artifacts verified persisted, readable, and strictly adhering to Pydantic models.
+  - Idempotency verified: running pipeline repeatedly yields consistent, clean ValidatedTermsheet.
+
+Eval Harness Report (against docs/source/sample_orange_jhalawar.json):
+  - Field comparison summary: PASS: 177, FAIL: 6, WARN: 164, TOTAL: 347
+  - All 4 perils (high_temperature, deficit_rainfall, unseasonal_rainfall, high_wind_speed) and document header/premium business values achieve 100% PASS rate.
+  - Remaining 6 FAILs against read-only ground truth fixture:
+    * 3 in document.source_meta (page_range scalar "1" vs [1], is_scan/ocr_used boolean False vs null in fixture, documented in ADR-012 as intentional operational deviations).
+    * 2 in extraction_confidence: overall computed as dynamic mean across all fields (0.94 vs mock 0.86) and perils[3].cover_period.end (1.0 vs mock 0.72, pending user verification).
+    * 1 in root-level flags (early sample fixture mock vs Stage 5 ValidatedTermsheet.flags, documented in ADR-011).
+
 
 Validation Engine Findings:
   - Real Orange Data (Orange_TermSheet.pdf): Cleanly passed all 6 rule categories.

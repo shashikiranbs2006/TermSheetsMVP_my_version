@@ -110,10 +110,12 @@ class TestDeficitRainfallMappedValues:
         assert isinstance(struct, RainfallMultistrikeStructure)
 
         assert struct.total_payout.value == 37500.0
-        assert len(struct.phases) == 5  # 5 sub-period phases
+        assert len(struct.phases) == 2  # Phase I and Phase II
 
+        # Phase I: 3 sub-periods
+        assert len(struct.phases[0].sub_periods) == 3
         # Sub-period 1: Strike1=60, Strike2=20, Exit=0, Rate1=56.25, Rate2=262.5, Max=7500
-        sp0 = struct.phases[0]
+        sp0 = struct.phases[0].sub_periods[0]
         assert sp0.strike_1.value == 60.0
         assert sp0.strike_2.value == 20.0
         assert sp0.exit.value == 0.0
@@ -122,15 +124,17 @@ class TestDeficitRainfallMappedValues:
         assert sp0.max_payout.value == 7500.0
 
         # Sub-period 2: Strike1=80, Strike2=30, Exit=10, Rate1=45.0, Rate2=262.5, Max=7500
-        sp1 = struct.phases[1]
+        sp1 = struct.phases[0].sub_periods[1]
         assert sp1.strike_1.value == 80.0
         assert sp1.strike_2.value == 30.0
         assert sp1.exit.value == 10.0
         assert sp1.rate_1.value == 45.0
         assert sp1.rate_2.value == 262.5
 
-        # Sub-period 5 (Phase II SP 2): Strike1=60, Strike2=20, Exit=0, Rate1=56.25
-        sp4 = struct.phases[4]
+        # Phase II: 2 sub-periods
+        assert len(struct.phases[1].sub_periods) == 2
+        # Phase II Sub-period 2: Strike1=60, Strike2=20, Exit=0, Rate1=56.25
+        sp4 = struct.phases[1].sub_periods[1]
         assert sp4.strike_1.value == 60.0
         assert sp4.strike_2.value == 20.0
         assert sp4.exit.value == 0.0
@@ -161,7 +165,7 @@ class TestDateNormalization:
         rain_struct = mapped_termsheet.perils[1].structure
         assert isinstance(rain_struct, RainfallMultistrikeStructure)
 
-        sp0_period = rain_struct.phases[0].sub_periods[0]
+        sp0_period = rain_struct.phases[0].sub_periods[0].period
         assert sp0_period.start.value == "2019-07-01"
         assert sp0_period.end.value == "2019-07-15"
 
