@@ -1,0 +1,275 @@
+{
+  "reconstructed_perils": [
+    {
+      "peril_id": "high_temperature",
+      "archetype": "temperature_phased",
+      "phases": [
+        {
+          "label": "I",
+          "period_raw": "01 Feb. To 14\nFeb.",
+          "trigger_raw": "29.0",
+          "x_range": [
+            160.98,
+            211.5
+          ]
+        },
+        {
+          "label": "II",
+          "period_raw": "15 Feb. To\n28Feb.",
+          "trigger_raw": "31.0",
+          "x_range": [
+            211.5,
+            263.58
+          ]
+        },
+        {
+          "label": "III",
+          "period_raw": "1 Mar. to 15\nMar.",
+          "trigger_raw": "33.5",
+          "x_range": [
+            263.58,
+            311.94
+          ]
+        },
+        {
+          "label": "IV",
+          "period_raw": "16 Mar. to\n31 Mar.",
+          "trigger_raw": "35.5",
+          "x_range": [
+            311.94,
+            352.86
+          ]
+        },
+        {
+          "label": "V",
+          "period_raw": "01 April to 15\nApril",
+          "trigger_raw": "36.5",
+          "x_range": [
+            352.86,
+            408.66
+          ]
+        },
+        {
+          "label": "VI",
+          "period_raw": "16 April to 30\nApril",
+          "trigger_raw": "39.0",
+          "x_range": [
+            408.66,
+            465.54
+          ]
+        }
+      ],
+      "parameters": {
+        "Strike (\u00b0C)": "4",
+        "Exit (\u00b0C)": "22",
+        "Payout(Rs/0c)": "2083.33",
+        "Max payout(Rs)": "37500"
+      }
+    },
+    {
+      "peril_id": "deficit_rainfall",
+      "archetype": "rainfall_multistrike",
+      "phases": [
+        {
+          "label": "Phase I",
+          "x_range": [
+            160.98,
+            263.58
+          ],
+          "sub_periods": [
+            {
+              "col_idx": 0,
+              "period_raw": "01-Jul. to 15-\nJul.",
+              "x_range": [
+                160.98,
+                211.5
+              ],
+              "values": {
+                "Strike 1 (mm)": "60",
+                "Strike 2 (mm)": "20",
+                "EXIT (mm)": "0",
+                "RATE 1 (Rs./ mm)": "56.25",
+                "RATE 2 (Rs./ mm)": "262.50",
+                "Max payout(Rs)": "7500"
+              }
+            },
+            {
+              "col_idx": 1,
+              "period_raw": "16-Jul. to 31-\nJul.",
+              "x_range": [
+                211.5,
+                263.58
+              ],
+              "values": {
+                "Strike 1 (mm)": "80",
+                "Strike 2 (mm)": "30",
+                "EXIT (mm)": "10",
+                "RATE 1 (Rs./ mm)": "45.00",
+                "RATE 2 (Rs./ mm)": "262.50",
+                "Max payout(Rs)": "7500"
+              }
+            },
+            {
+              "col_idx": 2,
+              "period_raw": "1-Aug. to 15\nAug.",
+              "x_range": [
+                263.58,
+                311.94
+              ],
+              "values": {
+                "Strike 1 (mm)": "80",
+                "Strike 2 (mm)": "30",
+                "EXIT (mm)": "10",
+                "RATE 1 (Rs./ mm)": "45.00",
+                "RATE 2 (Rs./ mm)": "262.50",
+                "Max payout(Rs)": "7500"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Phase II",
+          "x_range": [
+            311.94,
+            408.66
+          ],
+          "sub_periods": [
+            {
+              "col_idx": 3,
+              "period_raw": "16 Aug. to\n31 Aug.",
+              "x_range": [
+                311.94,
+                352.86
+              ],
+              "values": {
+                "Strike 1 (mm)": "80",
+                "Strike 2 (mm)": "30",
+                "EXIT (mm)": "10",
+                "RATE 1 (Rs./ mm)": "45.00",
+                "RATE 2 (Rs./ mm)": "262.50",
+                "Max payout(Rs)": "7500"
+              }
+            },
+            {
+              "col_idx": 4,
+              "period_raw": "01 Sep to 15\nSept.",
+              "x_range": [
+                352.86,
+                408.66
+              ],
+              "values": {
+                "Strike 1 (mm)": "60",
+                "Strike 2 (mm)": "20",
+                "EXIT (mm)": "0",
+                "RATE 1 (Rs./ mm)": "56.25",
+                "RATE 2 (Rs./ mm)": "262.50",
+                "Max payout(Rs)": "7500"
+              }
+            }
+          ]
+        }
+      ],
+      "total_payout_raw": "37500"
+    },
+    {
+      "peril_id": "unseasonal_rainfall",
+      "archetype": "rainfall_single_payout",
+      "parameters": {
+        "Strike 1 (mm)": "25",
+        "Strike 2 (mm)": "40",
+        "UnSeasonal": "rainfall",
+        "EXIT (mm)": "60",
+        "(Single": "payout)",
+        "RATE 1 (Rs./ mm)": "500",
+        "RATE 2 (Rs./ mm)": "875",
+        "Max payout(Rs)": "25000"
+      },
+      "periods_raw": [
+        "1-Jun-19",
+        "15-Jun-19"
+      ]
+    },
+    {
+      "peril_id": "high_wind_speed",
+      "archetype": "wind_phased",
+      "trigger_blocks": [
+        {
+          "block_label": "block_1",
+          "phases": [
+            {
+              "label": "I",
+              "period_raw": "15 Oct. to 31\nOct.",
+              "trigger_raw": "50",
+              "x_range": [
+                160.98,
+                211.5
+              ]
+            },
+            {
+              "label": "II",
+              "period_raw": "01 Nov. to 15\nNov.",
+              "trigger_raw": "55",
+              "x_range": [
+                211.5,
+                263.58
+              ]
+            },
+            {
+              "label": "III",
+              "period_raw": "16 Nov. to 30\nNov.",
+              "trigger_raw": "55",
+              "x_range": [
+                263.58,
+                311.94
+              ]
+            }
+          ],
+          "parameters": {
+            "Strike (km/h)": "10",
+            "Exit (km/h)": "70",
+            "Payout(Rs/Km/h)": "208.33",
+            "Max payout(Rs)": "12500"
+          }
+        },
+        {
+          "block_label": "block_2",
+          "phases": [
+            {
+              "label": "I",
+              "period_raw": "15 Feb. to\n28 Feb.",
+              "trigger_raw": "50",
+              "x_range": [
+                311.94,
+                352.86
+              ]
+            },
+            {
+              "label": "II",
+              "period_raw": "01 March to 15\nMarch",
+              "trigger_raw": "55",
+              "x_range": [
+                352.86,
+                408.66
+              ]
+            },
+            {
+              "label": "III",
+              "period_raw": "16 March to 31\nMarch",
+              "trigger_raw": "50",
+              "x_range": [
+                408.66,
+                465.54
+              ]
+            }
+          ],
+          "parameters": {
+            "Strike (km/h)": "10",
+            "Exit (km/h)": "70",
+            "Payout(Rs/Km/h)": "208.33",
+            "Max payout(Rs)": "12500"
+          }
+        }
+      ]
+    }
+  ]
+}

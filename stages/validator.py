@@ -58,6 +58,53 @@ def _get_val(obj: Any) -> Any:
     return obj
 
 
+def _is_peril_all_null(peril: Any) -> bool:
+    """
+    Check if a peril has no extracted data (all-null core structure fields).
+    """
+    struct = getattr(peril, "structure", None)
+    if struct is None:
+        return True
+
+    if isinstance(struct, TemperaturePhasedStructure):
+        has_phase_triggers = any(_get_val(ph.trigger) is not None for ph in (struct.phases or []))
+        return (
+            _get_val(struct.strike) is None
+            and _get_val(struct.exit) is None
+            and _get_val(struct.payout_rate) is None
+            and _get_val(struct.max_payout) is None
+            and not has_phase_triggers
+        )
+    elif isinstance(struct, RainfallMultistrikeStructure):
+        has_sub_period_data = any(
+            _get_val(sp.strike_1) is not None or _get_val(sp.exit) is not None or _get_val(sp.max_payout) is not None
+            for ph in (struct.phases or [])
+            for sp in (ph.sub_periods or [])
+        )
+        return _get_val(struct.total_payout) is None and not has_sub_period_data
+    elif isinstance(struct, RainfallSinglePayoutStructure):
+        return (
+            _get_val(struct.strike_1) is None
+            and _get_val(struct.exit) is None
+            and _get_val(struct.rate_1) is None
+            and _get_val(struct.max_payout) is None
+        )
+    elif isinstance(struct, WindPhasedStructure):
+        has_block_triggers = any(
+            _get_val(ph.trigger) is not None
+            for tb in (struct.trigger_blocks or [])
+            for ph in (tb.phases or [])
+        )
+        return (
+            _get_val(struct.strike) is None
+            and _get_val(struct.exit) is None
+            and _get_val(struct.payout_rate) is None
+            and _get_val(struct.max_payout) is None
+            and not has_block_triggers
+        )
+    return False
+
+
 # ---------------------------------------------------------------------------
 # Check 1: Completeness
 # ---------------------------------------------------------------------------
@@ -110,6 +157,18 @@ def check_completeness(termsheet: StructuredTermsheet) -> list[ValidationFlag]:
                     message="Peril is missing 'peril_id'",
                 )
             )
+
+        if _is_peril_all_null(peril):
+            flags.append(
+                ValidationFlag(
+                    field_path=p_prefix,
+                    rule="completeness_check",
+                    severity="warning",
+                    message=f"Peril '{peril.peril_id}' has no extracted data, review required",
+                )
+            )
+            continue
+
         if not _get_val(peril.cover_objective):
             flags.append(
                 ValidationFlag(
@@ -174,13 +233,16 @@ def check_strike_exit_sanity(termsheet: StructuredTermsheet) -> list[ValidationF
     flags: list[ValidationFlag] = []
 
     for i, peril in enumerate(termsheet.perils):
+        if _is_peril_all_null(peril):
+            continue
+
         p_prefix = f"perils[{i}].structure"
         struct = peril.structure
 
         if isinstance(struct, RainfallMultistrikeStructure):
-            direction = str(_get_val(struct.direction)).lower()
-            for ph_idx, phase in enumerate(struct.phases):
-                for sp_idx, sp in enumerate(phase.sub_periods):
+            direction = str(_get_val(struct.direction) or "").lower()
+            for ph_idx, phase in enumerate(struct.phases or []):
+                for sp_idx, sp in enumerate(phase.sub_periods or []):
                     s1 = _get_val(sp.strike_1)
                     s2 = _get_val(sp.strike_2)
                     ex = _get_val(sp.exit)
@@ -217,7 +279,7 @@ def check_strike_exit_sanity(termsheet: StructuredTermsheet) -> list[ValidationF
                             )
 
         elif isinstance(struct, (TemperaturePhasedStructure, WindPhasedStructure)):
-            direction = str(_get_val(struct.direction)).lower()
+            direction = str(_get_val(struct.direction) or "").lower()
             strike = _get_val(struct.strike)
             exit_val = _get_val(struct.exit)
 
@@ -234,7 +296,7 @@ def check_strike_exit_sanity(termsheet: StructuredTermsheet) -> list[ValidationF
                     )
 
         elif isinstance(struct, RainfallSinglePayoutStructure):
-            direction = str(_get_val(struct.direction)).lower()
+            direction = str(_get_val(struct.direction) or "").lower()
             s1 = _get_val(struct.strike_1)
             s2 = _get_val(struct.strike_2)
             ex = _get_val(struct.exit)
@@ -281,6 +343,9 @@ def check_payout_arithmetic(termsheet: StructuredTermsheet) -> list[ValidationFl
     flags: list[ValidationFlag] = []
 
     for i, peril in enumerate(termsheet.perils):
+        if _is_peril_all_null(peril):
+            continue
+
         p_prefix = f"perils[{i}].structure"
         struct = peril.structure
 
@@ -293,20 +358,23 @@ def check_payout_arithmetic(termsheet: StructuredTermsheet) -> list[ValidationFl
                     for sp in ph.sub_periods
                     if _get_val(sp.max_payout) is not None
                 ]
-                sum_payouts = sum(sub_period_payouts)
-
-                if abs(sum_payouts - float(total_payout)) > 0.01:
-                    flags.append(
-                        ValidationFlag(
-                            field_path=f"{p_prefix}.total_payout",
-                            rule="payout_arithmetic",
-                            severity="error",
-                            message=(
-                                f"Sum of sub-period max payouts ({sum_payouts:.2f}) does not reconcile with "
-                                f"total_payout ({float(total_payout):.2f})"
-                            ),
-                        )
-                    )
+                if sub_period_payouts:
+                    try:
+                        sum_payouts = sum(float(v) for v in sub_period_payouts)
+                        if abs(sum_payouts - float(total_payout)) > 0.01:
+                            flags.append(
+                                ValidationFlag(
+                                    field_path=f"{p_prefix}.total_payout",
+                                    rule="payout_arithmetic",
+                                    severity="error",
+                                    message=(
+                                        f"Sum of sub-period max payouts ({sum_payouts:.2f}) does not reconcile with "
+                                        f"total_payout ({float(total_payout):.2f})"
+                                    ),
+                                )
+                            )
+                    except (ValueError, TypeError):
+                        pass
 
         elif isinstance(struct, (TemperaturePhasedStructure, WindPhasedStructure)):
             strike = _get_val(struct.strike)
@@ -315,21 +383,24 @@ def check_payout_arithmetic(termsheet: StructuredTermsheet) -> list[ValidationFl
             max_payout = _get_val(struct.max_payout)
 
             if all(v is not None for v in (strike, exit_val, payout_rate, max_payout)):
-                span = float(exit_val) - float(strike)
-                expected_max = span * float(payout_rate)
-                # Allow minor fractional rounding tolerance (e.g. 2083.33 * 18 = 37499.94 vs 37500.0)
-                if abs(expected_max - float(max_payout)) > 1.0:
-                    flags.append(
-                        ValidationFlag(
-                            field_path=f"{p_prefix}.max_payout",
-                            rule="payout_arithmetic",
-                            severity="error",
-                            message=(
-                                f"Payout calculation mismatch: rate ({payout_rate}) * (exit - strike) ({span}) = "
-                                f"{expected_max:.2f}, expected max_payout = {float(max_payout):.2f}"
-                            ),
+                try:
+                    span = float(exit_val) - float(strike)
+                    expected_max = span * float(payout_rate)
+                    # Allow minor fractional rounding tolerance (e.g. 2083.33 * 18 = 37499.94 vs 37500.0)
+                    if abs(expected_max - float(max_payout)) > 1.0:
+                        flags.append(
+                            ValidationFlag(
+                                field_path=f"{p_prefix}.max_payout",
+                                rule="payout_arithmetic",
+                                severity="error",
+                                message=(
+                                    f"Payout calculation mismatch: rate ({payout_rate}) * (exit - strike) ({span}) = "
+                                    f"{expected_max:.2f}, expected max_payout = {float(max_payout):.2f}"
+                                ),
+                            )
                         )
-                    )
+                except (ValueError, TypeError):
+                    pass
 
     return flags
 
@@ -492,11 +563,12 @@ def validate_termsheet(
     all_flags.extend(check_sum_insured(ts))
     all_flags.extend(check_confidence_threshold(ts, threshold=confidence_threshold))
 
-    # review_required is True if any error exists OR any confidence flag was raised
+    # review_required is True if any error exists OR any confidence flag was raised OR missing peril data
     has_errors = any(flag.severity == "error" for flag in all_flags)
     has_low_confidence = any(flag.rule == "confidence_threshold" for flag in all_flags)
+    has_missing_peril_data = any("has no extracted data, review required" in flag.message for flag in all_flags)
 
-    review_required = has_errors or has_low_confidence
+    review_required = has_errors or has_low_confidence or has_missing_peril_data
 
     return ValidatedTermsheet(
         termsheet=ts,

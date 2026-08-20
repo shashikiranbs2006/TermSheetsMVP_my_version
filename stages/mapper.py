@@ -147,8 +147,19 @@ build_document_header = build_document_fields
 
 
 # ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
 # Archetype Structure Converters
 # ---------------------------------------------------------------------------
+
+
+def _to_float(v: Any) -> float | None:
+    """Safely convert value to float or return None."""
+    if v is None:
+        return None
+    try:
+        return float(v)
+    except (ValueError, TypeError):
+        return None
 
 
 def to_temperature_structure(mapped: dict, conf: float) -> TemperaturePhasedStructure:
@@ -156,7 +167,7 @@ def to_temperature_structure(mapped: dict, conf: float) -> TemperaturePhasedStru
         TemperaturePhase(
             label=_ev(str(ph.get("label", "")), confidence=conf),
             period=_make_cover_period(ph.get("period"), conf=conf),
-            trigger=_ev(float(ph.get("trigger", 0.0)), confidence=conf),
+            trigger=_ev(_to_float(ph.get("trigger")), confidence=conf),
         )
         for ph in mapped.get("phases", [])
     ]
@@ -164,11 +175,11 @@ def to_temperature_structure(mapped: dict, conf: float) -> TemperaturePhasedStru
         measure=_ev(str(mapped.get("measure", "max_temperature")), confidence=conf),
         unit=_ev(str(mapped.get("unit", "°C")), confidence=conf),
         direction=_ev(str(mapped.get("direction", "upward")), confidence=conf),
-        strike=_ev(float(mapped.get("strike", 4.0)), confidence=conf),
-        exit=_ev(float(mapped.get("exit", 22.0)), confidence=conf),
-        payout_rate=_ev(float(mapped.get("payout_rate", 2083.33)), confidence=conf),
+        strike=_ev(_to_float(mapped.get("strike")), confidence=conf),
+        exit=_ev(_to_float(mapped.get("exit")), confidence=conf),
+        payout_rate=_ev(_to_float(mapped.get("payout_rate")), confidence=conf),
         payout_rate_unit=_ev(str(mapped.get("payout_rate_unit", "Rs/°C")), confidence=conf),
-        max_payout=_ev(float(mapped.get("max_payout", 37500.0)), confidence=conf),
+        max_payout=_ev(_to_float(mapped.get("max_payout")), confidence=conf),
         phases=phases,
     )
 
@@ -179,19 +190,19 @@ def to_multistrike_structure(mapped: dict, conf: float) -> RainfallMultistrikeSt
         sub_periods: list[RainfallMultistrikeSubPeriod] = []
         for sp in ph.get("sub_periods", []):
             s2_raw = sp.get("strike_2")
-            s2_val = float(s2_raw) if s2_raw is not None else None
+            s2_val = _to_float(s2_raw)
             r2_raw = sp.get("rate_2")
-            r2_val = float(r2_raw) if r2_raw is not None else None
+            r2_val = _to_float(r2_raw)
 
             sub_periods.append(
                 RainfallMultistrikeSubPeriod(
                     period=_make_date_period(sp.get("period"), conf=conf),
-                    strike_1=_ev(float(sp.get("strike_1", 0.0)), confidence=conf),
+                    strike_1=_ev(_to_float(sp.get("strike_1")), confidence=conf),
                     strike_2=_ev(s2_val, confidence=conf),
-                    exit=_ev(float(sp.get("exit", 0.0)), confidence=conf),
-                    rate_1=_ev(float(sp.get("rate_1", 0.0)), confidence=conf),
+                    exit=_ev(_to_float(sp.get("exit")), confidence=conf),
+                    rate_1=_ev(_to_float(sp.get("rate_1")), confidence=conf),
                     rate_2=_ev(r2_val, confidence=conf),
-                    max_payout=_ev(float(sp.get("max_payout", 7500.0)), confidence=conf),
+                    max_payout=_ev(_to_float(sp.get("max_payout")), confidence=conf),
                 )
             )
 
@@ -208,7 +219,7 @@ def to_multistrike_structure(mapped: dict, conf: float) -> RainfallMultistrikeSt
         direction=_ev(str(mapped.get("direction", "deficit")), confidence=conf),
         rate_unit=_ev(str(mapped.get("rate_unit", "Rs/mm")), confidence=conf),
         phases=phases,
-        total_payout=_ev(float(mapped.get("total_payout", 37500.0)), confidence=conf),
+        total_payout=_ev(_to_float(mapped.get("total_payout")), confidence=conf),
     )
 
 
@@ -218,9 +229,9 @@ def to_single_payout_structure(mapped: dict, conf: float) -> RainfallSinglePayou
         periods = [_make_date_period({"start": "2019-06-01", "end": "2019-06-15"}, conf=conf)]
 
     s2_raw = mapped.get("strike_2")
-    s2_val = float(s2_raw) if s2_raw is not None else None
+    s2_val = _to_float(s2_raw)
     r2_raw = mapped.get("rate_2")
-    r2_val = float(r2_raw) if r2_raw is not None else None
+    r2_val = _to_float(r2_raw)
 
     return RainfallSinglePayoutStructure(
         measure=_ev(str(mapped.get("measure", "aggregate_rainfall")), confidence=conf),
@@ -228,13 +239,13 @@ def to_single_payout_structure(mapped: dict, conf: float) -> RainfallSinglePayou
         direction=_ev(str(mapped.get("direction", "unseasonal")), confidence=conf),
         payout_mode=_ev(str(mapped.get("payout_mode", "single")), confidence=conf),
         periods=periods,
-        strike_1=_ev(float(mapped.get("strike_1", 25.0)), confidence=conf),
+        strike_1=_ev(_to_float(mapped.get("strike_1")), confidence=conf),
         strike_2=_ev(s2_val, confidence=conf),
-        exit=_ev(float(mapped.get("exit", 60.0)), confidence=conf),
-        rate_1=_ev(float(mapped.get("rate_1", 500.0)), confidence=conf),
+        exit=_ev(_to_float(mapped.get("exit")), confidence=conf),
+        rate_1=_ev(_to_float(mapped.get("rate_1")), confidence=conf),
         rate_2=_ev(r2_val, confidence=conf),
         rate_unit=_ev(str(mapped.get("rate_unit", "Rs/mm")), confidence=conf),
-        max_payout=_ev(float(mapped.get("max_payout", 25000.0)), confidence=conf),
+        max_payout=_ev(_to_float(mapped.get("max_payout")), confidence=conf),
     )
 
 
@@ -245,7 +256,7 @@ def to_wind_structure(mapped: dict, conf: float) -> WindPhasedStructure:
             WindPhase(
                 label=_ev(str(ph.get("label", "I")), confidence=conf),
                 period=_make_cover_period(ph.get("period"), conf=conf),
-                trigger=_ev(float(ph.get("trigger", 50.0)), confidence=conf),
+                trigger=_ev(_to_float(ph.get("trigger")), confidence=conf),
             )
             for ph in tb.get("phases", [])
         ]
@@ -273,11 +284,11 @@ def to_wind_structure(mapped: dict, conf: float) -> WindPhasedStructure:
         measure=_ev(str(mapped.get("measure", "max_wind_speed")), confidence=conf),
         unit=_ev(str(mapped.get("unit", "km/h")), confidence=conf),
         direction=_ev(str(mapped.get("direction", "upward")), confidence=conf),
-        strike=_ev(float(mapped.get("strike", 10.0)), confidence=conf),
-        exit=_ev(float(mapped.get("exit", 70.0)), confidence=conf),
-        payout_rate=_ev(float(mapped.get("payout_rate", 208.33)), confidence=conf),
+        strike=_ev(_to_float(mapped.get("strike")), confidence=conf),
+        exit=_ev(_to_float(mapped.get("exit")), confidence=conf),
+        payout_rate=_ev(_to_float(mapped.get("payout_rate")), confidence=conf),
         payout_rate_unit=_ev(str(mapped.get("payout_rate_unit", "Rs/km/h")), confidence=conf),
-        max_payout=_ev(float(mapped.get("max_payout", 12500.0)), confidence=conf),
+        max_payout=_ev(_to_float(mapped.get("max_payout")), confidence=conf),
         trigger_blocks=blocks,
     )
 

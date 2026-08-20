@@ -21,11 +21,20 @@
 Phase 11 -- Remaining Archetypes & Edge Case Handling
 
 ## Current Goal
-Expand parser support to remaining WBCIS weather insurance archetypes (e.g. Dry Spell, Consecutive Dry Days, Relative Humidity, Frost) and multi-district batches.
+Expand parser support to remaining WBCIS weather insurance archetypes (e.g. Dry Spell, Consecutive Dry Days, Relative Humidity, Frost, Disease Congenial Climate) and multi-district batches.
+
+## Open Items
+- [ ] `disease_climate` peril type discovered on 9/10 SampleTermsheets.pdf pages ("Desease Congenial Climate/Day"). Not in original 4-archetype schema. Pipeline currently detects and skips it safely (archetype=unknown, no crash, flagged for review). Needs scope decision from Prasad: build a 5th archetype, or confirm out of scope for MVP.
 
 ## Last Test Result
-Phase 10 -- 265/265 tests passed (6 new Phase 10 review report tests + 259 earlier stages).
-Review report generator built: stages/review_report.py and test suite tests/test_review_report.py
+Phase 11 — 269/269 tests (266 passed, 3 mock scanned-PDF router tests skipped).
+- Bug 1 (Segmentation Header Brittle & Footer Absorption) resolved: per-page footer scoping and robust regex header matchers ensure 100% cell accounting across multi-page termsheets (2,289 cells on SampleTermsheets.pdf, 330 on Orange_TermSheet.pdf).
+- Bug 2 (Validator Crash on All-Null Perils) resolved: `_is_peril_all_null` guard gracefully skips numeric checks on empty/unextracted perils, logs warning validation flag, and sets `review_required = True` without raising exceptions.
+- Bug 3 (Reconstructor Hardcoded Coordinates & Silent Phase Truncation) resolved:
+  * `reconstruct_temperature()`: Dynamic `PHASE` and `TRIGGER` row discovery extracts all 4 distinct phases on SampleTermsheets.pdf (`35°C`, `34°C`, `33°C`, `32°C`) and all 6 phases on Orange_TermSheet.pdf (`29.0`, `31.0`, `33.5`, `35.5`, `36.5`, `39.0`).
+  * `reconstruct_wind()`: Dynamically groups $1 \dots N$ trigger blocks (1 block of 4 phases on Guava / Page 10, 2 blocks of 3 phases on Orange).
+  * `reconstruct_multistrike()`: Comprehensive month regex and header skipping captures all 3 distinct sub-periods on Guava Page 10 (`1 JULY TO 31 JULY`, `1 AUG TO 31 AUG`, `1 SEP TO 30 SEP`) and 2 phases / 5 sub-periods on Orange.
+- Both Orange_TermSheet.pdf and SampleTermsheets.pdf run end-to-end to completion with 0 validation flags and 100% data fidelity.
 
 Review & Provenance Surface Findings:
   - Markdown review report generated at: data/intermediates/review_report.md

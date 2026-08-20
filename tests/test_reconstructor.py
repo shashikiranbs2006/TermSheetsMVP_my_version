@@ -231,6 +231,54 @@ class TestWindPhasedReconstruction:
             assert any("Payout" in k and "208.33" in v for k, v in params.items())
             assert any("Max" in k and "12500" in v for k, v in params.items())
 
+    def test_single_block_wind_structure(self):
+        """Single block wind with 4 sequential phases (e.g. SampleTermsheets Page 10 Guava)."""
+        cells = [
+            RawCell(text="Phase", x=206.2, y=178.9, width=63.8, height=11.6, page_no=10, source="pdfplumber"),
+            RawCell(text="I", x=270.0, y=178.9, width=62.0, height=11.6, page_no=10, source="pdfplumber"),
+            RawCell(text="II", x=332.0, y=178.9, width=61.9, height=11.6, page_no=10, source="pdfplumber"),
+            RawCell(text="III", x=393.9, y=178.9, width=55.3, height=11.6, page_no=10, source="pdfplumber"),
+            RawCell(text="IV", x=449.2, y=178.9, width=55.3, height=11.6, page_no=10, source="pdfplumber"),
+            RawCell(text="Period", x=206.2, y=190.6, width=63.8, height=23.3, page_no=10, source="pdfplumber"),
+            RawCell(text="01 July to 15\nJuly", x=270.0, y=190.6, width=62.0, height=23.3, page_no=10, source="pdfplumber"),
+            RawCell(text="16 July to 31\nJuly", x=332.0, y=190.6, width=61.9, height=23.3, page_no=10, source="pdfplumber"),
+            RawCell(text="01-Aug. to\n15 Aug.", x=393.9, y=190.6, width=55.3, height=23.3, page_no=10, source="pdfplumber"),
+            RawCell(text="16-Aug. to\n31 Aug.", x=449.2, y=190.6, width=55.3, height=23.3, page_no=10, source="pdfplumber"),
+            RawCell(text="Trigger (km/h)", x=206.2, y=213.8, width=63.8, height=11.6, page_no=10, source="pdfplumber"),
+            RawCell(text="40", x=270.0, y=213.8, width=62.0, height=11.6, page_no=10, source="pdfplumber"),
+            RawCell(text="45", x=332.0, y=213.8, width=61.9, height=11.6, page_no=10, source="pdfplumber"),
+            RawCell(text="45", x=393.9, y=213.8, width=55.3, height=11.6, page_no=10, source="pdfplumber"),
+            RawCell(text="40", x=449.2, y=213.8, width=55.3, height=11.6, page_no=10, source="pdfplumber"),
+            RawCell(text="Strike (km/h)", x=206.2, y=225.5, width=63.8, height=11.6, page_no=10, source="pdfplumber"),
+            RawCell(text="5", x=270.0, y=225.5, width=234.5, height=11.6, page_no=10, source="pdfplumber"),
+            RawCell(text="Exit (km/h)", x=206.2, y=237.1, width=63.8, height=11.6, page_no=10, source="pdfplumber"),
+            RawCell(text="40", x=270.0, y=237.1, width=234.5, height=11.6, page_no=10, source="pdfplumber"),
+            RawCell(text="Payout(Rs/km/h)", x=206.2, y=248.8, width=63.8, height=11.6, page_no=10, source="pdfplumber"),
+            RawCell(text="950.71", x=270.0, y=248.8, width=234.5, height=11.6, page_no=10, source="pdfplumber"),
+            RawCell(text="Max payout(Rs)", x=206.2, y=260.4, width=63.8, height=11.7, page_no=10, source="pdfplumber"),
+            RawCell(text="33275", x=270.0, y=260.4, width=234.5, height=11.7, page_no=10, source="pdfplumber"),
+        ]
+        p = SegmentedPeril(peril_id="high_wind_speed", raw_cells=cells, archetype="wind_phased")
+        rec = reconstruct_wind(p)
+
+        assert rec["peril_id"] == "high_wind_speed"
+        assert len(rec["trigger_blocks"]) == 1
+        b = rec["trigger_blocks"][0]
+        assert b["block_label"] == "block_1"
+        assert len(b["phases"]) == 4
+        assert [ph["label"] for ph in b["phases"]] == ["I", "II", "III", "IV"]
+        assert [ph["trigger_raw"] for ph in b["phases"]] == ["40", "45", "45", "40"]
+        params = b["parameters"]
+        assert params.get("Strike (km/h)") == "5"
+        assert params.get("Exit (km/h)") == "40"
+        assert params.get("Payout(Rs/km/h)") == "950.71"
+        assert params.get("Max payout(Rs)") == "33275"
+
+    def test_empty_wind_peril_returns_zero_blocks(self):
+        p = SegmentedPeril(peril_id="high_wind_speed", raw_cells=[], archetype="wind_phased")
+        rec = reconstruct_wind(p)
+        assert rec["trigger_blocks"] == []
+
 
 # ---------------------------------------------------------------------------
 # 4. Unseasonal Rainfall (rainfall_single_payout)

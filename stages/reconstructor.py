@@ -122,6 +122,11 @@ def match_cell_to_columns(
 
 # ---------------------------------------------------------------------------
 # Archetype B: rainfall_multistrike Reconstruction
+MONTH_REGEX = r"\b(Jan|January|Feb|February|Mar|March|Apr|April|May|Jun|June|Jul|July|Aug|August|Sep|Sept|September|Oct|October|Nov|November|Dec|December)\b"
+
+
+# ---------------------------------------------------------------------------
+# Archetype B: rainfall_multistrike Reconstruction
 # ---------------------------------------------------------------------------
 
 
@@ -131,45 +136,71 @@ def reconstruct_multistrike(peril: SegmentedPeril) -> dict[str, Any]:
       Phases (Phase I, Phase II) -> Sub-periods -> Parameters (Strike 1/2, Exit, Rate 1/2, Max Payout)
       + Total Payout.
     """
-    # Identify table cells (y >= 260 for deficit rainfall in WBCIS layout)
-    table_cells = [c for c in peril.raw_cells if c.y >= 260.0 and c.width > 0]
+    table_cells = [c for c in peril.raw_cells if c.width > 0 and c.width < 500 and c.height > 0]
     rows = cluster_rows(table_cells)
 
     if not rows:
         return {"peril_id": peril.peril_id, "archetype": peril.archetype, "phases": []}
 
-    # Find the sub-period header row (contains date ranges e.g. "01-Jul. to 15-Jul.")
+    # Find the sub-period header row:
     sub_period_row_idx = -1
     for ri, row in enumerate(rows):
-        row_texts = [c.text or "" for c in row]
-        if any(re.search(r"\b(Jul|Aug|Sep|Oct|Nov|Dec|Jan|Feb|Mar|Apr|May|Jun)\b", t, re.I) for t in row_texts):
+        row_cells = [c for c in row if c.text and c.text.strip()]
+        if any("COVER" in (c.text or "").upper() for c in row_cells):
+            continue
+        if any("EVENT" in (c.text or "").upper() and "DEFINITION" in (c.text or "").upper() for c in row_cells):
+            continue
+        date_cols = [
+            c for c in row_cells
+            if re.search(MONTH_REGEX, c.text, re.I)
+            and c.text.strip().upper() not in ["PERIOD", "RAINFALL", "RAINFALL\nVOLUME", "INDEX"]
+        ]
+        if len(date_cols) >= 3:
             sub_period_row_idx = ri
             break
 
     if sub_period_row_idx == -1:
-        # Fallback to row 1
+        for ri, row in enumerate(rows):
+            row_cells = [c for c in row if c.text and c.text.strip()]
+            if any("COVER" in (c.text or "").upper() for c in row_cells):
+                continue
+            if any("EVENT" in (c.text or "").upper() for c in row_cells):
+                continue
+            date_cols = [
+                c for c in row_cells
+                if re.search(MONTH_REGEX, c.text, re.I)
+                and c.text.strip().upper() not in ["PERIOD", "RAINFALL", "RAINFALL\nVOLUME", "INDEX"]
+            ]
+            if len(date_cols) >= 1:
+                sub_period_row_idx = ri
+                break
+
+    if sub_period_row_idx == -1:
         sub_period_row_idx = min(1, len(rows) - 1)
 
-    sub_period_cells = [c for c in rows[sub_period_row_idx] if c.text and c.text.strip()]
+    # Sub-period columns: cells matching date interval patterns
+    row_cells = [c for c in rows[sub_period_row_idx] if c.text and c.text.strip()]
+    date_cells = [
+        c for c in row_cells
+        if re.search(MONTH_REGEX, c.text, re.I)
+        and c.text.strip().upper() not in ["PERIOD", "RAINFALL", "RAINFALL\nVOLUME", "INDEX"]
+    ]
+    sub_period_cells = date_cells if date_cells else row_cells
     column_bounds = [(c.x, c.x + c.width) for c in sub_period_cells]
 
-    # Find Phase headers row (usually the row directly above sub-periods, e.g. "Phase I", "Phase II")
+    # Find Phase headers row (the row directly above sub-periods, e.g. "Phase I", "Phase II")
     phase_headers_row = rows[sub_period_row_idx - 1] if sub_period_row_idx > 0 else []
     phase_header_cells = [c for c in phase_headers_row if c.text and "PHASE" in c.text.upper()]
 
-    # Group sub-periods under phases based on x geometry
     phase_groups: list[dict[str, Any]] = []
-
     if phase_header_cells:
         for ph in phase_header_cells:
             ph_x0 = ph.x
             ph_x1 = ph.x + ph.width
-            # Sub-periods falling within this phase's x span
             child_sub_periods: list[dict[str, Any]] = []
             for col_idx, (col_x0, col_x1) in enumerate(column_bounds):
                 col_mid = (col_x0 + col_x1) / 2.0
-                if ph_x0 - 5.0 <= col_mid <= ph_x1 + 55.0:  # account for Phase I spanning 3 columns
-                    # Avoid duplicate assignment
+                if ph_x0 - 5.0 <= col_mid <= ph_x1 + 55.0:
                     already_assigned = any(
                         any(sp["col_idx"] == col_idx for sp in pg["sub_periods"])
                         for pg in phase_groups
@@ -188,7 +219,6 @@ def reconstruct_multistrike(peril: SegmentedPeril) -> dict[str, Any]:
                 "sub_periods": child_sub_periods,
             })
     else:
-        # Flat fallback
         phase_groups.append({
             "label": "Phase I",
             "x_range": [column_bounds[0][0], column_bounds[-1][1]],
@@ -203,11 +233,9 @@ def reconstruct_multistrike(peril: SegmentedPeril) -> dict[str, Any]:
             ],
         })
 
-    # Ensure all sub-period columns are assigned to a phase
     all_assigned_cols = {sp["col_idx"] for pg in phase_groups for sp in pg["sub_periods"]}
     for col_idx in range(len(column_bounds)):
         if col_idx not in all_assigned_cols:
-            # Assign to the nearest phase
             col_x0, col_x1 = column_bounds[col_idx]
             target_phase = phase_groups[-1]
             target_phase["sub_periods"].append({
@@ -217,13 +245,10 @@ def reconstruct_multistrike(peril: SegmentedPeril) -> dict[str, Any]:
                 "values": {},
             })
 
-    # Sort sub-periods in each phase by column index
     for pg in phase_groups:
         pg["sub_periods"].sort(key=lambda sp: sp["col_idx"])
 
-    # Now populate parameter values from subsequent table rows
     total_payout_raw: str | None = None
-
     for ri in range(sub_period_row_idx + 1, len(rows)):
         row = rows[ri]
         row_text_cells = [c for c in row if c.text and c.text.strip()]
@@ -234,19 +259,14 @@ def reconstruct_multistrike(peril: SegmentedPeril) -> dict[str, Any]:
         label_text = label_cell.text.strip()
         val_cells = row_text_cells[1:]
 
-        # Check for Total Payout bottom row
         if "PAYOUT" in label_text.upper() and ("I & II" in label_text.upper() or "TOTAL" in label_text.upper()):
             if val_cells:
                 total_payout_raw = val_cells[0].text.strip()
-            continue
+            break
 
-        # Standard parameter row: attach values to matching sub-periods
         for vc in val_cells:
             text_val = vc.text.strip()
             matched_cols = match_cell_to_columns(vc, column_bounds)
-
-            # If merged cell spanning multiple columns contains multiple space-separated tokens
-            # (e.g. '60 80' or '20 30' or '0 10')
             tokens = text_val.split()
             if len(matched_cols) > 1 and len(tokens) == len(matched_cols):
                 for col_idx, token in zip(matched_cols, tokens):
@@ -254,7 +274,6 @@ def reconstruct_multistrike(peril: SegmentedPeril) -> dict[str, Any]:
             elif len(matched_cols) == 1:
                 _set_subperiod_value(phase_groups, matched_cols[0], label_text, text_val)
             else:
-                # Same value repeated across spanned columns
                 for col_idx in matched_cols:
                     _set_subperiod_value(phase_groups, col_idx, label_text, text_val)
 
@@ -288,42 +307,89 @@ def _set_subperiod_value(
 def reconstruct_temperature(peril: SegmentedPeril) -> dict[str, Any]:
     """
     Reconstruct temperature_phased hierarchy:
-      Phases (I..VI) with period and trigger + common strike, exit, payout_rate, max_payout.
+      Phases (I..VI or 1..4) with period and trigger + common strike, exit, payout_rate, max_payout.
     """
-    table_cells = [c for c in peril.raw_cells if c.y >= 130.0 and c.width > 0]
+    table_cells = [c for c in peril.raw_cells if c.width > 0 and c.width < 500 and c.height > 0]
     rows = cluster_rows(table_cells)
 
     if not rows:
         return {"peril_id": peril.peril_id, "archetype": peril.archetype, "phases": []}
 
-    # Find Phase row (Row 0: Phase, I, II, III, IV, V, VI)
-    phase_row = rows[0]
+    # Locate the phase row (the row containing "PHASE" as a column header)
+    phase_row_idx = -1
+    for ri, row in enumerate(rows):
+        for c in row:
+            if c.text and c.text.strip().upper() == "PHASE":
+                phase_row_idx = ri
+                break
+        if phase_row_idx != -1:
+            break
+
+    if phase_row_idx == -1:
+        return {"peril_id": peril.peril_id, "archetype": peril.archetype, "phases": []}
+
+    phase_row = rows[phase_row_idx]
     phase_cells = [c for c in phase_row if c.text and c.text.strip().upper() not in ["PHASE"]]
+
+    if not phase_cells:
+        return {"peril_id": peril.peril_id, "archetype": peril.archetype, "phases": []}
+
     column_bounds = [(c.x, c.x + c.width) for c in phase_cells]
 
-    # Find Period row
-    period_row = rows[1] if len(rows) > 1 else []
-    period_cells = [c for c in period_row if c.text and c.text.strip().upper() not in ["PERIOD"]]
+    # Find Trigger row (explicitly find row with TRIGGER in label)
+    trigger_row_idx = -1
+    for ri in range(phase_row_idx + 1, len(rows)):
+        for c in rows[ri]:
+            if c.text and "TRIGGER" in c.text.upper():
+                trigger_row_idx = ri
+                break
+        if trigger_row_idx != -1:
+            break
 
-    # Find Trigger row
-    trigger_row = rows[2] if len(rows) > 2 else []
+    if trigger_row_idx == -1:
+        trigger_row_idx = phase_row_idx + 2 if phase_row_idx + 2 < len(rows) else phase_row_idx + 1
+
+    trigger_row = rows[trigger_row_idx] if trigger_row_idx < len(rows) else []
     trigger_cells = [c for c in trigger_row if c.text and "TRIGGER" not in c.text.strip().upper()]
+
+    # Period row is between phase_row and trigger_row
+    period_texts = ["" for _ in phase_cells]
+    for ri in range(phase_row_idx + 1, trigger_row_idx):
+        for c in rows[ri]:
+            if not c.text or c.text.strip().upper() == "PERIOD":
+                continue
+            matched_cols = match_cell_to_columns(c, column_bounds)
+            for col_idx in matched_cols:
+                ct = c.text.strip()
+                if not period_texts[col_idx]:
+                    period_texts[col_idx] = ct
+                elif ct not in period_texts[col_idx] and period_texts[col_idx] not in ct:
+                    period_texts[col_idx] += "\n" + ct
+                elif len(ct) > len(period_texts[col_idx]):
+                    period_texts[col_idx] = ct
 
     phases: list[dict[str, Any]] = []
     for idx, ph_cell in enumerate(phase_cells):
-        period_str = period_cells[idx].text.strip() if idx < len(period_cells) and period_cells[idx].text else ""
-        trigger_str = trigger_cells[idx].text.strip() if idx < len(trigger_cells) and trigger_cells[idx].text else ""
+        period_str = period_texts[idx]
+        matched_trigger = ""
+        for tc in trigger_cells:
+            cols = match_cell_to_columns(tc, column_bounds)
+            if idx in cols:
+                matched_trigger = tc.text.strip()
+                break
+        if not matched_trigger and idx < len(trigger_cells):
+            matched_trigger = trigger_cells[idx].text.strip()
 
         phases.append({
             "label": ph_cell.text.strip(),
             "period_raw": period_str,
-            "trigger_raw": trigger_str,
+            "trigger_raw": matched_trigger,
             "x_range": list(column_bounds[idx]),
         })
 
     # Remaining rows: Strike, Exit, Payout Rate, Max Payout spanning all phases
     common_params: dict[str, str] = {}
-    for ri in range(3, len(rows)):
+    for ri in range(trigger_row_idx + 1, len(rows)):
         row = rows[ri]
         row_texts = [c for c in row if c.text and c.text.strip()]
         if len(row_texts) >= 2:
@@ -347,40 +413,74 @@ def reconstruct_temperature(peril: SegmentedPeril) -> dict[str, Any]:
 def reconstruct_wind(peril: SegmentedPeril) -> dict[str, Any]:
     """
     Reconstruct wind_phased hierarchy:
-      2 trigger_blocks (Block 1: Oct-Nov, Block 2: Feb-Mar) each with 3 phases
-      and shared parameters (strike, exit, payout_rate, max_payout).
+      Dynamically discovers 1..N trigger blocks (e.g. 2 blocks of 3 phases for Orange,
+      or 1 block of 4 phases for Guava) with shared/per-block parameters.
     """
-    table_cells = [c for c in peril.raw_cells if c.y >= 520.0 and c.width > 0]
+    # Filter out full-width container/blob cells and 0-dimension cells
+    table_cells = [c for c in peril.raw_cells if c.width > 0 and c.width < 500 and c.height > 0]
     rows = cluster_rows(table_cells)
 
     if not rows:
         return {"peril_id": peril.peril_id, "archetype": peril.archetype, "trigger_blocks": []}
 
-    # Phase header row: Phase, I, II, III, I, II, III (6 columns across 2 blocks)
-    phase_row = rows[0]
+    # Locate the phase row (the row containing "PHASE" as a column header)
+    phase_row_idx = -1
+    for ri, row in enumerate(rows):
+        for c in row:
+            if c.text and c.text.strip().upper() == "PHASE":
+                phase_row_idx = ri
+                break
+        if phase_row_idx != -1:
+            break
+
+    if phase_row_idx == -1:
+        return {"peril_id": peril.peril_id, "archetype": peril.archetype, "trigger_blocks": []}
+
+    phase_row = rows[phase_row_idx]
     phase_cells = [c for c in phase_row if c.text and c.text.strip().upper() not in ["PHASE"]]
+
+    if not phase_cells:
+        return {"peril_id": peril.peril_id, "archetype": peril.archetype, "trigger_blocks": []}
+
     column_bounds = [(c.x, c.x + c.width) for c in phase_cells]
 
-    # Period row
-    period_row = rows[1] if len(rows) > 1 else []
+    # Find Period row (row directly below Phase, or next row containing dates/period)
+    period_row = rows[phase_row_idx + 1] if phase_row_idx + 1 < len(rows) else []
     period_cells = [c for c in period_row if c.text and c.text.strip().upper() not in ["PERIOD"]]
 
-    # Trigger row
-    trigger_row = rows[2] if len(rows) > 2 else []
+    # Find Trigger row (row directly below Period)
+    trigger_row = rows[phase_row_idx + 2] if phase_row_idx + 2 < len(rows) else []
     trigger_cells = [c for c in trigger_row if c.text and "TRIGGER" not in c.text.strip().upper()]
 
-    # Split into 2 blocks of 3 phases each (Block 1: cols 0..2, Block 2: cols 3..5)
+    # Determine blocks dynamically based on phase labels sequence
+    # E.g. ['I', 'II', 'III', 'I', 'II', 'III'] -> 2 blocks of 3
+    # E.g. ['I', 'II', 'III', 'IV'] -> 1 block of 4
+    # E.g. ['1.', '2.', '3.'] -> 1 block of 3
+    block_indices: list[int] = []
+    current_block = 0
+    seen_labels_in_block = set()
+
+    for c in phase_cells:
+        label = c.text.strip().upper()
+        if label in seen_labels_in_block and len(seen_labels_in_block) > 0:
+            current_block += 1
+            seen_labels_in_block = {label}
+        else:
+            seen_labels_in_block.add(label)
+        block_indices.append(current_block)
+
+    num_blocks = current_block + 1
     blocks: list[dict[str, Any]] = [
-        {"block_label": "block_1", "phases": [], "parameters": {}},
-        {"block_label": "block_2", "phases": [], "parameters": {}},
+        {"block_label": f"block_{b + 1}", "phases": [], "parameters": {}}
+        for b in range(num_blocks)
     ]
 
     for idx, ph_cell in enumerate(phase_cells):
-        block_idx = 0 if idx < 3 else 1
+        b_idx = block_indices[idx]
         period_str = period_cells[idx].text.strip() if idx < len(period_cells) and period_cells[idx].text else ""
         trigger_str = trigger_cells[idx].text.strip() if idx < len(trigger_cells) and trigger_cells[idx].text else ""
 
-        blocks[block_idx]["phases"].append({
+        blocks[b_idx]["phases"].append({
             "label": ph_cell.text.strip(),
             "period_raw": period_str,
             "trigger_raw": trigger_str,
@@ -388,21 +488,22 @@ def reconstruct_wind(peril: SegmentedPeril) -> dict[str, Any]:
         })
 
     # Parameter rows (Strike, Exit, Payout, Max Payout)
-    # Each row has a label cell + 2 value cells (one for block 1, one for block 2)
-    for ri in range(3, len(rows)):
+    # If num_blocks == 2 and row has 2 value cells -> 1 per block
+    # If row has 1 value cell -> shared across all blocks
+    for ri in range(phase_row_idx + 3, len(rows)):
         row = rows[ri]
         row_texts = [c for c in row if c.text and c.text.strip()]
-        if len(row_texts) >= 3:
-            label = row_texts[0].text.strip()
-            val1 = row_texts[1].text.strip()
-            val2 = row_texts[2].text.strip()
-            blocks[0]["parameters"][label] = val1
-            blocks[1]["parameters"][label] = val2
-        elif len(row_texts) == 2:
-            label = row_texts[0].text.strip()
-            val = row_texts[1].text.strip()
-            blocks[0]["parameters"][label] = val
-            blocks[1]["parameters"][label] = val
+        if not row_texts:
+            continue
+        label = row_texts[0].text.strip()
+        val_cells = row_texts[1:]
+        if len(val_cells) >= num_blocks:
+            for b in range(num_blocks):
+                blocks[b]["parameters"][label] = val_cells[b].text.strip()
+        elif len(val_cells) == 1:
+            val = val_cells[0].text.strip()
+            for b in range(num_blocks):
+                blocks[b]["parameters"][label] = val
 
     return {
         "peril_id": peril.peril_id,
@@ -421,16 +522,19 @@ def reconstruct_single_payout(peril: SegmentedPeril) -> dict[str, Any]:
     Reconstruct rainfall_single_payout structure:
       Flat parameter table (Strike 1/2, Exit, Rate 1/2, Max Payout) + Cover Period.
     """
-    table_cells = [c for c in peril.raw_cells if c.y >= 390.0 and c.width > 0]
+    table_cells = [c for c in peril.raw_cells if c.width > 0 and c.width < 500 and c.height > 0]
     rows = cluster_rows(table_cells)
 
     parameters: dict[str, str] = {}
     periods: list[str] = []
 
-    # Look for PERIOD header row (e.g. "PERIOD 1-Jun-19 To 15-Jun-19")
+    # Look for period date strings
     for c in peril.raw_cells:
-        if c.text and ("1-JUN" in c.text.upper() or "15-JUN" in c.text.upper()):
-            periods.append(c.text.strip())
+        if c.text and re.search(MONTH_REGEX, c.text, re.I):
+            if re.search(r"\b\d{1,2}\s*[-.]\s*[a-zA-Z]+|\b\d{1,2}\s+[a-zA-Z]+\b", c.text, re.I):
+                ct = c.text.strip()
+                if ct not in periods and "COVER" not in ct.upper():
+                    periods.append(ct)
 
     for row in rows:
         row_texts = [c for c in row if c.text and c.text.strip()]
@@ -464,6 +568,13 @@ def reconstruct_peril(peril: SegmentedPeril) -> dict[str, Any]:
         return reconstruct_wind(peril)
     elif peril.archetype == "rainfall_single_payout":
         return reconstruct_single_payout(peril)
+    elif peril.archetype in (None, "unknown"):
+        return {
+            "peril_id": peril.peril_id,
+            "archetype": "unknown",
+            "status": "unrecognized_peril",
+            "raw_cells_count": len(peril.raw_cells),
+        }
     else:
         raise ValueError(f"Unknown archetype: {peril.archetype}")
 
@@ -471,10 +582,13 @@ def reconstruct_peril(peril: SegmentedPeril) -> dict[str, Any]:
 def reconstruct_all(segmented_perils: SegmentedPerils) -> dict[str, Any]:
     """
     Reconstruct all perils in a SegmentedPerils collection.
+    Skips unrecognized perils so downstream mapper receives only valid archetypes.
     """
     return {
         "reconstructed_perils": [
-            reconstruct_peril(p) for p in segmented_perils.perils
+            reconstruct_peril(p)
+            for p in segmented_perils.perils
+            if p.archetype and p.archetype != "unknown"
         ]
     }
 

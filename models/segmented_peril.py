@@ -41,7 +41,8 @@ class SegmentedPeril(BaseModel):
         "rainfall_multistrike",
         "rainfall_single_payout",
         "wind_phased",
-    ]
+        "unknown",
+    ] | None
 
 
 class SegmentedPerils(BaseModel):

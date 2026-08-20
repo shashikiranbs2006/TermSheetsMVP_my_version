@@ -251,3 +251,50 @@ class TestReadOnlyGuarantee:
         after_dump = real_termsheet.model_dump()
 
         assert original_dump == after_dump
+
+
+# ---------------------------------------------------------------------------
+# 9. Synthetic Test: Peril with All-Null Structure Fields
+# ---------------------------------------------------------------------------
+
+
+class TestNullPerilHandling:
+    def test_all_null_wind_peril_flags_warning_and_sets_review_required_without_crash(self, real_termsheet):
+        """When a peril has no extracted data (all nulls), validator must not crash."""
+        broken = real_termsheet.model_copy(deep=True)
+        # Replace wind peril with an all-null structure
+        p_wind = [p for p in broken.perils if p.peril_id == "high_wind_speed"][0]
+        p_wind.structure.strike = ExtractedValue(value=None, source="agent_inferred", confidence=0.0)
+        p_wind.structure.exit = ExtractedValue(value=None, source="agent_inferred", confidence=0.0)
+        p_wind.structure.payout_rate = ExtractedValue(value=None, source="agent_inferred", confidence=0.0)
+        p_wind.structure.max_payout = ExtractedValue(value=None, source="agent_inferred", confidence=0.0)
+        p_wind.structure.trigger_blocks = []
+
+        validated = validate_termsheet(broken)
+        assert isinstance(validated.review_required, bool)
+        assert validated.review_required is True
+
+        missing_flags = [
+            f for f in validated.flags
+            if "has no extracted data, review required" in f.message
+        ]
+        assert len(missing_flags) == 1
+        assert missing_flags[0].rule == "completeness_check"
+        assert missing_flags[0].severity == "warning"
+        assert "high_wind_speed" in missing_flags[0].message
+
+    def test_all_null_rainfall_multistrike_peril_does_not_crash(self, real_termsheet):
+        """All-null rainfall multistrike skips arithmetic reconciliation without crash."""
+        broken = real_termsheet.model_copy(deep=True)
+        p_rain = [p for p in broken.perils if p.peril_id == "deficit_rainfall"][0]
+        p_rain.structure.total_payout = ExtractedValue(value=None, source="agent_inferred", confidence=0.0)
+        p_rain.structure.phases = []
+
+        validated = validate_termsheet(broken)
+        assert validated.review_required is True
+        missing_flags = [
+            f for f in validated.flags
+            if "has no extracted data, review required" in f.message
+        ]
+        assert len(missing_flags) == 1
+        assert "deficit_rainfall" in missing_flags[0].message

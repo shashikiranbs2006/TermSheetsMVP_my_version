@@ -44,13 +44,14 @@ from models.segmented_peril import SegmentedPeril, SegmentedPerils
 DEFAULT_OUTPUT_PATH = Path("data/intermediates/segmented_perils.json")
 
 HEADER_PATTERNS = [
-    ("high_temperature", "temperature_phased", re.compile(r"\bHIGH\s+TEMPERATURE\b", re.IGNORECASE)),
-    ("deficit_rainfall", "rainfall_multistrike", re.compile(r"\b(DEFICIT|DEFICEIT)\s+RAINFALL\b", re.IGNORECASE)),
-    ("unseasonal_rainfall", "rainfall_single_payout", re.compile(r"\b(UNSEASONAL|UNSEASIONAL)\s+RAINFALL\b", re.IGNORECASE)),
-    ("high_wind_speed", "wind_phased", re.compile(r"\b(HIGH\s+WIND\s+SPEED|HIGH\s+WIND)\b", re.IGNORECASE)),
+    ("high_temperature", "temperature_phased", re.compile(r"\b(HIGH\s+TEMPERATURE|TEMPERATURE)\b", re.IGNORECASE)),
+    ("high_wind_speed", "wind_phased", re.compile(r"\b(HIGH\s+WIND\s+SPEED|HIGH\s+WIND|WIND\s+SPEED)\b", re.IGNORECASE)),
+    ("deficit_rainfall", "rainfall_multistrike", re.compile(r"\b(DEFICIT|DEFICEIT)\s+RAINFALL\b|\bRAINFALL\s+VOLUME\b", re.IGNORECASE)),
+    ("unseasonal_rainfall", "rainfall_single_payout", re.compile(r"\b(UNSEASONAL|UNSEASIONAL|EXCESS)\s+RAINFALL\b", re.IGNORECASE)),
+    ("disease_climate", "unknown", re.compile(r"\b(DESEASE|DISEASE)\s+(CONGENIAL\s+CLIMATE|CONGENIAL\s+DAY|CLIMATE)\b|\bCONGENIAL\s+CLIMATE\b|\bDESEASE\s+CONGENIAL\b", re.IGNORECASE)),
 ]
 
-FOOTER_PATTERN = re.compile(r"\b(PREMIUM\s+DESCRIPTION|TOTAL\s+SUM\s+INSURED)\b", re.IGNORECASE)
+FOOTER_PATTERN = re.compile(r"\b(PREMIUM\s+DESCRIPTION|TOTAL\s+SUM\s+INSURED|SUM\s+INSURED\s+\(RS\.\))\b", re.IGNORECASE)
 
 
 # ---------------------------------------------------------------------------
@@ -90,11 +91,18 @@ def segment_with_accounting(
             last_y = c.y
         effective_positions.append((last_pno, last_y))
 
-    # Cluster non-empty text cells by vertical position on each page
+    # Form text items by splitting multi-line cells so each line has its proportional y
     text_items = []
     for idx, (c, (pno, y)) in enumerate(zip(cells, effective_positions)):
         if c.text and c.text.strip():
-            text_items.append((pno, y, c.x, c.text.strip(), idx))
+            raw_lines = [l.strip() for l in c.text.split("\n") if l.strip()]
+            if len(raw_lines) <= 1:
+                text_items.append((pno, y, c.x, c.text.strip(), idx))
+            else:
+                line_h = c.height / max(len(raw_lines), 1)
+                for l_i, l_text in enumerate(raw_lines):
+                    l_y = y + l_i * line_h
+                    text_items.append((pno, l_y, c.x, l_text, idx))
 
     sorted_text = sorted(text_items, key=lambda item: (item[0], item[1], item[2]))
 
@@ -122,22 +130,28 @@ def segment_with_accounting(
         min_y = min(t[1] for t in curr_line)
         lines.append((curr_pno, min_y, line_str))
 
-    # Detect section boundaries
+    # Detect section boundaries and footers per page
     detected_headers: list[tuple[str, str, int, float]] = []
-    footer_pos: tuple[int, float] | None = None
+    footer_positions: dict[int, float] = {}
 
     for pno, y, line_text in lines:
         for peril_id, arch, pattern in HEADER_PATTERNS:
             if pattern.search(line_text):
-                # Avoid duplicate triggers for the same peril (e.g. secondary mention in objective)
-                if not any(h[0] == peril_id for h in detected_headers):
+                # Avoid duplicate triggers on the same page for the same peril
+                if not any(h[0] == peril_id and h[2] == pno for h in detected_headers):
                     detected_headers.append((peril_id, arch, pno, y))
                 break
-        if FOOTER_PATTERN.search(line_text) and footer_pos is None:
-            footer_pos = (pno, y)
+        if FOOTER_PATTERN.search(line_text) and pno not in footer_positions:
+            footer_positions[pno] = y
 
     # Sort detected headers by document position (page_no, y)
     detected_headers.sort(key=lambda h: (h[2], h[3]))
+
+    # Group headers by page for per-page bounding
+    headers_by_page: dict[int, list[tuple[str, str, int, float]]] = {}
+    header_to_idx = {h: i for i, h in enumerate(detected_headers)}
+    for h in detected_headers:
+        headers_by_page.setdefault(h[2], []).append(h)
 
     # Partition cells into header, perils, and footer
     peril_buckets: list[list[RawCell]] = [[] for _ in detected_headers]
@@ -145,22 +159,35 @@ def segment_with_accounting(
     footer_cells: list[RawCell] = []
 
     for idx, (c, (pno, y)) in enumerate(zip(cells, effective_positions)):
-        pos = (pno, y)
-        if not detected_headers or pos < (detected_headers[0][2], detected_headers[0][3]):
+        page_hdrs = headers_by_page.get(pno, [])
+        page_foot_y = footer_positions.get(pno)
+
+        if not page_hdrs:
+            # No headers detected on this page
+            if detected_headers and (pno, y) < (detected_headers[0][2], detected_headers[0][3]):
+                header_cells.append(c)
+            else:
+                footer_cells.append(c)
+            continue
+
+        # If cell is vertically before first peril header on this page
+        if y < page_hdrs[0][3]:
             header_cells.append(c)
-        elif footer_pos and pos >= footer_pos:
+        elif page_foot_y is not None and y >= page_foot_y:
             footer_cells.append(c)
         else:
+            # Assign to the corresponding peril bucket on this page
             assigned = False
-            for i in range(len(detected_headers)):
-                start_pos = (detected_headers[i][2], detected_headers[i][3])
-                next_pos = (
-                    (detected_headers[i + 1][2], detected_headers[i + 1][3])
-                    if i + 1 < len(detected_headers)
-                    else (footer_pos or (9999, 9999.0))
+            for i in range(len(page_hdrs)):
+                h_curr = page_hdrs[i]
+                h_next_y = (
+                    page_hdrs[i + 1][3]
+                    if i + 1 < len(page_hdrs)
+                    else (page_foot_y if page_foot_y is not None else 99999.0)
                 )
-                if start_pos <= pos < next_pos:
-                    peril_buckets[i].append(c)
+                if h_curr[3] <= y < h_next_y:
+                    global_idx = header_to_idx[h_curr]
+                    peril_buckets[global_idx].append(c)
                     assigned = True
                     break
             if not assigned:

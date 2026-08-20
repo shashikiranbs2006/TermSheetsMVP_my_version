@@ -3,65 +3,526 @@
     "peril_id": "high_temperature",
     "archetype": "temperature_phased",
     "model_id": "amazon.nova-lite-v1:0",
-    "prompt": "Scheme Year: 2019-20\nPeril ID: high_temperature\nArchetype: temperature_phased\n\n\nTarget archetype: \"temperature_phased\"\nTarget JSON structure:\n{\n  \"measure\": \"max_temperature\",\n  \"unit\": \"\u00b0C\",\n  \"direction\": \"upward\",\n  \"strike\": <float>,\n  \"exit\": <float>,\n  \"payout_rate\": <float>,\n  \"payout_rate_unit\": \"Rs/\u00b0C\",\n  \"max_payout\": <float>,\n  \"phases\": [\n    {\n      \"label\": \"<e.g. I, II, ...>\",\n      \"period\": {\"start\": \"YYYY-MM-DD\", \"end\": \"YYYY-MM-DD\"},\n      \"trigger\": <float>\n    }\n  ],\n  \"confidence\": <float between 0.0 and 1.0>\n}\n\n\nReconstructed Peril Input Data:\n{\n  \"peril_id\": \"high_temperature\",\n  \"archetype\": \"temperature_phased\",\n  \"phases\": [\n    {\n      \"label\": \"I\",\n      \"period_raw\": \"01 Feb. To 14\\nFeb.\",\n      \"trigger_raw\": \"29.0\",\n      \"x_range\": [\n        160.98,\n        211.5\n      ]\n    },\n    {\n      \"label\": \"II\",\n      \"period_raw\": \"15 Feb. To\\n28Feb.\",\n      \"trigger_raw\": \"31.0\",\n      \"x_range\": [\n        211.5,\n        263.58\n      ]\n    },\n    {\n      \"label\": \"III\",\n      \"period_raw\": \"1 Mar. to 15\\nMar.\",\n      \"trigger_raw\": \"33.5\",\n      \"x_range\": [\n        263.58,\n        311.94\n      ]\n    },\n    {\n      \"label\": \"IV\",\n      \"period_raw\": \"16 Mar. to\\n31 Mar.\",\n      \"trigger_raw\": \"35.5\",\n      \"x_range\": [\n        311.94,\n        352.86\n      ]\n    },\n    {\n      \"label\": \"V\",\n      \"period_raw\": \"01 April to 15\\nApril\",\n      \"trigger_raw\": \"36.5\",\n      \"x_range\": [\n        352.86,\n        408.66\n      ]\n    },\n    {\n      \"label\": \"VI\",\n      \"period_raw\": \"16 April to 30\\nApril\",\n      \"trigger_raw\": \"39.0\",\n      \"x_range\": [\n        408.66,\n        465.54\n      ]\n    }\n  ],\n  \"parameters\": {\n    \"Strike (\\u00b0C)\": \"4\",\n    \"Exit (\\u00b0C)\": \"22\",\n    \"Payout(Rs/0c)\": \"2083.33\",\n    \"Max payout(Rs)\": \"37500\"\n  }\n}\n\nMap this input data into the exact target JSON structure. Return ONLY valid JSON:",
-    "raw_response": "```json\n{\n  \"measure\": \"max_temperature\",\n  \"unit\": \"\u00b0C\",\n  \"direction\": \"upward\",\n  \"strike\": 4,\n  \"exit\": 22,\n  \"payout_rate\": 2083.33,\n  \"payout_rate_unit\": \"Rs/\u00b0C\",\n  \"max_payout\": 37500,\n  \"phases\": [\n    {\n      \"label\": \"I\",\n      \"period\": {\n        \"start\": \"2020-02-01\",\n        \"end\": \"2020-02-14\"\n      },\n      \"trigger\": 29\n    },\n    {\n      \"label\": \"II\",\n      \"period\": {\n        \"start\": \"2020-02-15\",\n        \"end\": \"2020-02-28\"\n      },\n      \"trigger\": 31\n    },\n    {\n      \"label\": \"III\",\n      \"period\": {\n        \"start\": \"2020-03-01\",\n        \"end\": \"2020-03-15\"\n      },\n      \"trigger\": 33.5\n    },\n    {\n      \"label\": \"IV\",\n      \"period\": {\n        \"start\": \"2020-03-16\",\n        \"end\": \"2020-03-31\"\n      },\n      \"trigger\": 35.5\n    },\n    {\n      \"label\": \"V\",\n      \"period\": {\n        \"start\": \"2020-04-01\",\n        \"end\": \"2020-04-15\"\n      },\n      \"trigger\": 36.5\n    },\n    {\n      \"label\": \"VI\",\n      \"period\": {\n        \"start\": \"2020-04-16\",\n        \"end\": \"2020-04-30\"\n      },\n      \"trigger\": 39\n    }\n  ],\n  \"confidence\": 0.95\n}\n```",
+    "prompt": "Scheme Year: 2019-20\nPeril ID: high_temperature\nArchetype: temperature_phased\n\n\nTarget archetype: \"temperature_phased\"\nTarget JSON structure:\n{\n  \"measure\": \"max_temperature\",\n  \"unit\": \"\u00b0C\",\n  \"direction\": \"upward\",\n  \"strike\": <float>,\n  \"exit\": <float>,\n  \"payout_rate\": <float>,\n  \"payout_rate_unit\": \"Rs/\u00b0C\",\n  \"max_payout\": <float>,\n  \"phases\": [\n    {\n      \"label\": \"<e.g. I, II, ...>\",\n      \"period\": {\"start\": \"YYYY-MM-DD\", \"end\": \"YYYY-MM-DD\"},\n      \"trigger\": <float>\n    }\n  ],\n  \"confidence\": <float between 0.0 and 1.0>\n}\n\n\nReconstructed Peril Input Data:\n{\n  \"peril_id\": \"high_temperature\",\n  \"archetype\": \"temperature_phased\",\n  \"phases\": [\n    {\n      \"label\": \"I\",\n      \"period_raw\": \"01 Aug to 15\\nAug\",\n      \"trigger_raw\": \"35.0\",\n      \"x_range\": [\n        247.5975,\n        314.92\n      ]\n    },\n    {\n      \"label\": \"II\",\n      \"period_raw\": \"16 Aug to 31\\nAug\",\n      \"trigger_raw\": \"34.0\",\n      \"x_range\": [\n        314.92,\n        379.62399999999997\n      ]\n    },\n    {\n      \"label\": \"III\",\n      \"period_raw\": \"1 Sep 15 Sep.\",\n      \"trigger_raw\": \"33.0\",\n      \"x_range\": [\n        379.62399999999997,\n        448.488\n      ]\n    },\n    {\n      \"label\": \"IV\",\n      \"period_raw\": \"16Sep to\\n30 Sep.\",\n      \"trigger_raw\": \"32\",\n      \"x_range\": [\n        448.488,\n        497.724\n      ]\n    }\n  ],\n  \"parameters\": {\n    \"Strike (\\u00b0C)\": \"10\",\n    \"Exit (\\u00b0C)\": \"40\",\n    \"Payout(Rs/0c)\": \"1866.67\",\n    \"Max payout(Rs)\": \"56000\"\n  }\n}\n\nMap this input data into the exact target JSON structure. Return ONLY valid JSON:",
+    "raw_response": "```json\n{\n  \"measure\": \"max_temperature\",\n  \"unit\": \"\u00b0C\",\n  \"direction\": \"upward\",\n  \"strike\": 10,\n  \"exit\": 40,\n  \"payout_rate\": 1866.67,\n  \"payout_rate_unit\": \"Rs/\u00b0C\",\n  \"max_payout\": 56000,\n  \"phases\": [\n    {\n      \"label\": \"I\",\n      \"period\": {\n        \"start\": \"2019-08-01\",\n        \"end\": \"2019-08-15\"\n      },\n      \"trigger\": 35\n    },\n    {\n      \"label\": \"II\",\n      \"period\": {\n        \"start\": \"2019-08-16\",\n        \"end\": \"2019-08-31\"\n      },\n      \"trigger\": 34\n    },\n    {\n      \"label\": \"III\",\n      \"period\": {\n        \"start\": \"2019-09-01\",\n        \"end\": \"2019-09-15\"\n      },\n      \"trigger\": 33\n    },\n    {\n      \"label\": \"IV\",\n      \"period\": {\n        \"start\": \"2019-09-16\",\n        \"end\": \"2019-09-30\"\n      },\n      \"trigger\": 32\n    }\n  ],\n  \"confidence\": 0.95\n}\n```",
     "parsed_output": {
       "measure": "max_temperature",
       "unit": "\u00b0C",
       "direction": "upward",
-      "strike": 4,
-      "exit": 22,
-      "payout_rate": 2083.33,
+      "strike": 10,
+      "exit": 40,
+      "payout_rate": 1866.67,
       "payout_rate_unit": "Rs/\u00b0C",
-      "max_payout": 37500,
+      "max_payout": 56000,
       "phases": [
         {
           "label": "I",
           "period": {
-            "start": "2020-02-01",
-            "end": "2020-02-14"
+            "start": "2019-08-01",
+            "end": "2019-08-15"
           },
-          "trigger": 29
+          "trigger": 35
         },
         {
           "label": "II",
           "period": {
-            "start": "2020-02-15",
-            "end": "2020-02-28"
+            "start": "2019-08-16",
+            "end": "2019-08-31"
           },
-          "trigger": 31
+          "trigger": 34
         },
         {
           "label": "III",
           "period": {
-            "start": "2020-03-01",
-            "end": "2020-03-15"
+            "start": "2019-09-01",
+            "end": "2019-09-15"
           },
-          "trigger": 33.5
+          "trigger": 33
         },
         {
           "label": "IV",
           "period": {
-            "start": "2020-03-16",
-            "end": "2020-03-31"
+            "start": "2019-09-16",
+            "end": "2019-09-30"
           },
-          "trigger": 35.5
+          "trigger": 32
+        }
+      ],
+      "confidence": 0.95
+    }
+  },
+  {
+    "peril_id": "high_temperature",
+    "archetype": "temperature_phased",
+    "model_id": "amazon.nova-lite-v1:0",
+    "prompt": "Scheme Year: 2019-20\nPeril ID: high_temperature\nArchetype: temperature_phased\n\n\nTarget archetype: \"temperature_phased\"\nTarget JSON structure:\n{\n  \"measure\": \"max_temperature\",\n  \"unit\": \"\u00b0C\",\n  \"direction\": \"upward\",\n  \"strike\": <float>,\n  \"exit\": <float>,\n  \"payout_rate\": <float>,\n  \"payout_rate_unit\": \"Rs/\u00b0C\",\n  \"max_payout\": <float>,\n  \"phases\": [\n    {\n      \"label\": \"<e.g. I, II, ...>\",\n      \"period\": {\"start\": \"YYYY-MM-DD\", \"end\": \"YYYY-MM-DD\"},\n      \"trigger\": <float>\n    }\n  ],\n  \"confidence\": <float between 0.0 and 1.0>\n}\n\n\nReconstructed Peril Input Data:\n{\n  \"peril_id\": \"high_temperature\",\n  \"archetype\": \"temperature_phased\",\n  \"phases\": [\n    {\n      \"label\": \"I\",\n      \"period_raw\": \"01 Aug to 15\\nAug\",\n      \"trigger_raw\": \"35.0\",\n      \"x_range\": [\n        161.20615384615388,\n        228.64000000000001\n      ]\n    },\n    {\n      \"label\": \"II\",\n      \"period_raw\": \"16 Aug to 31 Aug\",\n      \"trigger_raw\": \"34.0\",\n      \"x_range\": [\n        228.64000000000001,\n        306.69\n      ]\n    },\n    {\n      \"label\": \"III\",\n      \"period_raw\": \"1 Sep 15 Sep.\",\n      \"trigger_raw\": \"33.0\",\n      \"x_range\": [\n        306.69,\n        375.52799999999996\n      ]\n    },\n    {\n      \"label\": \"IV\",\n      \"period_raw\": \"16Sep to\\n30 Sep.\",\n      \"trigger_raw\": \"32\",\n      \"x_range\": [\n        375.52799999999996,\n        429.64363636363635\n      ]\n    }\n  ],\n  \"parameters\": {\n    \"Strike (\\u00b0C)\": \"10\",\n    \"Exit (\\u00b0C)\": \"40\",\n    \"Payout(Rs/0c)\": \"2000.00\",\n    \"Max payout(Rs)\": \"60000\"\n  }\n}\n\nMap this input data into the exact target JSON structure. Return ONLY valid JSON:",
+    "raw_response": "```json\n{\n  \"measure\": \"max_temperature\",\n  \"unit\": \"\u00b0C\",\n  \"direction\": \"upward\",\n  \"strike\": 10,\n  \"exit\": 40,\n  \"payout_rate\": 2000,\n  \"payout_rate_unit\": \"Rs/\u00b0C\",\n  \"max_payout\": 60000,\n  \"phases\": [\n    {\n      \"label\": \"I\",\n      \"period\": {\n        \"start\": \"2019-08-01\",\n        \"end\": \"2019-08-15\"\n      },\n      \"trigger\": 35\n    },\n    {\n      \"label\": \"II\",\n      \"period\": {\n        \"start\": \"2019-08-16\",\n        \"end\": \"2019-08-31\"\n      },\n      \"trigger\": 34\n    },\n    {\n      \"label\": \"III\",\n      \"period\": {\n        \"start\": \"2019-09-01\",\n        \"end\": \"2019-09-15\"\n      },\n      \"trigger\": 33\n    },\n    {\n      \"label\": \"IV\",\n      \"period\": {\n        \"start\": \"2019-09-16\",\n        \"end\": \"2019-09-30\"\n      },\n      \"trigger\": 32\n    }\n  ],\n  \"confidence\": 0.95\n}\n```",
+    "parsed_output": {
+      "measure": "max_temperature",
+      "unit": "\u00b0C",
+      "direction": "upward",
+      "strike": 10,
+      "exit": 40,
+      "payout_rate": 2000,
+      "payout_rate_unit": "Rs/\u00b0C",
+      "max_payout": 60000,
+      "phases": [
+        {
+          "label": "I",
+          "period": {
+            "start": "2019-08-01",
+            "end": "2019-08-15"
+          },
+          "trigger": 35
         },
         {
-          "label": "V",
+          "label": "II",
           "period": {
-            "start": "2020-04-01",
-            "end": "2020-04-15"
+            "start": "2019-08-16",
+            "end": "2019-08-31"
           },
-          "trigger": 36.5
+          "trigger": 34
         },
         {
-          "label": "VI",
+          "label": "III",
           "period": {
-            "start": "2020-04-16",
-            "end": "2020-04-30"
+            "start": "2019-09-01",
+            "end": "2019-09-15"
           },
-          "trigger": 39
+          "trigger": 33
+        },
+        {
+          "label": "IV",
+          "period": {
+            "start": "2019-09-16",
+            "end": "2019-09-30"
+          },
+          "trigger": 32
+        }
+      ],
+      "confidence": 0.95
+    }
+  },
+  {
+    "peril_id": "high_temperature",
+    "archetype": "temperature_phased",
+    "model_id": "amazon.nova-lite-v1:0",
+    "prompt": "Scheme Year: 2019-20\nPeril ID: high_temperature\nArchetype: temperature_phased\n\n\nTarget archetype: \"temperature_phased\"\nTarget JSON structure:\n{\n  \"measure\": \"max_temperature\",\n  \"unit\": \"\u00b0C\",\n  \"direction\": \"upward\",\n  \"strike\": <float>,\n  \"exit\": <float>,\n  \"payout_rate\": <float>,\n  \"payout_rate_unit\": \"Rs/\u00b0C\",\n  \"max_payout\": <float>,\n  \"phases\": [\n    {\n      \"label\": \"<e.g. I, II, ...>\",\n      \"period\": {\"start\": \"YYYY-MM-DD\", \"end\": \"YYYY-MM-DD\"},\n      \"trigger\": <float>\n    }\n  ],\n  \"confidence\": <float between 0.0 and 1.0>\n}\n\n\nReconstructed Peril Input Data:\n{\n  \"peril_id\": \"high_temperature\",\n  \"archetype\": \"temperature_phased\",\n  \"phases\": [\n    {\n      \"label\": \"I\",\n      \"period_raw\": \"01 Aug to 15\\nAug\",\n      \"trigger_raw\": \"35.0\",\n      \"x_range\": [\n        161.3175,\n        228.64000000000001\n      ]\n    },\n    {\n      \"label\": \"II\",\n      \"period_raw\": \"16 Aug to 31 Aug\",\n      \"trigger_raw\": \"34.0\",\n      \"x_range\": [\n        228.64000000000001,\n        306.69\n      ]\n    },\n    {\n      \"label\": \"III\",\n      \"period_raw\": \"1 Sep 15 Sep.\",\n      \"trigger_raw\": \"33.0\",\n      \"x_range\": [\n        306.69,\n        375.52799999999996\n      ]\n    },\n    {\n      \"label\": \"IV\",\n      \"period_raw\": \"16Sep to\\n30 Sep.\",\n      \"trigger_raw\": \"32\",\n      \"x_range\": [\n        375.52799999999996,\n        429.64363636363635\n      ]\n    }\n  ],\n  \"parameters\": {\n    \"Strike (\\u00b0C)\": \"10\",\n    \"Exit (\\u00b0C)\": \"40\",\n    \"Payout(Rs/0c)\": \"1500.00\",\n    \"Max payout(Rs)\": \"45000\"\n  }\n}\n\nMap this input data into the exact target JSON structure. Return ONLY valid JSON:",
+    "raw_response": "```json\n{\n  \"measure\": \"max_temperature\",\n  \"unit\": \"\u00b0C\",\n  \"direction\": \"upward\",\n  \"strike\": 10,\n  \"exit\": 40,\n  \"payout_rate\": 1500,\n  \"payout_rate_unit\": \"Rs/\u00b0C\",\n  \"max_payout\": 45000,\n  \"phases\": [\n    {\n      \"label\": \"I\",\n      \"period\": {\n        \"start\": \"2019-08-01\",\n        \"end\": \"2019-08-15\"\n      },\n      \"trigger\": 35\n    },\n    {\n      \"label\": \"II\",\n      \"period\": {\n        \"start\": \"2019-08-16\",\n        \"end\": \"2019-08-31\"\n      },\n      \"trigger\": 34\n    },\n    {\n      \"label\": \"III\",\n      \"period\": {\n        \"start\": \"2019-09-01\",\n        \"end\": \"2019-09-15\"\n      },\n      \"trigger\": 33\n    },\n    {\n      \"label\": \"IV\",\n      \"period\": {\n        \"start\": \"2019-09-16\",\n        \"end\": \"2019-09-30\"\n      },\n      \"trigger\": 32\n    }\n  ],\n  \"confidence\": 0.95\n}\n```",
+    "parsed_output": {
+      "measure": "max_temperature",
+      "unit": "\u00b0C",
+      "direction": "upward",
+      "strike": 10,
+      "exit": 40,
+      "payout_rate": 1500,
+      "payout_rate_unit": "Rs/\u00b0C",
+      "max_payout": 45000,
+      "phases": [
+        {
+          "label": "I",
+          "period": {
+            "start": "2019-08-01",
+            "end": "2019-08-15"
+          },
+          "trigger": 35
+        },
+        {
+          "label": "II",
+          "period": {
+            "start": "2019-08-16",
+            "end": "2019-08-31"
+          },
+          "trigger": 34
+        },
+        {
+          "label": "III",
+          "period": {
+            "start": "2019-09-01",
+            "end": "2019-09-15"
+          },
+          "trigger": 33
+        },
+        {
+          "label": "IV",
+          "period": {
+            "start": "2019-09-16",
+            "end": "2019-09-30"
+          },
+          "trigger": 32
+        }
+      ],
+      "confidence": 0.95
+    }
+  },
+  {
+    "peril_id": "high_temperature",
+    "archetype": "temperature_phased",
+    "model_id": "amazon.nova-lite-v1:0",
+    "prompt": "Scheme Year: 2019-20\nPeril ID: high_temperature\nArchetype: temperature_phased\n\n\nTarget archetype: \"temperature_phased\"\nTarget JSON structure:\n{\n  \"measure\": \"max_temperature\",\n  \"unit\": \"\u00b0C\",\n  \"direction\": \"upward\",\n  \"strike\": <float>,\n  \"exit\": <float>,\n  \"payout_rate\": <float>,\n  \"payout_rate_unit\": \"Rs/\u00b0C\",\n  \"max_payout\": <float>,\n  \"phases\": [\n    {\n      \"label\": \"<e.g. I, II, ...>\",\n      \"period\": {\"start\": \"YYYY-MM-DD\", \"end\": \"YYYY-MM-DD\"},\n      \"trigger\": <float>\n    }\n  ],\n  \"confidence\": <float between 0.0 and 1.0>\n}\n\n\nReconstructed Peril Input Data:\n{\n  \"peril_id\": \"high_temperature\",\n  \"archetype\": \"temperature_phased\",\n  \"phases\": [\n    {\n      \"label\": \"I\",\n      \"period_raw\": \"01 Aug to 15\\nAug\",\n      \"trigger_raw\": \"35.0\",\n      \"x_range\": [\n        161.3175,\n        228.64000000000001\n      ]\n    },\n    {\n      \"label\": \"II\",\n      \"period_raw\": \"16 Aug to 31 Aug\",\n      \"trigger_raw\": \"34.0\",\n      \"x_range\": [\n        228.64000000000001,\n        306.69\n      ]\n    },\n    {\n      \"label\": \"III\",\n      \"period_raw\": \"1 Sep 15 Sep.\",\n      \"trigger_raw\": \"33.0\",\n      \"x_range\": [\n        306.69,\n        375.52799999999996\n      ]\n    },\n    {\n      \"label\": \"IV\",\n      \"period_raw\": \"16Sep to\\n30 Sep.\",\n      \"trigger_raw\": \"32\",\n      \"x_range\": [\n        375.52799999999996,\n        429.64363636363635\n      ]\n    }\n  ],\n  \"parameters\": {\n    \"Strike (\\u00b0C)\": \"10\",\n    \"Exit (\\u00b0C)\": \"40\",\n    \"Payout(Rs/0c)\": \"1700.00\",\n    \"Max payout(Rs)\": \"51000\"\n  }\n}\n\nMap this input data into the exact target JSON structure. Return ONLY valid JSON:",
+    "raw_response": "```json\n{\n  \"measure\": \"max_temperature\",\n  \"unit\": \"\u00b0C\",\n  \"direction\": \"upward\",\n  \"strike\": 10,\n  \"exit\": 40,\n  \"payout_rate\": 1700,\n  \"payout_rate_unit\": \"Rs/\u00b0C\",\n  \"max_payout\": 51000,\n  \"phases\": [\n    {\n      \"label\": \"I\",\n      \"period\": {\n        \"start\": \"2019-08-01\",\n        \"end\": \"2019-08-15\"\n      },\n      \"trigger\": 35\n    },\n    {\n      \"label\": \"II\",\n      \"period\": {\n        \"start\": \"2019-08-16\",\n        \"end\": \"2019-08-31\"\n      },\n      \"trigger\": 34\n    },\n    {\n      \"label\": \"III\",\n      \"period\": {\n        \"start\": \"2019-09-01\",\n        \"end\": \"2019-09-15\"\n      },\n      \"trigger\": 33\n    },\n    {\n      \"label\": \"IV\",\n      \"period\": {\n        \"start\": \"2019-09-16\",\n        \"end\": \"2019-09-30\"\n      },\n      \"trigger\": 32\n    }\n  ],\n  \"confidence\": 0.95\n}\n```",
+    "parsed_output": {
+      "measure": "max_temperature",
+      "unit": "\u00b0C",
+      "direction": "upward",
+      "strike": 10,
+      "exit": 40,
+      "payout_rate": 1700,
+      "payout_rate_unit": "Rs/\u00b0C",
+      "max_payout": 51000,
+      "phases": [
+        {
+          "label": "I",
+          "period": {
+            "start": "2019-08-01",
+            "end": "2019-08-15"
+          },
+          "trigger": 35
+        },
+        {
+          "label": "II",
+          "period": {
+            "start": "2019-08-16",
+            "end": "2019-08-31"
+          },
+          "trigger": 34
+        },
+        {
+          "label": "III",
+          "period": {
+            "start": "2019-09-01",
+            "end": "2019-09-15"
+          },
+          "trigger": 33
+        },
+        {
+          "label": "IV",
+          "period": {
+            "start": "2019-09-16",
+            "end": "2019-09-30"
+          },
+          "trigger": 32
+        }
+      ],
+      "confidence": 0.95
+    }
+  },
+  {
+    "peril_id": "high_temperature",
+    "archetype": "temperature_phased",
+    "model_id": "amazon.nova-lite-v1:0",
+    "prompt": "Scheme Year: 2019-20\nPeril ID: high_temperature\nArchetype: temperature_phased\n\n\nTarget archetype: \"temperature_phased\"\nTarget JSON structure:\n{\n  \"measure\": \"max_temperature\",\n  \"unit\": \"\u00b0C\",\n  \"direction\": \"upward\",\n  \"strike\": <float>,\n  \"exit\": <float>,\n  \"payout_rate\": <float>,\n  \"payout_rate_unit\": \"Rs/\u00b0C\",\n  \"max_payout\": <float>,\n  \"phases\": [\n    {\n      \"label\": \"<e.g. I, II, ...>\",\n      \"period\": {\"start\": \"YYYY-MM-DD\", \"end\": \"YYYY-MM-DD\"},\n      \"trigger\": <float>\n    }\n  ],\n  \"confidence\": <float between 0.0 and 1.0>\n}\n\n\nReconstructed Peril Input Data:\n{\n  \"peril_id\": \"high_temperature\",\n  \"archetype\": \"temperature_phased\",\n  \"phases\": [\n    {\n      \"label\": \"I\",\n      \"period_raw\": \"01 Aug to 15\\nAug\",\n      \"trigger_raw\": \"35.0\",\n      \"x_range\": [\n        161.3175,\n        228.64000000000001\n      ]\n    },\n    {\n      \"label\": \"II\",\n      \"period_raw\": \"16 Aug to 31 Aug\",\n      \"trigger_raw\": \"34.0\",\n      \"x_range\": [\n        228.64000000000001,\n        306.69\n      ]\n    },\n    {\n      \"label\": \"III\",\n      \"period_raw\": \"1 Sep 15 Sep.\",\n      \"trigger_raw\": \"33.0\",\n      \"x_range\": [\n        306.69,\n        375.52799999999996\n      ]\n    },\n    {\n      \"label\": \"IV\",\n      \"period_raw\": \"16Sep to\\n30 Sep.\",\n      \"trigger_raw\": \"32\",\n      \"x_range\": [\n        375.52799999999996,\n        429.64363636363635\n      ]\n    }\n  ],\n  \"parameters\": {\n    \"Strike (\\u00b0C)\": \"10\",\n    \"Exit (\\u00b0C)\": \"40\",\n    \"Payout(Rs/0c)\": \"1000.00\",\n    \"Max payout(Rs)\": \"30000\"\n  }\n}\n\nMap this input data into the exact target JSON structure. Return ONLY valid JSON:",
+    "raw_response": "```json\n{\n  \"measure\": \"max_temperature\",\n  \"unit\": \"\u00b0C\",\n  \"direction\": \"upward\",\n  \"strike\": 10,\n  \"exit\": 40,\n  \"payout_rate\": 1000,\n  \"payout_rate_unit\": \"Rs/\u00b0C\",\n  \"max_payout\": 30000,\n  \"phases\": [\n    {\n      \"label\": \"I\",\n      \"period\": {\n        \"start\": \"2019-08-01\",\n        \"end\": \"2019-08-15\"\n      },\n      \"trigger\": 35\n    },\n    {\n      \"label\": \"II\",\n      \"period\": {\n        \"start\": \"2019-08-16\",\n        \"end\": \"2019-08-31\"\n      },\n      \"trigger\": 34\n    },\n    {\n      \"label\": \"III\",\n      \"period\": {\n        \"start\": \"2019-09-01\",\n        \"end\": \"2019-09-15\"\n      },\n      \"trigger\": 33\n    },\n    {\n      \"label\": \"IV\",\n      \"period\": {\n        \"start\": \"2019-09-16\",\n        \"end\": \"2019-09-30\"\n      },\n      \"trigger\": 32\n    }\n  ],\n  \"confidence\": 0.95\n}\n```",
+    "parsed_output": {
+      "measure": "max_temperature",
+      "unit": "\u00b0C",
+      "direction": "upward",
+      "strike": 10,
+      "exit": 40,
+      "payout_rate": 1000,
+      "payout_rate_unit": "Rs/\u00b0C",
+      "max_payout": 30000,
+      "phases": [
+        {
+          "label": "I",
+          "period": {
+            "start": "2019-08-01",
+            "end": "2019-08-15"
+          },
+          "trigger": 35
+        },
+        {
+          "label": "II",
+          "period": {
+            "start": "2019-08-16",
+            "end": "2019-08-31"
+          },
+          "trigger": 34
+        },
+        {
+          "label": "III",
+          "period": {
+            "start": "2019-09-01",
+            "end": "2019-09-15"
+          },
+          "trigger": 33
+        },
+        {
+          "label": "IV",
+          "period": {
+            "start": "2019-09-16",
+            "end": "2019-09-30"
+          },
+          "trigger": 32
+        }
+      ],
+      "confidence": 0.95
+    }
+  },
+  {
+    "peril_id": "high_temperature",
+    "archetype": "temperature_phased",
+    "model_id": "amazon.nova-lite-v1:0",
+    "prompt": "Scheme Year: 2019-20\nPeril ID: high_temperature\nArchetype: temperature_phased\n\n\nTarget archetype: \"temperature_phased\"\nTarget JSON structure:\n{\n  \"measure\": \"max_temperature\",\n  \"unit\": \"\u00b0C\",\n  \"direction\": \"upward\",\n  \"strike\": <float>,\n  \"exit\": <float>,\n  \"payout_rate\": <float>,\n  \"payout_rate_unit\": \"Rs/\u00b0C\",\n  \"max_payout\": <float>,\n  \"phases\": [\n    {\n      \"label\": \"<e.g. I, II, ...>\",\n      \"period\": {\"start\": \"YYYY-MM-DD\", \"end\": \"YYYY-MM-DD\"},\n      \"trigger\": <float>\n    }\n  ],\n  \"confidence\": <float between 0.0 and 1.0>\n}\n\n\nReconstructed Peril Input Data:\n{\n  \"peril_id\": \"high_temperature\",\n  \"archetype\": \"temperature_phased\",\n  \"phases\": [\n    {\n      \"label\": \"I\",\n      \"period_raw\": \"01 Aug to 15\\nAug\",\n      \"trigger_raw\": \"35.0\",\n      \"x_range\": [\n        247.5975,\n        314.92\n      ]\n    },\n    {\n      \"label\": \"II\",\n      \"period_raw\": \"16 Aug to 31\\nAug\",\n      \"trigger_raw\": \"34.0\",\n      \"x_range\": [\n        314.92,\n        379.62399999999997\n      ]\n    },\n    {\n      \"label\": \"III\",\n      \"period_raw\": \"1 Sep 15 Sep.\",\n      \"trigger_raw\": \"33.0\",\n      \"x_range\": [\n        379.62399999999997,\n        448.488\n      ]\n    },\n    {\n      \"label\": \"IV\",\n      \"period_raw\": \"16Sep to\\n30 Sep.\",\n      \"trigger_raw\": \"32\",\n      \"x_range\": [\n        448.488,\n        497.724\n      ]\n    }\n  ],\n  \"parameters\": {\n    \"Strike (\\u00b0C)\": \"10\",\n    \"Exit (\\u00b0C)\": \"40\",\n    \"Payout(Rs/0c)\": \"2333.33\",\n    \"Max payout(Rs)\": \"70000\"\n  }\n}\n\nMap this input data into the exact target JSON structure. Return ONLY valid JSON:",
+    "raw_response": "```json\n{\n  \"measure\": \"max_temperature\",\n  \"unit\": \"\u00b0C\",\n  \"direction\": \"upward\",\n  \"strike\": 10,\n  \"exit\": 40,\n  \"payout_rate\": 2333.33,\n  \"payout_rate_unit\": \"Rs/\u00b0C\",\n  \"max_payout\": 70000,\n  \"phases\": [\n    {\n      \"label\": \"I\",\n      \"period\": {\n        \"start\": \"2019-08-01\",\n        \"end\": \"2019-08-15\"\n      },\n      \"trigger\": 35\n    },\n    {\n      \"label\": \"II\",\n      \"period\": {\n        \"start\": \"2019-08-16\",\n        \"end\": \"2019-08-31\"\n      },\n      \"trigger\": 34\n    },\n    {\n      \"label\": \"III\",\n      \"period\": {\n        \"start\": \"2019-09-01\",\n        \"end\": \"2019-09-15\"\n      },\n      \"trigger\": 33\n    },\n    {\n      \"label\": \"IV\",\n      \"period\": {\n        \"start\": \"2019-09-16\",\n        \"end\": \"2019-09-30\"\n      },\n      \"trigger\": 32\n    }\n  ],\n  \"confidence\": 0.95\n}\n```",
+    "parsed_output": {
+      "measure": "max_temperature",
+      "unit": "\u00b0C",
+      "direction": "upward",
+      "strike": 10,
+      "exit": 40,
+      "payout_rate": 2333.33,
+      "payout_rate_unit": "Rs/\u00b0C",
+      "max_payout": 70000,
+      "phases": [
+        {
+          "label": "I",
+          "period": {
+            "start": "2019-08-01",
+            "end": "2019-08-15"
+          },
+          "trigger": 35
+        },
+        {
+          "label": "II",
+          "period": {
+            "start": "2019-08-16",
+            "end": "2019-08-31"
+          },
+          "trigger": 34
+        },
+        {
+          "label": "III",
+          "period": {
+            "start": "2019-09-01",
+            "end": "2019-09-15"
+          },
+          "trigger": 33
+        },
+        {
+          "label": "IV",
+          "period": {
+            "start": "2019-09-16",
+            "end": "2019-09-30"
+          },
+          "trigger": 32
+        }
+      ],
+      "confidence": 0.95
+    }
+  },
+  {
+    "peril_id": "high_temperature",
+    "archetype": "temperature_phased",
+    "model_id": "amazon.nova-lite-v1:0",
+    "prompt": "Scheme Year: 2019-20\nPeril ID: high_temperature\nArchetype: temperature_phased\n\n\nTarget archetype: \"temperature_phased\"\nTarget JSON structure:\n{\n  \"measure\": \"max_temperature\",\n  \"unit\": \"\u00b0C\",\n  \"direction\": \"upward\",\n  \"strike\": <float>,\n  \"exit\": <float>,\n  \"payout_rate\": <float>,\n  \"payout_rate_unit\": \"Rs/\u00b0C\",\n  \"max_payout\": <float>,\n  \"phases\": [\n    {\n      \"label\": \"<e.g. I, II, ...>\",\n      \"period\": {\"start\": \"YYYY-MM-DD\", \"end\": \"YYYY-MM-DD\"},\n      \"trigger\": <float>\n    }\n  ],\n  \"confidence\": <float between 0.0 and 1.0>\n}\n\n\nReconstructed Peril Input Data:\n{\n  \"peril_id\": \"high_temperature\",\n  \"archetype\": \"temperature_phased\",\n  \"phases\": [\n    {\n      \"label\": \"I\",\n      \"period_raw\": \"01 Aug to 15\\nAug\",\n      \"trigger_raw\": \"35.0\",\n      \"x_range\": [\n        161.3175,\n        228.64000000000001\n      ]\n    },\n    {\n      \"label\": \"II\",\n      \"period_raw\": \"16 Aug to 31 Aug\",\n      \"trigger_raw\": \"34.0\",\n      \"x_range\": [\n        228.64000000000001,\n        306.69\n      ]\n    },\n    {\n      \"label\": \"III\",\n      \"period_raw\": \"1 Sep 15 Sep.\",\n      \"trigger_raw\": \"33.0\",\n      \"x_range\": [\n        306.69,\n        375.52799999999996\n      ]\n    },\n    {\n      \"label\": \"IV\",\n      \"period_raw\": \"16Sep to\\n30 Sep.\",\n      \"trigger_raw\": \"32\",\n      \"x_range\": [\n        375.52799999999996,\n        429.64363636363635\n      ]\n    }\n  ],\n  \"parameters\": {\n    \"Strike (\\u00b0C)\": \"10\",\n    \"Exit (\\u00b0C)\": \"40\",\n    \"Payout(Rs/0c)\": \"2000.00\",\n    \"Max payout(Rs)\": \"60000\"\n  }\n}\n\nMap this input data into the exact target JSON structure. Return ONLY valid JSON:",
+    "raw_response": "```json\n{\n  \"measure\": \"max_temperature\",\n  \"unit\": \"\u00b0C\",\n  \"direction\": \"upward\",\n  \"strike\": 10,\n  \"exit\": 40,\n  \"payout_rate\": 2000,\n  \"payout_rate_unit\": \"Rs/\u00b0C\",\n  \"max_payout\": 60000,\n  \"phases\": [\n    {\n      \"label\": \"I\",\n      \"period\": {\n        \"start\": \"2019-08-01\",\n        \"end\": \"2019-08-15\"\n      },\n      \"trigger\": 35\n    },\n    {\n      \"label\": \"II\",\n      \"period\": {\n        \"start\": \"2019-08-16\",\n        \"end\": \"2019-08-31\"\n      },\n      \"trigger\": 34\n    },\n    {\n      \"label\": \"III\",\n      \"period\": {\n        \"start\": \"2019-09-01\",\n        \"end\": \"2019-09-15\"\n      },\n      \"trigger\": 33\n    },\n    {\n      \"label\": \"IV\",\n      \"period\": {\n        \"start\": \"2019-09-16\",\n        \"end\": \"2019-09-30\"\n      },\n      \"trigger\": 32\n    }\n  ],\n  \"confidence\": 0.95\n}\n```",
+    "parsed_output": {
+      "measure": "max_temperature",
+      "unit": "\u00b0C",
+      "direction": "upward",
+      "strike": 10,
+      "exit": 40,
+      "payout_rate": 2000,
+      "payout_rate_unit": "Rs/\u00b0C",
+      "max_payout": 60000,
+      "phases": [
+        {
+          "label": "I",
+          "period": {
+            "start": "2019-08-01",
+            "end": "2019-08-15"
+          },
+          "trigger": 35
+        },
+        {
+          "label": "II",
+          "period": {
+            "start": "2019-08-16",
+            "end": "2019-08-31"
+          },
+          "trigger": 34
+        },
+        {
+          "label": "III",
+          "period": {
+            "start": "2019-09-01",
+            "end": "2019-09-15"
+          },
+          "trigger": 33
+        },
+        {
+          "label": "IV",
+          "period": {
+            "start": "2019-09-16",
+            "end": "2019-09-30"
+          },
+          "trigger": 32
+        }
+      ],
+      "confidence": 0.95
+    }
+  },
+  {
+    "peril_id": "high_temperature",
+    "archetype": "temperature_phased",
+    "model_id": "amazon.nova-lite-v1:0",
+    "prompt": "Scheme Year: 2019-20\nPeril ID: high_temperature\nArchetype: temperature_phased\n\n\nTarget archetype: \"temperature_phased\"\nTarget JSON structure:\n{\n  \"measure\": \"max_temperature\",\n  \"unit\": \"\u00b0C\",\n  \"direction\": \"upward\",\n  \"strike\": <float>,\n  \"exit\": <float>,\n  \"payout_rate\": <float>,\n  \"payout_rate_unit\": \"Rs/\u00b0C\",\n  \"max_payout\": <float>,\n  \"phases\": [\n    {\n      \"label\": \"<e.g. I, II, ...>\",\n      \"period\": {\"start\": \"YYYY-MM-DD\", \"end\": \"YYYY-MM-DD\"},\n      \"trigger\": <float>\n    }\n  ],\n  \"confidence\": <float between 0.0 and 1.0>\n}\n\n\nReconstructed Peril Input Data:\n{\n  \"peril_id\": \"high_temperature\",\n  \"archetype\": \"temperature_phased\",\n  \"phases\": [\n    {\n      \"label\": \"I\",\n      \"period_raw\": \"01 Aug to 15\\nAug\",\n      \"trigger_raw\": \"35.0\",\n      \"x_range\": [\n        158.736,\n        229.6\n      ]\n    },\n    {\n      \"label\": \"II\",\n      \"period_raw\": \"16 Aug to 31 Aug\",\n      \"trigger_raw\": \"34.0\",\n      \"x_range\": [\n        229.6,\n        311.464\n      ]\n    },\n    {\n      \"label\": \"III\",\n      \"period_raw\": \"1 Sep 15 Sep.\",\n      \"trigger_raw\": \"33.0\",\n      \"x_range\": [\n        311.464,\n        383.688\n      ]\n    },\n    {\n      \"label\": \"IV\",\n      \"period_raw\": \"16Sep to\\n30 Sep.\",\n      \"trigger_raw\": \"32\",\n      \"x_range\": [\n        383.688,\n        430.89\n      ]\n    }\n  ],\n  \"parameters\": {\n    \"Strike (\\u00b0C)\": \"10\",\n    \"Exit (\\u00b0C)\": \"40\",\n    \"Payout(Rs/0c)\": \"1933.33\",\n    \"Max payout(Rs)\": \"58000\"\n  }\n}\n\nMap this input data into the exact target JSON structure. Return ONLY valid JSON:",
+    "raw_response": "```json\n{\n  \"measure\": \"max_temperature\",\n  \"unit\": \"\u00b0C\",\n  \"direction\": \"upward\",\n  \"strike\": 10,\n  \"exit\": 40,\n  \"payout_rate\": 1933.33,\n  \"payout_rate_unit\": \"Rs/\u00b0C\",\n  \"max_payout\": 58000,\n  \"phases\": [\n    {\n      \"label\": \"I\",\n      \"period\": {\n        \"start\": \"2019-08-01\",\n        \"end\": \"2019-08-15\"\n      },\n      \"trigger\": 35\n    },\n    {\n      \"label\": \"II\",\n      \"period\": {\n        \"start\": \"2019-08-16\",\n        \"end\": \"2019-08-31\"\n      },\n      \"trigger\": 34\n    },\n    {\n      \"label\": \"III\",\n      \"period\": {\n        \"start\": \"2019-09-01\",\n        \"end\": \"2019-09-15\"\n      },\n      \"trigger\": 33\n    },\n    {\n      \"label\": \"IV\",\n      \"period\": {\n        \"start\": \"2019-09-16\",\n        \"end\": \"2019-09-30\"\n      },\n      \"trigger\": 32\n    }\n  ],\n  \"confidence\": 0.95\n}\n```",
+    "parsed_output": {
+      "measure": "max_temperature",
+      "unit": "\u00b0C",
+      "direction": "upward",
+      "strike": 10,
+      "exit": 40,
+      "payout_rate": 1933.33,
+      "payout_rate_unit": "Rs/\u00b0C",
+      "max_payout": 58000,
+      "phases": [
+        {
+          "label": "I",
+          "period": {
+            "start": "2019-08-01",
+            "end": "2019-08-15"
+          },
+          "trigger": 35
+        },
+        {
+          "label": "II",
+          "period": {
+            "start": "2019-08-16",
+            "end": "2019-08-31"
+          },
+          "trigger": 34
+        },
+        {
+          "label": "III",
+          "period": {
+            "start": "2019-09-01",
+            "end": "2019-09-15"
+          },
+          "trigger": 33
+        },
+        {
+          "label": "IV",
+          "period": {
+            "start": "2019-09-16",
+            "end": "2019-09-30"
+          },
+          "trigger": 32
+        }
+      ],
+      "confidence": 0.95
+    }
+  },
+  {
+    "peril_id": "high_temperature",
+    "archetype": "temperature_phased",
+    "model_id": "amazon.nova-lite-v1:0",
+    "prompt": "Scheme Year: 2019-20\nPeril ID: high_temperature\nArchetype: temperature_phased\n\n\nTarget archetype: \"temperature_phased\"\nTarget JSON structure:\n{\n  \"measure\": \"max_temperature\",\n  \"unit\": \"\u00b0C\",\n  \"direction\": \"upward\",\n  \"strike\": <float>,\n  \"exit\": <float>,\n  \"payout_rate\": <float>,\n  \"payout_rate_unit\": \"Rs/\u00b0C\",\n  \"max_payout\": <float>,\n  \"phases\": [\n    {\n      \"label\": \"<e.g. I, II, ...>\",\n      \"period\": {\"start\": \"YYYY-MM-DD\", \"end\": \"YYYY-MM-DD\"},\n      \"trigger\": <float>\n    }\n  ],\n  \"confidence\": <float between 0.0 and 1.0>\n}\n\n\nReconstructed Peril Input Data:\n{\n  \"peril_id\": \"high_temperature\",\n  \"archetype\": \"temperature_phased\",\n  \"phases\": [\n    {\n      \"label\": \"I\",\n      \"period_raw\": \"01 Aug to 15\\nAug\",\n      \"trigger_raw\": \"35.0\",\n      \"x_range\": [\n        161.3175,\n        228.64000000000001\n      ]\n    },\n    {\n      \"label\": \"II\",\n      \"period_raw\": \"16 Aug to 31 Aug\",\n      \"trigger_raw\": \"34.0\",\n      \"x_range\": [\n        228.64000000000001,\n        306.69\n      ]\n    },\n    {\n      \"label\": \"III\",\n      \"period_raw\": \"1 Sep 15 Sep.\",\n      \"trigger_raw\": \"33.0\",\n      \"x_range\": [\n        306.69,\n        375.52799999999996\n      ]\n    },\n    {\n      \"label\": \"IV\",\n      \"period_raw\": \"16Sep to\\n30 Sep.\",\n      \"trigger_raw\": \"32\",\n      \"x_range\": [\n        375.52799999999996,\n        429.64363636363635\n      ]\n    }\n  ],\n  \"parameters\": {\n    \"Strike (\\u00b0C)\": \"10\",\n    \"Exit (\\u00b0C)\": \"40\",\n    \"Payout(Rs/0c)\": \"1500.00\",\n    \"Max payout(Rs)\": \"45000\"\n  }\n}\n\nMap this input data into the exact target JSON structure. Return ONLY valid JSON:",
+    "raw_response": "```json\n{\n  \"measure\": \"max_temperature\",\n  \"unit\": \"\u00b0C\",\n  \"direction\": \"upward\",\n  \"strike\": 10,\n  \"exit\": 40,\n  \"payout_rate\": 1500,\n  \"payout_rate_unit\": \"Rs/\u00b0C\",\n  \"max_payout\": 45000,\n  \"phases\": [\n    {\n      \"label\": \"I\",\n      \"period\": {\n        \"start\": \"2019-08-01\",\n        \"end\": \"2019-08-15\"\n      },\n      \"trigger\": 35\n    },\n    {\n      \"label\": \"II\",\n      \"period\": {\n        \"start\": \"2019-08-16\",\n        \"end\": \"2019-08-31\"\n      },\n      \"trigger\": 34\n    },\n    {\n      \"label\": \"III\",\n      \"period\": {\n        \"start\": \"2019-09-01\",\n        \"end\": \"2019-09-15\"\n      },\n      \"trigger\": 33\n    },\n    {\n      \"label\": \"IV\",\n      \"period\": {\n        \"start\": \"2019-09-16\",\n        \"end\": \"2019-09-30\"\n      },\n      \"trigger\": 32\n    }\n  ],\n  \"confidence\": 0.95\n}\n```",
+    "parsed_output": {
+      "measure": "max_temperature",
+      "unit": "\u00b0C",
+      "direction": "upward",
+      "strike": 10,
+      "exit": 40,
+      "payout_rate": 1500,
+      "payout_rate_unit": "Rs/\u00b0C",
+      "max_payout": 45000,
+      "phases": [
+        {
+          "label": "I",
+          "period": {
+            "start": "2019-08-01",
+            "end": "2019-08-15"
+          },
+          "trigger": 35
+        },
+        {
+          "label": "II",
+          "period": {
+            "start": "2019-08-16",
+            "end": "2019-08-31"
+          },
+          "trigger": 34
+        },
+        {
+          "label": "III",
+          "period": {
+            "start": "2019-09-01",
+            "end": "2019-09-15"
+          },
+          "trigger": 33
+        },
+        {
+          "label": "IV",
+          "period": {
+            "start": "2019-09-16",
+            "end": "2019-09-30"
+          },
+          "trigger": 32
+        }
+      ],
+      "confidence": 0.95
+    }
+  },
+  {
+    "peril_id": "high_wind_speed",
+    "archetype": "wind_phased",
+    "model_id": "amazon.nova-lite-v1:0",
+    "prompt": "Scheme Year: 2019-20\nPeril ID: high_wind_speed\nArchetype: wind_phased\n\n\nTarget archetype: \"wind_phased\"\nTarget JSON structure:\n{\n  \"measure\": \"max_wind_speed\",\n  \"unit\": \"km/h\",\n  \"direction\": \"upward\",\n  \"strike\": <float>,\n  \"exit\": <float>,\n  \"payout_rate\": <float>,\n  \"payout_rate_unit\": \"Rs/km/h\",\n  \"max_payout\": <float>,\n  \"trigger_blocks\": [\n    {\n      \"block_label\": \"block_1\",\n      \"period\": {\"start\": \"YYYY-MM-DD\", \"end\": \"YYYY-MM-DD\"},\n      \"phases\": [\n        {\n          \"label\": \"<e.g. I, II, III>\",\n          \"period\": {\"start\": \"YYYY-MM-DD\", \"end\": \"YYYY-MM-DD\"},\n          \"trigger\": <float>\n        }\n      ]\n    }\n  ],\n  \"confidence\": <float between 0.0 and 1.0>\n}\n\n\nReconstructed Peril Input Data:\n{\n  \"peril_id\": \"high_wind_speed\",\n  \"archetype\": \"wind_phased\",\n  \"trigger_blocks\": [\n    {\n      \"block_label\": \"block_1\",\n      \"phases\": [\n        {\n          \"label\": \"I\",\n          \"period_raw\": \"01 July to 15\\nJuly\",\n          \"trigger_raw\": \"40\",\n          \"x_range\": [\n            269.9657142857143,\n            331.95272727272726\n          ]\n        },\n        {\n          \"label\": \"II\",\n          \"period_raw\": \"16 July to 31\\nJuly\",\n          \"trigger_raw\": \"45\",\n          \"x_range\": [\n            331.95272727272726,\n            393.86000000000007\n          ]\n        },\n        {\n          \"label\": \"III\",\n          \"period_raw\": \"01-Aug. to\\n15 Aug.\",\n          \"trigger_raw\": \"45\",\n          \"x_range\": [\n            393.86000000000007,\n            449.19\n          ]\n        },\n        {\n          \"label\": \"IV\",\n          \"period_raw\": \"16-Aug. to\\n31 Aug.\",\n          \"trigger_raw\": \"40\",\n          \"x_range\": [\n            449.19,\n            504.50181818181824\n          ]\n        }\n      ],\n      \"parameters\": {\n        \"Strike (km/h)\": \"5\",\n        \"Exit (km/h)\": \"40\",\n        \"Payout(Rs/km/h)\": \"950.71\",\n        \"Max payout(Rs)\": \"33275\"\n      }\n    }\n  ]\n}\n\nMap this input data into the exact target JSON structure. Return ONLY valid JSON:",
+    "raw_response": "```json\n{\n  \"measure\": \"max_wind_speed\",\n  \"unit\": \"km/h\",\n  \"direction\": \"upward\",\n  \"strike\": 5,\n  \"exit\": 40,\n  \"payout_rate\": 950.71,\n  \"payout_rate_unit\": \"Rs/km/h\",\n  \"max_payout\": 33275,\n  \"trigger_blocks\": [\n    {\n      \"block_label\": \"block_1\",\n      \"period\": {\n        \"start\": \"2019-07-01\",\n        \"end\": \"2019-07-15\"\n      },\n      \"phases\": [\n        {\n          \"label\": \"I\",\n          \"period\": {\n            \"start\": \"2019-07-01\",\n            \"end\": \"2019-07-15\"\n          },\n          \"trigger\": 40\n        },\n        {\n          \"label\": \"II\",\n          \"period\": {\n            \"start\": \"2019-07-16\",\n            \"end\": \"2019-07-31\"\n          },\n          \"trigger\": 45\n        },\n        {\n          \"label\": \"III\",\n          \"period\": {\n            \"start\": \"2019-08-01\",\n            \"end\": \"2019-08-15\"\n          },\n          \"trigger\": 45\n        },\n        {\n          \"label\": \"IV\",\n          \"period\": {\n            \"start\": \"2019-08-16\",\n            \"end\": \"2019-08-31\"\n          },\n          \"trigger\": 40\n        }\n      ]\n    }\n  ],\n  \"confidence\": 0.95\n}\n```",
+    "parsed_output": {
+      "measure": "max_wind_speed",
+      "unit": "km/h",
+      "direction": "upward",
+      "strike": 5,
+      "exit": 40,
+      "payout_rate": 950.71,
+      "payout_rate_unit": "Rs/km/h",
+      "max_payout": 33275,
+      "trigger_blocks": [
+        {
+          "block_label": "block_1",
+          "period": {
+            "start": "2019-07-01",
+            "end": "2019-07-15"
+          },
+          "phases": [
+            {
+              "label": "I",
+              "period": {
+                "start": "2019-07-01",
+                "end": "2019-07-15"
+              },
+              "trigger": 40
+            },
+            {
+              "label": "II",
+              "period": {
+                "start": "2019-07-16",
+                "end": "2019-07-31"
+              },
+              "trigger": 45
+            },
+            {
+              "label": "III",
+              "period": {
+                "start": "2019-08-01",
+                "end": "2019-08-15"
+              },
+              "trigger": 45
+            },
+            {
+              "label": "IV",
+              "period": {
+                "start": "2019-08-16",
+                "end": "2019-08-31"
+              },
+              "trigger": 40
+            }
+          ]
         }
       ],
       "confidence": 0.95
@@ -71,8 +532,8 @@
     "peril_id": "deficit_rainfall",
     "archetype": "rainfall_multistrike",
     "model_id": "amazon.nova-lite-v1:0",
-    "prompt": "Scheme Year: 2019-20\nPeril ID: deficit_rainfall\nArchetype: rainfall_multistrike\n\n\nTarget archetype: \"rainfall_multistrike\"\nTarget JSON structure:\n{\n  \"measure\": \"aggregate_rainfall\",\n  \"unit\": \"mm\",\n  \"direction\": \"deficit\",\n  \"rate_unit\": \"Rs/mm\",\n  \"phases\": [\n    {\n      \"label\": \"Phase I\",\n      \"sub_periods\": [\n        {\n          \"period\": {\"start\": \"YYYY-MM-DD\", \"end\": \"YYYY-MM-DD\"},\n          \"strike_1\": <float>,\n          \"strike_2\": <float or null>,\n          \"exit\": <float>,\n          \"rate_1\": <float>,\n          \"rate_2\": <float or null>,\n          \"max_payout\": <float>\n        }\n      ]\n    }\n  ],\n  \"total_payout\": <float>,\n  \"confidence\": <float between 0.0 and 1.0>\n}\nNote: Each sub_period has its own strike_1, strike_2, exit, rate_1, rate_2, max_payout.\n\n\nReconstructed Peril Input Data:\n{\n  \"peril_id\": \"deficit_rainfall\",\n  \"archetype\": \"rainfall_multistrike\",\n  \"phases\": [\n    {\n      \"label\": \"Phase I\",\n      \"x_range\": [\n        160.98,\n        263.58\n      ],\n      \"sub_periods\": [\n        {\n          \"col_idx\": 0,\n          \"period_raw\": \"01-Jul. to 15-\\nJul.\",\n          \"x_range\": [\n            160.98,\n            211.5\n          ],\n          \"values\": {\n            \"Strike 1 (mm)\": \"60\",\n            \"Strike 2 (mm)\": \"20\",\n            \"EXIT (mm)\": \"0\",\n            \"RATE 1 (Rs./ mm)\": \"56.25\",\n            \"RATE 2 (Rs./ mm)\": \"262.50\",\n            \"Max payout(Rs)\": \"7500\"\n          }\n        },\n        {\n          \"col_idx\": 1,\n          \"period_raw\": \"16-Jul. to 31-\\nJul.\",\n          \"x_range\": [\n            211.5,\n            263.58\n          ],\n          \"values\": {\n            \"Strike 1 (mm)\": \"80\",\n            \"Strike 2 (mm)\": \"30\",\n            \"EXIT (mm)\": \"10\",\n            \"RATE 1 (Rs./ mm)\": \"45.00\",\n            \"RATE 2 (Rs./ mm)\": \"262.50\",\n            \"Max payout(Rs)\": \"7500\"\n          }\n        },\n        {\n          \"col_idx\": 2,\n          \"period_raw\": \"1-Aug. to 15\\nAug.\",\n          \"x_range\": [\n            263.58,\n            311.94\n          ],\n          \"values\": {\n            \"Strike 1 (mm)\": \"80\",\n            \"Strike 2 (mm)\": \"30\",\n            \"EXIT (mm)\": \"10\",\n            \"RATE 1 (Rs./ mm)\": \"45.00\",\n            \"RATE 2 (Rs./ mm)\": \"262.50\",\n            \"Max payout(Rs)\": \"7500\"\n          }\n        }\n      ]\n    },\n    {\n      \"label\": \"Phase II\",\n      \"x_range\": [\n        311.94,\n        408.66\n      ],\n      \"sub_periods\": [\n        {\n          \"col_idx\": 3,\n          \"period_raw\": \"16 Aug. to\\n31 Aug.\",\n          \"x_range\": [\n            311.94,\n            352.86\n          ],\n          \"values\": {\n            \"Strike 1 (mm)\": \"80\",\n            \"Strike 2 (mm)\": \"30\",\n            \"EXIT (mm)\": \"10\",\n            \"RATE 1 (Rs./ mm)\": \"45.00\",\n            \"RATE 2 (Rs./ mm)\": \"262.50\",\n            \"Max payout(Rs)\": \"7500\"\n          }\n        },\n        {\n          \"col_idx\": 4,\n          \"period_raw\": \"01 Sep to 15\\nSept.\",\n          \"x_range\": [\n            352.86,\n            408.66\n          ],\n          \"values\": {\n            \"Strike 1 (mm)\": \"60\",\n            \"Strike 2 (mm)\": \"20\",\n            \"EXIT (mm)\": \"0\",\n            \"RATE 1 (Rs./ mm)\": \"56.25\",\n            \"RATE 2 (Rs./ mm)\": \"262.50\",\n            \"Max payout(Rs)\": \"7500\"\n          }\n        }\n      ]\n    }\n  ],\n  \"total_payout_raw\": \"37500\"\n}\n\nMap this input data into the exact target JSON structure. Return ONLY valid JSON:",
-    "raw_response": "```json\n{\n  \"measure\": \"aggregate_rainfall\",\n  \"unit\": \"mm\",\n  \"direction\": \"deficit\",\n  \"rate_unit\": \"Rs/mm\",\n  \"phases\": [\n    {\n      \"label\": \"Phase I\",\n      \"sub_periods\": [\n        {\n          \"period\": {\n            \"start\": \"2019-07-01\",\n            \"end\": \"2019-07-15\"\n          },\n          \"strike_1\": 60,\n          \"strike_2\": 20,\n          \"exit\": 0,\n          \"rate_1\": 56.25,\n          \"rate_2\": 262.5,\n          \"max_payout\": 7500\n        },\n        {\n          \"period\": {\n            \"start\": \"2019-07-16\",\n            \"end\": \"2019-07-31\"\n          },\n          \"strike_1\": 80,\n          \"strike_2\": 30,\n          \"exit\": 10,\n          \"rate_1\": 45,\n          \"rate_2\": 262.5,\n          \"max_payout\": 7500\n        },\n        {\n          \"period\": {\n            \"start\": \"2019-08-01\",\n            \"end\": \"2019-08-15\"\n          },\n          \"strike_1\": 80,\n          \"strike_2\": 30,\n          \"exit\": 10,\n          \"rate_1\": 45,\n          \"rate_2\": 262.5,\n          \"max_payout\": 7500\n        }\n      ]\n    },\n    {\n      \"label\": \"Phase II\",\n      \"sub_periods\": [\n        {\n          \"period\": {\n            \"start\": \"2019-08-16\",\n            \"end\": \"2019-08-31\"\n          },\n          \"strike_1\": 80,\n          \"strike_2\": 30,\n          \"exit\": 10,\n          \"rate_1\": 45,\n          \"rate_2\": 262.5,\n          \"max_payout\": 7500\n        },\n        {\n          \"period\": {\n            \"start\": \"2019-09-01\",\n            \"end\": \"2019-09-15\"\n          },\n          \"strike_1\": 60,\n          \"strike_2\": 20,\n          \"exit\": 0,\n          \"rate_1\": 56.25,\n          \"rate_2\": 262.5,\n          \"max_payout\": 7500\n        }\n      ]\n    }\n  ],\n  \"total_payout\": 37500,\n  \"confidence\": 0.95\n}\n```",
+    "prompt": "Scheme Year: 2019-20\nPeril ID: deficit_rainfall\nArchetype: rainfall_multistrike\n\n\nTarget archetype: \"rainfall_multistrike\"\nTarget JSON structure:\n{\n  \"measure\": \"aggregate_rainfall\",\n  \"unit\": \"mm\",\n  \"direction\": \"deficit\",\n  \"rate_unit\": \"Rs/mm\",\n  \"phases\": [\n    {\n      \"label\": \"Phase I\",\n      \"sub_periods\": [\n        {\n          \"period\": {\"start\": \"YYYY-MM-DD\", \"end\": \"YYYY-MM-DD\"},\n          \"strike_1\": <float>,\n          \"strike_2\": <float or null>,\n          \"exit\": <float>,\n          \"rate_1\": <float>,\n          \"rate_2\": <float or null>,\n          \"max_payout\": <float>\n        }\n      ]\n    }\n  ],\n  \"total_payout\": <float>,\n  \"confidence\": <float between 0.0 and 1.0>\n}\nNote: Each sub_period has its own strike_1, strike_2, exit, rate_1, rate_2, max_payout.\n\n\nReconstructed Peril Input Data:\n{\n  \"peril_id\": \"deficit_rainfall\",\n  \"archetype\": \"rainfall_multistrike\",\n  \"phases\": [\n    {\n      \"label\": \"Phase I\",\n      \"x_range\": [\n        331.95272727272726,\n        504.50181818181824\n      ],\n      \"sub_periods\": [\n        {\n          \"col_idx\": 0,\n          \"period_raw\": \"1 JULY TO 31\\nJULY\",\n          \"x_range\": [\n            331.95272727272726,\n            393.86000000000007\n          ],\n          \"values\": {\n            \"STRIKEI\": \"120\",\n            \"STRIKEII\": \"80\",\n            \"EXIT\": \"40\",\n            \"RATEI\": \"74.87\",\n            \"RATEII\": \"174.70\",\n            \"MAXIMUM PAYOUT (RS.)\": \"9983\"\n          }\n        },\n        {\n          \"col_idx\": 1,\n          \"period_raw\": \"1 AUG. TO 31\\nAUG.\",\n          \"x_range\": [\n            393.86000000000007,\n            449.19\n          ],\n          \"values\": {\n            \"STRIKEI\": \"250\",\n            \"STRIKEII\": \"150\",\n            \"EXIT\": \"100\",\n            \"RATEI\": \"39.93\",\n            \"RATEII\": \"186.34\",\n            \"MAXIMUM PAYOUT (RS.)\": \"13310\"\n          }\n        },\n        {\n          \"col_idx\": 2,\n          \"period_raw\": \"1 SEP.. TO 30\\nSEPT.\",\n          \"x_range\": [\n            449.19,\n            504.50181818181824\n          ],\n          \"values\": {\n            \"STRIKEI\": \"80\",\n            \"STRIKEII\": \"40\",\n            \"EXIT\": \"30\",\n            \"RATEI\": \"74.87\",\n            \"RATEII\": \"698.74\",\n            \"MAXIMUM PAYOUT (RS.)\": \"9982\"\n          }\n        }\n      ]\n    }\n  ],\n  \"total_payout_raw\": \"33275\"\n}\n\nMap this input data into the exact target JSON structure. Return ONLY valid JSON:",
+    "raw_response": "```json\n{\n  \"measure\": \"aggregate_rainfall\",\n  \"unit\": \"mm\",\n  \"direction\": \"deficit\",\n  \"rate_unit\": \"Rs/mm\",\n  \"phases\": [\n    {\n      \"label\": \"Phase I\",\n      \"sub_periods\": [\n        {\n          \"period\": {\n            \"start\": \"2019-07-01\",\n            \"end\": \"2019-07-31\"\n          },\n          \"strike_1\": 120,\n          \"strike_2\": 80,\n          \"exit\": 40,\n          \"rate_1\": 74.87,\n          \"rate_2\": 174.7,\n          \"max_payout\": 9983\n        },\n        {\n          \"period\": {\n            \"start\": \"2019-08-01\",\n            \"end\": \"2019-08-31\"\n          },\n          \"strike_1\": 250,\n          \"strike_2\": 150,\n          \"exit\": 100,\n          \"rate_1\": 39.93,\n          \"rate_2\": 186.34,\n          \"max_payout\": 13310\n        },\n        {\n          \"period\": {\n            \"start\": \"2019-09-01\",\n            \"end\": \"2019-09-30\"\n          },\n          \"strike_1\": 80,\n          \"strike_2\": 40,\n          \"exit\": 30,\n          \"rate_1\": 74.87,\n          \"rate_2\": 698.74,\n          \"max_payout\": 9982\n        }\n      ]\n    }\n  ],\n  \"total_payout\": 33275,\n  \"confidence\": 0.95\n}\n```",
     "parsed_output": {
       "measure": "aggregate_rainfall",
       "unit": "mm",
@@ -85,185 +546,43 @@
             {
               "period": {
                 "start": "2019-07-01",
-                "end": "2019-07-15"
-              },
-              "strike_1": 60,
-              "strike_2": 20,
-              "exit": 0,
-              "rate_1": 56.25,
-              "rate_2": 262.5,
-              "max_payout": 7500
-            },
-            {
-              "period": {
-                "start": "2019-07-16",
                 "end": "2019-07-31"
               },
-              "strike_1": 80,
-              "strike_2": 30,
-              "exit": 10,
-              "rate_1": 45,
-              "rate_2": 262.5,
-              "max_payout": 7500
+              "strike_1": 120,
+              "strike_2": 80,
+              "exit": 40,
+              "rate_1": 74.87,
+              "rate_2": 174.7,
+              "max_payout": 9983
             },
             {
               "period": {
                 "start": "2019-08-01",
-                "end": "2019-08-15"
-              },
-              "strike_1": 80,
-              "strike_2": 30,
-              "exit": 10,
-              "rate_1": 45,
-              "rate_2": 262.5,
-              "max_payout": 7500
-            }
-          ]
-        },
-        {
-          "label": "Phase II",
-          "sub_periods": [
-            {
-              "period": {
-                "start": "2019-08-16",
                 "end": "2019-08-31"
               },
-              "strike_1": 80,
-              "strike_2": 30,
-              "exit": 10,
-              "rate_1": 45,
-              "rate_2": 262.5,
-              "max_payout": 7500
+              "strike_1": 250,
+              "strike_2": 150,
+              "exit": 100,
+              "rate_1": 39.93,
+              "rate_2": 186.34,
+              "max_payout": 13310
             },
             {
               "period": {
                 "start": "2019-09-01",
-                "end": "2019-09-15"
+                "end": "2019-09-30"
               },
-              "strike_1": 60,
-              "strike_2": 20,
-              "exit": 0,
-              "rate_1": 56.25,
-              "rate_2": 262.5,
-              "max_payout": 7500
+              "strike_1": 80,
+              "strike_2": 40,
+              "exit": 30,
+              "rate_1": 74.87,
+              "rate_2": 698.74,
+              "max_payout": 9982
             }
           ]
         }
       ],
-      "total_payout": 37500,
-      "confidence": 0.95
-    }
-  },
-  {
-    "peril_id": "unseasonal_rainfall",
-    "archetype": "rainfall_single_payout",
-    "model_id": "amazon.nova-lite-v1:0",
-    "prompt": "Scheme Year: 2019-20\nPeril ID: unseasonal_rainfall\nArchetype: rainfall_single_payout\n\n\nTarget archetype: \"rainfall_single_payout\"\nTarget JSON structure:\n{\n  \"measure\": \"aggregate_rainfall\",\n  \"unit\": \"mm\",\n  \"direction\": \"unseasonal\",\n  \"payout_mode\": \"single\",\n  \"periods\": [\n    {\"start\": \"YYYY-MM-DD\", \"end\": \"YYYY-MM-DD\"}\n  ],\n  \"strike_1\": <float>,\n  \"strike_2\": <float or null>,\n  \"exit\": <float>,\n  \"rate_1\": <float>,\n  \"rate_2\": <float or null>,\n  \"rate_unit\": \"Rs/mm\",\n  \"max_payout\": <float>,\n  \"confidence\": <float between 0.0 and 1.0>\n}\n\n\nReconstructed Peril Input Data:\n{\n  \"peril_id\": \"unseasonal_rainfall\",\n  \"archetype\": \"rainfall_single_payout\",\n  \"parameters\": {\n    \"Strike 1 (mm)\": \"25\",\n    \"Strike 2 (mm)\": \"40\",\n    \"UnSeasonal\": \"rainfall\",\n    \"EXIT (mm)\": \"60\",\n    \"(Single\": \"payout)\",\n    \"RATE 1 (Rs./ mm)\": \"500\",\n    \"RATE 2 (Rs./ mm)\": \"875\",\n    \"Max payout(Rs)\": \"25000\"\n  },\n  \"periods_raw\": [\n    \"1-Jun-19\",\n    \"15-Jun-19\"\n  ]\n}\n\nMap this input data into the exact target JSON structure. Return ONLY valid JSON:",
-    "raw_response": "```json\n{\n  \"measure\": \"aggregate_rainfall\",\n  \"unit\": \"mm\",\n  \"direction\": \"unseasonal\",\n  \"payout_mode\": \"single\",\n  \"periods\": [\n    {\n      \"start\": \"2019-06-01\",\n      \"end\": \"2019-06-15\"\n    }\n  ],\n  \"strike_1\": 25,\n  \"strike_2\": 40,\n  \"exit\": 60,\n  \"rate_1\": 500,\n  \"rate_2\": 875,\n  \"rate_unit\": \"Rs/mm\",\n  \"max_payout\": 25000,\n  \"confidence\": 0.95\n}\n```",
-    "parsed_output": {
-      "measure": "aggregate_rainfall",
-      "unit": "mm",
-      "direction": "unseasonal",
-      "payout_mode": "single",
-      "periods": [
-        {
-          "start": "2019-06-01",
-          "end": "2019-06-15"
-        }
-      ],
-      "strike_1": 25,
-      "strike_2": 40,
-      "exit": 60,
-      "rate_1": 500,
-      "rate_2": 875,
-      "rate_unit": "Rs/mm",
-      "max_payout": 25000,
-      "confidence": 0.95
-    }
-  },
-  {
-    "peril_id": "high_wind_speed",
-    "archetype": "wind_phased",
-    "model_id": "amazon.nova-lite-v1:0",
-    "prompt": "Scheme Year: 2019-20\nPeril ID: high_wind_speed\nArchetype: wind_phased\n\n\nTarget archetype: \"wind_phased\"\nTarget JSON structure:\n{\n  \"measure\": \"max_wind_speed\",\n  \"unit\": \"km/h\",\n  \"direction\": \"upward\",\n  \"strike\": <float>,\n  \"exit\": <float>,\n  \"payout_rate\": <float>,\n  \"payout_rate_unit\": \"Rs/km/h\",\n  \"max_payout\": <float>,\n  \"trigger_blocks\": [\n    {\n      \"block_label\": \"block_1\",\n      \"period\": {\"start\": \"YYYY-MM-DD\", \"end\": \"YYYY-MM-DD\"},\n      \"phases\": [\n        {\n          \"label\": \"<e.g. I, II, III>\",\n          \"period\": {\"start\": \"YYYY-MM-DD\", \"end\": \"YYYY-MM-DD\"},\n          \"trigger\": <float>\n        }\n      ]\n    }\n  ],\n  \"confidence\": <float between 0.0 and 1.0>\n}\n\n\nReconstructed Peril Input Data:\n{\n  \"peril_id\": \"high_wind_speed\",\n  \"archetype\": \"wind_phased\",\n  \"trigger_blocks\": [\n    {\n      \"block_label\": \"block_1\",\n      \"phases\": [\n        {\n          \"label\": \"I\",\n          \"period_raw\": \"15 Oct. to 31\\nOct.\",\n          \"trigger_raw\": \"50\",\n          \"x_range\": [\n            160.98,\n            211.5\n          ]\n        },\n        {\n          \"label\": \"II\",\n          \"period_raw\": \"01 Nov. to 15\\nNov.\",\n          \"trigger_raw\": \"55\",\n          \"x_range\": [\n            211.5,\n            263.58\n          ]\n        },\n        {\n          \"label\": \"III\",\n          \"period_raw\": \"16 Nov. to 30\\nNov.\",\n          \"trigger_raw\": \"55\",\n          \"x_range\": [\n            263.58,\n            311.94\n          ]\n        }\n      ],\n      \"parameters\": {\n        \"Strike (km/h)\": \"10\",\n        \"Exit (km/h)\": \"70\",\n        \"Payout(Rs/Km/h)\": \"208.33\",\n        \"Max payout(Rs)\": \"12500\"\n      }\n    },\n    {\n      \"block_label\": \"block_2\",\n      \"phases\": [\n        {\n          \"label\": \"I\",\n          \"period_raw\": \"15 Feb. to\\n28 Feb.\",\n          \"trigger_raw\": \"50\",\n          \"x_range\": [\n            311.94,\n            352.86\n          ]\n        },\n        {\n          \"label\": \"II\",\n          \"period_raw\": \"01 March to 15\\nMarch\",\n          \"trigger_raw\": \"55\",\n          \"x_range\": [\n            352.86,\n            408.66\n          ]\n        },\n        {\n          \"label\": \"III\",\n          \"period_raw\": \"16 March to 31\\nMarch\",\n          \"trigger_raw\": \"50\",\n          \"x_range\": [\n            408.66,\n            465.54\n          ]\n        }\n      ],\n      \"parameters\": {\n        \"Strike (km/h)\": \"10\",\n        \"Exit (km/h)\": \"70\",\n        \"Payout(Rs/Km/h)\": \"208.33\",\n        \"Max payout(Rs)\": \"12500\"\n      }\n    }\n  ]\n}\n\nMap this input data into the exact target JSON structure. Return ONLY valid JSON:",
-    "raw_response": "```json\n{\n  \"measure\": \"max_wind_speed\",\n  \"unit\": \"km/h\",\n  \"direction\": \"upward\",\n  \"strike\": 10,\n  \"exit\": 70,\n  \"payout_rate\": 208.33,\n  \"payout_rate_unit\": \"Rs/km/h\",\n  \"max_payout\": 12500,\n  \"trigger_blocks\": [\n    {\n      \"block_label\": \"block_1\",\n      \"period\": {\n        \"start\": \"2019-10-15\",\n        \"end\": \"2019-10-31\"\n      },\n      \"phases\": [\n        {\n          \"label\": \"I\",\n          \"period\": {\n            \"start\": \"2019-10-15\",\n            \"end\": \"2019-10-31\"\n          },\n          \"trigger\": 50\n        },\n        {\n          \"label\": \"II\",\n          \"period\": {\n            \"start\": \"2019-11-01\",\n            \"end\": \"2019-11-15\"\n          },\n          \"trigger\": 55\n        },\n        {\n          \"label\": \"III\",\n          \"period\": {\n            \"start\": \"2019-11-16\",\n            \"end\": \"2019-11-30\"\n          },\n          \"trigger\": 55\n        }\n      ]\n    },\n    {\n      \"block_label\": \"block_2\",\n      \"period\": {\n        \"start\": \"2020-02-15\",\n        \"end\": \"2020-02-28\"\n      },\n      \"phases\": [\n        {\n          \"label\": \"I\",\n          \"period\": {\n            \"start\": \"2020-02-15\",\n            \"end\": \"2020-02-28\"\n          },\n          \"trigger\": 50\n        },\n        {\n          \"label\": \"II\",\n          \"period\": {\n            \"start\": \"2020-03-01\",\n            \"end\": \"2020-03-15\"\n          },\n          \"trigger\": 55\n        },\n        {\n          \"label\": \"III\",\n          \"period\": {\n            \"start\": \"2020-03-16\",\n            \"end\": \"2020-03-31\"\n          },\n          \"trigger\": 50\n        }\n      ]\n    }\n  ],\n  \"confidence\": 0.95\n}\n```",
-    "parsed_output": {
-      "measure": "max_wind_speed",
-      "unit": "km/h",
-      "direction": "upward",
-      "strike": 10,
-      "exit": 70,
-      "payout_rate": 208.33,
-      "payout_rate_unit": "Rs/km/h",
-      "max_payout": 12500,
-      "trigger_blocks": [
-        {
-          "block_label": "block_1",
-          "period": {
-            "start": "2019-10-15",
-            "end": "2019-10-31"
-          },
-          "phases": [
-            {
-              "label": "I",
-              "period": {
-                "start": "2019-10-15",
-                "end": "2019-10-31"
-              },
-              "trigger": 50
-            },
-            {
-              "label": "II",
-              "period": {
-                "start": "2019-11-01",
-                "end": "2019-11-15"
-              },
-              "trigger": 55
-            },
-            {
-              "label": "III",
-              "period": {
-                "start": "2019-11-16",
-                "end": "2019-11-30"
-              },
-              "trigger": 55
-            }
-          ]
-        },
-        {
-          "block_label": "block_2",
-          "period": {
-            "start": "2020-02-15",
-            "end": "2020-02-28"
-          },
-          "phases": [
-            {
-              "label": "I",
-              "period": {
-                "start": "2020-02-15",
-                "end": "2020-02-28"
-              },
-              "trigger": 50
-            },
-            {
-              "label": "II",
-              "period": {
-                "start": "2020-03-01",
-                "end": "2020-03-15"
-              },
-              "trigger": 55
-            },
-            {
-              "label": "III",
-              "period": {
-                "start": "2020-03-16",
-                "end": "2020-03-31"
-              },
-              "trigger": 50
-            }
-          ]
-        }
-      ],
+      "total_payout": 33275,
       "confidence": 0.95
     }
   }
